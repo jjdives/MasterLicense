@@ -68,23 +68,23 @@
     <!-- REUSABLE SVG DEFINITIONS -->
     <svg class="hidden">
         <defs>
-            <!-- Side Boat (Bow pointing right). Shows starboard side. -->
+            <!-- Side Boat (Bow pointing right). Shifted lower for headroom. -->
             <g id="boat-side">
-                <path d="M 30 80 L 160 80 Q 180 80 190 50 L 30 50 Z" fill="currentColor" class="opacity-50"/>
-                <path d="M 50 50 L 50 35 L 90 35 L 100 50 Z" fill="currentColor" class="opacity-70"/>
+                <path d="M 30 100 L 160 100 Q 180 100 190 70 L 30 70 Z" fill="currentColor" class="opacity-50"/>
+                <path d="M 50 70 L 50 55 L 90 55 L 100 70 Z" fill="currentColor" class="opacity-70"/>
                 <!-- Main Fwd Mast -->
-                <line x1="130" y1="50" x2="130" y2="10" stroke="currentColor" stroke-width="3" class="opacity-40"/>
+                <line x1="130" y1="70" x2="130" y2="30" stroke="currentColor" stroke-width="3" class="opacity-40"/>
                 <!-- Aft Mast (Used for >50m) -->
-                <line x1="70" y1="35" x2="70" y2="0" stroke="currentColor" stroke-width="3" class="opacity-40" stroke-dasharray="2 2"/>
+                <line x1="70" y1="55" x2="70" y2="20" stroke="currentColor" stroke-width="3" class="opacity-40" stroke-dasharray="2 2"/>
             </g>
-            <!-- Top Boat (Bow pointing right). Top edge is Port, Bottom edge is Stbd. -->
+            <!-- Top Boat (Bow pointing right). -->
             <g id="boat-top">
                 <path d="M 30 25 L 140 25 Q 180 25 190 50 Q 180 75 140 75 L 30 75 Z" fill="currentColor" class="opacity-50"/>
                 <rect x="50" y="35" width="40" height="30" rx="2" fill="currentColor" class="opacity-70"/>
                 <circle cx="130" cy="50" r="3" fill="currentColor"/>
                 <circle cx="70" cy="50" r="3" fill="currentColor"/>
             </g>
-            <!-- Day Shapes (Black fill, white outline for high contrast) -->
+            <!-- Day Shapes -->
             <g id="shape-ball"><circle cx="0" cy="0" r="8" fill="black" stroke="white" stroke-width="1.5"/></g>
             <g id="shape-diamond"><polygon points="0,-10 10,0 0,10 -10,0" fill="black" stroke="white" stroke-width="1.5"/></g>
             <g id="shape-cylinder"><rect x="-6" y="-10" width="12" height="20" fill="black" stroke="white" stroke-width="1.5"/></g>
@@ -138,9 +138,9 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-w" style="left:65%; top:10%"></div> <!-- Masthead -->
-                            <div class="n-light nl-g" style="left:45%; top:45%"></div> <!-- Stbd side -->
-                            <div class="n-light nl-w" style="left:15%; top:45%"></div> <!-- Stern -->
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Masthead -->
+                            <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Stbd side -->
+                            <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern -->
                         </div>
                         <!-- Night Top -->
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
@@ -165,10 +165,10 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-w" style="left:65%; top:20%"></div> <!-- Fwd Mast -->
-                            <div class="n-light nl-w" style="left:35%; top:-5%"></div> <!-- Aft Mast -->
-                            <div class="n-light nl-g" style="left:45%; top:45%"></div>
-                            <div class="n-light nl-w" style="left:15%; top:45%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Fwd Mast -->
+                            <div class="n-light nl-w" style="left:35%; top:20%"></div> <!-- Aft Mast -->
+                            <div class="n-light nl-g" style="left:45%; top:65%"></div>
+                            <div class="n-light nl-w" style="left:15%; top:65%"></div>
                         </div>
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (TOP)</div>
@@ -199,16 +199,16 @@
                     <div class="relative w-48 aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <div class="n-light nl-r" style="left:65%; top:-5%"></div> <!-- Opt Mast -->
-                        <div class="n-light nl-g" style="left:65%; top:8%"></div>  <!-- Opt Mast -->
-                        <div class="n-light nl-g" style="left:45%; top:45%"></div> <!-- Stbd -->
-                        <div class="n-light nl-w" style="left:15%; top:45%"></div> <!-- Stern -->
+                        <div class="n-light nl-r" style="left:65%; top:15%"></div> <!-- Opt Mast -->
+                        <div class="n-light nl-g" style="left:65%; top:28%"></div>  <!-- Opt Mast -->
+                        <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Stbd -->
+                        <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern -->
                     </div>
                     <!-- Day View -->
                     <div class="relative w-48 aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
-                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (MOTORSOLING)</div>
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (MOTORSAILING)</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-cone-down"/></svg>
+                        <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-cone-down"/></svg>
                     </div>
                 </div>
             </div>
@@ -231,13 +231,13 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-r" style="left:65%; top:5%"></div>
-                            <div class="n-light nl-w" style="left:65%; top:18%"></div>
+                            <div class="n-light nl-r" style="left:65%; top:17%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
                         </div>
                         <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-hourglass"/></svg>
+                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"/></svg>
                         </div>
                     </div>
                 </div>
@@ -252,13 +252,13 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-g" style="left:65%; top:5%"></div>
-                            <div class="n-light nl-w" style="left:65%; top:18%"></div>
+                            <div class="n-light nl-g" style="left:65%; top:17%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
                         </div>
                         <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-hourglass"/></svg>
+                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"/></svg>
                         </div>
                     </div>
                 </div>
@@ -279,14 +279,14 @@
                     <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <div class="n-light nl-r" style="left:65%; top:0%"></div>
-                        <div class="n-light nl-r" style="left:65%; top:13%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:17%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:30%"></div>
                     </div>
                     <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <svg class="d-shape" style="left:65%; top:0%"><use href="#shape-ball"/></svg>
-                        <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-ball"/></svg>
+                        <svg class="d-shape" style="left:65%; top:17%"><use href="#shape-ball"/></svg>
+                        <svg class="d-shape" style="left:65%; top:32%"><use href="#shape-ball"/></svg>
                     </div>
                 </div>
             </section>
@@ -301,16 +301,16 @@
                     <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <div class="n-light nl-r" style="left:65%; top:-2%"></div>
-                        <div class="n-light nl-w" style="left:65%; top:11%"></div>
-                        <div class="n-light nl-r" style="left:65%; top:24%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:10%"></div>
+                        <div class="n-light nl-w" style="left:65%; top:23%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:36%"></div>
                     </div>
                     <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <svg class="d-shape" style="left:65%; top:-2%"><use href="#shape-ball"/></svg>
-                        <svg class="d-shape" style="left:65%; top:11%"><use href="#shape-diamond"/></svg>
-                        <svg class="d-shape" style="left:65%; top:24%"><use href="#shape-ball"/></svg>
+                        <svg class="d-shape" style="left:65%; top:10%"><use href="#shape-ball"/></svg>
+                        <svg class="d-shape" style="left:65%; top:23%"><use href="#shape-diamond"/></svg>
+                        <svg class="d-shape" style="left:65%; top:36%"><use href="#shape-ball"/></svg>
                     </div>
                 </div>
             </section>
@@ -330,14 +330,14 @@
                     <div class="relative w-48 aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <div class="n-light nl-r" style="left:65%; top:-2%"></div>
-                        <div class="n-light nl-r" style="left:65%; top:11%"></div>
-                        <div class="n-light nl-r" style="left:65%; top:24%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:10%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:23%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:36%"></div>
                     </div>
                     <div class="relative w-48 aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                         <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
                         <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                        <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-cylinder"/></svg>
+                        <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-cylinder"/></svg>
                     </div>
                 </div>
             </div>
@@ -360,15 +360,15 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-w" style="left:65%; top:5%"></div> <!-- Mast 1 -->
-                            <div class="n-light nl-w" style="left:65%; top:18%"></div> <!-- Mast 2 -->
-                            <div class="n-light nl-y" style="left:15%; top:30%"></div> <!-- Stern Yellow -->
-                            <div class="n-light nl-w" style="left:15%; top:45%"></div> <!-- Stern White -->
+                            <div class="n-light nl-w" style="left:65%; top:17%"></div> <!-- Mast 1 -->
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Mast 2 -->
+                            <div class="n-light nl-y" style="left:15%; top:50%"></div> <!-- Stern Yellow -->
+                            <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern White -->
                         </div>
                         <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (>200M TOW)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-diamond"/></svg>
+                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-diamond"/></svg>
                         </div>
                     </div>
                 </div>
@@ -383,10 +383,10 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-w" style="left:65%; top:5%"></div>
-                            <div class="n-light nl-w" style="left:65%; top:18%"></div>
-                            <div class="n-light nl-y" style="left:15%; top:30%"></div>
-                            <div class="n-light nl-y" style="left:15%; top:45%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:17%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                            <div class="n-light nl-y" style="left:15%; top:50%"></div>
+                            <div class="n-light nl-y" style="left:15%; top:65%"></div>
                         </div>
                     </div>
                 </div>
@@ -409,12 +409,12 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-w" style="left:65%; top:10%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
                         </div>
                         <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <svg class="d-shape" style="left:65%; top:10%"><use href="#shape-ball"/></svg>
+                            <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-ball"/></svg>
                         </div>
                     </div>
                 </div>
@@ -428,16 +428,16 @@
                         <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <div class="n-light nl-w" style="left:65%; top:10%"></div> <!-- Anchor -->
-                            <div class="n-light nl-r" style="left:35%; top:0%"></div> <!-- NUC/Aground 1 -->
-                            <div class="n-light nl-r" style="left:35%; top:13%"></div> <!-- NUC/Aground 2 -->
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Anchor -->
+                            <div class="n-light nl-r" style="left:35%; top:17%"></div> <!-- NUC/Aground 1 -->
+                            <div class="n-light nl-r" style="left:35%; top:30%"></div> <!-- NUC/Aground 2 -->
                         </div>
                         <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
                             <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
                             <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
-                            <svg class="d-shape" style="left:35%; top:0%"><use href="#shape-ball"/></svg>
-                            <svg class="d-shape" style="left:35%; top:13%"><use href="#shape-ball"/></svg>
-                            <svg class="d-shape" style="left:35%; top:26%"><use href="#shape-ball"/></svg>
+                            <svg class="d-shape" style="left:35%; top:10%"><use href="#shape-ball"/></svg>
+                            <svg class="d-shape" style="left:35%; top:23%"><use href="#shape-ball"/></svg>
+                            <svg class="d-shape" style="left:35%; top:36%"><use href="#shape-ball"/></svg>
                         </div>
                     </div>
                 </div>
