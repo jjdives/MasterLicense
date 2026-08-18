@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" con tent="width=device-width, initial-scale=1.0">
+    <title>Mastering Lights & Day Shapes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navred: '#ff3333',
+                        navgreen: '#33ff33',
+                        navwhite: '#ffffff',
+                        navyellow: '#ffcc00',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #e2e8f0; }
+        
+        .light {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 9999px;
+            margin: 0.25rem auto;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .light-red { background-color: #ff3333; box-shadow: 0 0 15px 2px rgba(255, 51, 51, 0.7); }
+        .light-green { background-color: #33ff33; box-shadow: 0 0 15px 2px rgba(51, 255, 51, 0.7); }
+        .light-white { background-color: #ffffff; box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.7); }
+        .light-yellow { background-color: #ffcc00; box-shadow: 0 0 15px 2px rgba(255, 204, 0, 0.7); }
+        
+        .shape-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        /* Hide scrollbar for sidebar but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
+    </style>
+</head>
+<body class="antialiased flex h-screen overflow-hidden">
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden fixed top-4 right-4 z-50 bg-slate-800 p-2 rounded-lg border border-slate-700 text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="w-64 bg-slate-900 border-r border-slate-800 flex-shrink-0 h-full flex flex-col absolute md:relative z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-y-auto no-scrollbar">
+        <div class="p-6">
+            <h1 class="text-xl font-bold text-white mb-2 tracking-tight">Rules of the Road</h1>
+            <p class="text-xs text-slate-400 mb-8 uppercase tracking-wider">Lights & Shapes Guide</p>
+            
+            <ul class="space-y-3 text-sm font-medium" id="nav-links">
+                <li><a href="#intro" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">1. The Basics</a></li>
+                <li><a href="#power-sail" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">2. Power & Sail</a></li>
+                <li><a href="#fishing" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">3. Fishing & Trawling</a></li>
+                <li><a href="#nuc-ram" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">4. NUC & RAM</a></li>
+                <li><a href="#draft" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">5. Constrained by Draft</a></li>
+                <li><a href="#towing" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">6. Towing</a></li>
+                <li><a href="#anchored" class="block text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-md transition">7. Anchored & Aground</a></li>
+                <li class="pt-4 mt-4 border-t border-slate-800"><a href="#summary" class="block text-emerald-400 hover:text-emerald-300 hover:bg-slate-800 px-3 py-2 rounded-md transition font-bold">★ Master Cheat Sheet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 h-full overflow-y-auto p-6 md:p-10 lg:p-16 scroll-smooth" id="main-content">
+        <div class="max-w-4xl mx-auto space-y-16 pb-32">
+            
+            <!-- Intro Section -->
+            <section id="intro" class="scroll-mt-10">
+                <h2 class="text-3xl font-bold text-white mb-4">Introduction to Lights & Shapes</h2>
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
+                    <p class="text-slate-300 mb-4 leading-relaxed">
+                        Navigation lights identify a vessel's type, status, and direction of travel. They are required from sunset to sunrise and in restricted visibility. Day shapes are black geometric shapes used during the day to convey the exact same status information.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-slate-900 p-4 rounded-lg text-center border border-slate-700">
+                            <div class="text-white font-bold mb-1">Masthead</div>
+                            <div class="text-xs text-slate-400">White • 225°</div>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded-lg text-center border border-slate-700">
+                            <div class="text-red-400 font-bold mb-1">Port Sidelight</div>
+                            <div class="text-xs text-slate-400">Red • 112.5°</div>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded-lg text-center border border-slate-700">
+                            <div class="text-green-400 font-bold mb-1">Stbd Sidelight</div>
+                            <div class="text-xs text-slate-400">Green • 112.5°</div>
+                        </div>
+                        <div class="bg-slate-900 p-4 rounded-lg text-center border border-slate-700">
+                            <div class="text-white font-bold mb-1">Sternlight</div>
+                            <div class="text-xs text-slate-400">White • 135°</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-4 italic">Note: The diagrams below represent the "special task" mast lights and day shapes, assuming the vessel is also displaying standard sidelights and sternlights when underway making way.</p>
+                </div>
+            </section>
+
+            <!-- Power & Sail -->
+            <section id="power-sail" class="scroll-mt-10">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Power-Driven & Sailing</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Power < 50m -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg relative overflow-hidden">
+                        <h4 class="text-lg font-bold text-white mb-2">Power-Driven (Under 50m)</h4>
+                        <p class="text-sm text-slate-400 mb-6">Standard underway configuration.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Lights (Fwd)</div>
+                                <div class="light light-white"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Day Shape</div>
+                                <div class="text-slate-600 text-sm italic">None</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sail -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg relative overflow-hidden">
+                        <h4 class="text-lg font-bold text-white mb-2">Sailing Vessel</h4>
+                        <p class="text-sm text-slate-400 mb-6">Under sail only (engine off). Optional tri-color top.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Lights (Opt. Mast)</div>
+                                <div class="light light-red"></div>
+                                <div class="light light-green"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Day Shape (If motor on)</div>
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="mx-auto">
+                                    <polygon points="2,2 22,2 12,22" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Mnemonic:</span> "Red over Green, Sailing Machine"
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fishing -->
+            <section id="fishing" class="scroll-mt-10">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Fishing & Trawling</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Fishing -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Commercial Fishing</h4>
+                        <p class="text-sm text-slate-400 mb-6">Engaged in fishing (not trawling).</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="light light-red"></div>
+                                <div class="light light-white"></div>
+                            </div>
+                            <div class="shape-container">
+                                <!-- Two cones apex together -->
+                                <svg width="24" height="40" viewBox="0 0 24 40" class="mx-auto">
+                                    <polygon points="2,2 22,2 12,19" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+                                    <polygon points="12,21 2,38 22,38" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Mnemonic:</span> "Red over White, Fishing at Night"
+                        </div>
+                    </div>
+
+                    <!-- Trawling -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Trawling</h4>
+                        <p class="text-sm text-slate-400 mb-6">Dragging a net through the water.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="light light-green"></div>
+                                <div class="light light-white"></div>
+                            </div>
+                            <div class="shape-container">
+                                <!-- Two cones apex together -->
+                                <svg width="24" height="40" viewBox="0 0 24 40" class="mx-auto">
+                                    <polygon points="2,2 22,2 12,19" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+                                    <polygon points="12,21 2,38 22,38" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Mnemonic:</span> "Green over White, Trawling at Night"
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NUC and RAM -->
+            <section id="nuc-ram" class="scroll-mt-10">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Not Under Command & Restricted Maneuverability</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- NUC -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Not Under Command (NUC)</h4>
+                        <p class="text-sm text-slate-400 mb-6">Vessel disabled / cannot steer.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="light light-red"></div>
+                                <div class="light light-red"></div>
+                            </div>
+                            <div class="shape-container">
+                                <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Mnemonic:</span> "Red over Red, the Captain is Dead" (or 2 Balls = "Dead in the water")
+                        </div>
+                    </div>
+
+                    <!-- RAM -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Restricted in Ability to Maneuver (RAM)</h4>
+                        <p class="text-sm text-slate-400 mb-6">Dredging, underwater ops, buoy tending.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="light light-red"></div>
+                                <div class="light light-white"></div>
+                                <div class="light light-red"></div>
+                            </div>
+                            <div class="shape-container">
+                                <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 18,10 10,18 2,10" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Mnemonic:</span> "Red, White, Red, Doing work ahead"
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CBD -->
+            <section id="draft" class="scroll-mt-10">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Constrained By Draft (International Only)</h3>
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                    <p class="text-sm text-slate-400 mb-6">A power-driven vessel severely restricted by her draft (depth). *Does not apply in US Inland waters.*</p>
+                    <div class="flex justify-around items-center h-40 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                        <div class="text-center">
+                            <div class="light light-red"></div>
+                            <div class="light light-red"></div>
+                            <div class="light light-red"></div>
+                        </div>
+                        <div class="shape-container">
+                            <!-- Cylinder -->
+                            <svg width="24" height="40" viewBox="0 0 24 40">
+                                <rect x="4" y="2" width="16" height="36" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50 max-w-sm mx-auto">
+                        <span class="text-emerald-400 font-semibold">Mnemonic:</span> "3 Reds rubbing the seabed" or "Cylinder = Soup can scraping bottom"
+                    </div>
+                </div>
+            </section>
+
+            <!-- Towing -->
+            <section id="towing" class="scroll-mt-10">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Towing</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Towing Astern -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Towing Astern (< 200m tow)</h4>
+                        <p class="text-sm text-slate-400 mb-6">Tug pulling a barge on a wire astern.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Masthead</div>
+                                <div class="light light-white"></div>
+                                <div class="light light-white"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Sternlight</div>
+                                <div class="light light-yellow"></div>
+                                <div class="light light-white"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Mnemonic:</span> "Yellow over White, Towing line is tight"
+                        </div>
+                    </div>
+
+                    <!-- Towing Astern Long -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Towing Astern (> 200m tow)</h4>
+                        <p class="text-sm text-slate-400 mb-6">Long tow (over 200m). Extra masthead light.</p>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4">
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Masthead</div>
+                                <div class="light light-white"></div>
+                                <div class="light light-white"></div>
+                                <div class="light light-white"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs text-slate-500 mb-2">Day Shape (Tug & Tow)</div>
+                                <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-slate-900/50 p-2 rounded text-xs text-center border border-slate-700/50">
+                            <span class="text-emerald-400 font-semibold">Rule:</span> 3 Whites = Tow exceeds 200 meters. Diamond shape on both tug and tow.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Anchored / Aground -->
+            <section id="anchored" class="scroll-mt-10">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Anchored & Aground</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Anchored -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Anchored (< 50m)</h4>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4 mt-6">
+                            <div class="text-center">
+                                <div class="light light-white"></div>
+                            </div>
+                            <div class="shape-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-sm text-slate-400 text-center">One all-around white light. One black ball.</div>
+                    </div>
+
+                    <!-- Aground -->
+                    <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Aground</h4>
+                        <div class="flex justify-around items-center h-32 bg-slate-900 rounded-lg border border-slate-700 p-4 mt-6">
+                            <div class="text-center flex flex-col gap-1 items-center">
+                                <div class="light light-red"></div>
+                                <div class="light light-red"></div>
+                                <div class="text-xs text-slate-500 mt-1">+ Anchor Lights</div>
+                            </div>
+                            <div class="shape-container">
+                                <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-sm text-slate-400 text-center">"3 balls in the sand" (Anchor lights + NUC lights).</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Master Cheat Sheet -->
+            <section id="summary" class="scroll-mt-10 mt-12">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-6 border-b border-emerald-900 pb-2 flex items-center">
+                    <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                    Master Cheat Sheet
+                </h3>
+                
+                <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 border-b border-slate-700 text-slate-300 text-sm uppercase tracking-wider">
+                                    <th class="p-4 font-semibold">Vessel Status</th>
+                                    <th class="p-4 font-semibold">Lights (Top to Bottom)</th>
+                                    <th class="p-4 font-semibold">Day Shape</th>
+                                    <th class="p-4 font-semibold hidden md:table-cell">Mnemonic / Key Rule</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-200 text-sm divide-y divide-slate-700/50">
+                                <tr>
+                                    <td class="p-4 font-bold">Fishing</td>
+                                    <td class="p-4"><span class="text-red-400 font-bold">Red</span> / <span class="text-white">White</span></td>
+                                    <td class="p-4">2 Cones (Apex together)</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Red over White, Fishing at Night</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Trawling</td>
+                                    <td class="p-4"><span class="text-green-400 font-bold">Green</span> / <span class="text-white">White</span></td>
+                                    <td class="p-4">2 Cones (Apex together)</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Green over White, Trawling at Night</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Not Under Command (NUC)</td>
+                                    <td class="p-4"><span class="text-red-400 font-bold">Red</span> / <span class="text-red-400 font-bold">Red</span></td>
+                                    <td class="p-4">2 Black Balls</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Red over Red, Captain is Dead</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Restricted Maneuver (RAM)</td>
+                                    <td class="p-4"><span class="text-red-400 font-bold">Red</span> / <span class="text-white">White</span> / <span class="text-red-400 font-bold">Red</span></td>
+                                    <td class="p-4">Ball - Diamond - Ball</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Red-White-Red, Work Ahead</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Constrained by Draft (CBD)</td>
+                                    <td class="p-4"><span class="text-red-400 font-bold">Red</span> / <span class="text-red-400 font-bold">Red</span> / <span class="text-red-400 font-bold">Red</span></td>
+                                    <td class="p-4">1 Cylinder</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Int'l Only. 3 Reds rubbing seabed</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Sailing Vessel</td>
+                                    <td class="p-4"><span class="text-red-400 font-bold">Red</span> / <span class="text-green-400 font-bold">Green</span> (Opt. mast)</td>
+                                    <td class="p-4">Cone apex DOWN (if motoring)</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Red over Green, Sailing Machine</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Towing Astern (Short)</td>
+                                    <td class="p-4"><span class="text-yellow-400 font-bold">Yellow</span> / <span class="text-white">White</span> (Stern)</td>
+                                    <td class="p-4">None</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Yellow over White, line is tight</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Towing Astern (Tow >200m)</td>
+                                    <td class="p-4"><span class="text-white">White</span> / <span class="text-white">White</span> / <span class="text-white">White</span> (Mast)</td>
+                                    <td class="p-4">Diamond (on tug AND tow)</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">3 Whites = Long Tow</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Pilot Vessel</td>
+                                    <td class="p-4"><span class="text-white">White</span> / <span class="text-red-400 font-bold">Red</span></td>
+                                    <td class="p-4">None special</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">White over Red, Pilot Ahead</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Anchored</td>
+                                    <td class="p-4">All-around <span class="text-white">White</span></td>
+                                    <td class="p-4">1 Black Ball</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">1 Ball, 1 All-around White</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Aground</td>
+                                    <td class="p-4">Anchor <span class="text-white">White</span> + 2 <span class="text-red-400 font-bold">Reds</span></td>
+                                    <td class="p-4">3 Black Balls</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">3 Balls in the sand</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Mineclearance</td>
+                                    <td class="p-4">3 <span class="text-green-400 font-bold">Greens</span> (Cross shape)</td>
+                                    <td class="p-4">3 Black Balls (Cross shape)</td>
+                                    <td class="p-4 hidden md:table-cell text-slate-400 italic">Stay 1000m away</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Highlight active nav item based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('#nav-links a');
+        const mainContent = document.getElementById('main-content');
+
+        mainContent.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Adjust trigger point offset
+                if (mainContent.scrollTop >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('bg-slate-800', 'text-white');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('bg-slate-800', 'text-white');
+                }
+            });
+        });
+
+        // Close sidebar on mobile when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
