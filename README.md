@@ -1,1 +1,1 @@
-Various study guides for the COLREG lights and shapes. 
+Various study guides for the Six-Pack and Master 25/50/100 licenses. 
