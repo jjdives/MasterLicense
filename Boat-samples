@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boat SVG Options</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: sans-serif; }
+        .n-light { position: absolute; width: 12px; height: 12px; border-radius: 50%; transform: translate(-50%, -50%); z-index: 20; }
+        .nl-w { background: #fff; box-shadow: 0 0 12px 4px rgba(255,255,255,0.8); }
+        .nl-g { background: #22c55e; box-shadow: 0 0 12px 4px rgba(34,197,94,0.8); }
+    </style>
+</head>
+<body class="p-10 flex flex-col items-center">
+    <h1 class="text-3xl font-bold text-sky-400 mb-10">Select a Boat Style</h1>
+    
+    <div class="grid md:grid-cols-3 gap-8 w-full max-w-6xl">
+        
+        <!-- OPTION 1 -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center">
+            <h2 class="text-xl font-bold mb-4">Option 1: Minimalist Solid</h2>
+            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-64 border border-slate-600">
+                <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-2xl">
+                    <!-- Stern Side -->
+                    <polygon points="40,40 40,80 40,100 40,60" fill="#1e293b"/> 
+                    <!-- Stbd Hull -->
+                    <polygon points="40,80 160,110 160,130 40,100" fill="#334155"/>
+                    <!-- Deck -->
+                    <polygon points="40,40 40,80 160,110 120,60" fill="#475569"/>
+                    <!-- Cabin -->
+                    <polygon points="60,60 60,80 100,90 100,70" fill="#64748b"/> <!-- Stbd -->
+                    <polygon points="60,40 60,60 100,70 100,50" fill="#94a3b8"/> <!-- Roof -->
+                    <!-- Masts -->
+                    <line x1="130" y1="90" x2="130" y2="40" stroke="#cbd5e1" stroke-width="2"/>
+                </svg>
+                <div class="n-light nl-g" style="left: 60%; top: 68%;"></div>
+                <div class="n-light nl-w" style="left: 65%; top: 35%;"></div>
+            </div>
+        </div>
+
+        <!-- OPTION 2 -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center">
+            <h2 class="text-xl font-bold mb-4">Option 2: Detailed Freighter</h2>
+            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-64 border border-slate-600">
+                <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-2xl">
+                    <!-- Stbd Hull -->
+                    <polygon points="30,70 170,110 170,130 30,90" fill="#334155" stroke="#1e293b" stroke-width="1"/>
+                    <!-- Deck -->
+                    <polygon points="30,30 30,70 170,110 130,50" fill="#475569" stroke="#cbd5e1" stroke-width="0.5"/>
+                    <!-- Aft Cabin -->
+                    <polygon points="40,60 40,80 70,88 70,68" fill="#64748b" stroke="#1e293b" stroke-width="0.5"/>
+                    <polygon points="40,40 40,60 70,68 70,48" fill="#94a3b8" stroke="#1e293b" stroke-width="0.5"/>
+                    <!-- Fwd Cargo Holds -->
+                    <polygon points="80,68 80,80 100,85 100,73" fill="#334155"/>
+                    <polygon points="110,76 110,88 130,93 130,81" fill="#334155"/>
+                    <!-- Masts -->
+                    <line x1="140" y1="95" x2="140" y2="35" stroke="#cbd5e1" stroke-width="2"/>
+                    <line x1="55" y1="50" x2="55" y2="10" stroke="#cbd5e1" stroke-width="2"/>
+                </svg>
+                <div class="n-light nl-g" style="left: 55%; top: 68%;"></div>
+                <div class="n-light nl-w" style="left: 70%; top: 30%;"></div>
+                <div class="n-light nl-w" style="left: 27%; top: 15%;"></div>
+            </div>
+        </div>
+
+        <!-- OPTION 3 -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center">
+            <h2 class="text-xl font-bold mb-4">Option 3: Cruiser / Tug</h2>
+            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-64 border border-slate-600">
+                <svg viewBox="0 0 200 150" class="w-full h-full drop-shadow-2xl">
+                    <!-- Stbd Hull -->
+                    <path d="M 40,75 L 140,100 Q 160,105 170,115 L 170,135 Q 160,125 140,120 L 40,95 Z" fill="#334155"/>
+                    <!-- Deck -->
+                    <path d="M 40,35 L 40,75 L 140,100 Q 160,105 170,115 Q 160,90 130,60 Z" fill="#475569"/>
+                    <!-- Rounded Cabin -->
+                    <path d="M 60,60 L 60,80 L 110,92 L 110,72 Z" fill="#64748b"/>
+                    <path d="M 60,40 L 60,60 L 110,72 L 110,52 Z" fill="#94a3b8"/>
+                    <!-- Windows -->
+                    <polygon points="95,78 95,85 105,88 105,81" fill="#0f172a"/>
+                    <polygon points="80,74 80,81 90,84 90,77" fill="#0f172a"/>
+                    <!-- Mast -->
+                    <line x1="85" y1="60" x2="85" y2="20" stroke="#cbd5e1" stroke-width="2"/>
+                </svg>
+                <div class="n-light nl-g" style="left: 55%; top: 68%;"></div>
+                <div class="n-light nl-w" style="left: 42%; top: 22%;"></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
