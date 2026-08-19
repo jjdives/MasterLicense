@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Navigation Lights Simulator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Three.js and OrbitControls via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
@@ -18,7 +17,6 @@
         button:hover { background-color: #1e293b; border-color: #38bdf8; }
         button.active { background-color: #0ea5e9; color: white; border-color: #bae6fd; font-weight: bold; }
         
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
@@ -30,12 +28,9 @@
 </head>
 <body>
 
-    <!-- 3D Canvas Background -->
     <div id="canvas-container"></div>
 
-    <!-- UI Overlay -->
     <div id="ui-layer">
-        <!-- Sidebar (Bottom Drawer on Mobile, Left Sidebar on Desktop) -->
         <div class="w-full md:w-[320px] h-[45vh] md:h-screen bg-slate-900/85 backdrop-blur-md border-t md:border-t-0 md:border-r border-slate-700 p-4 md:p-6 flex flex-col gap-3 text-slate-200 shadow-2xl overflow-y-auto pointer-events-auto">
             <h1 class="text-xl md:text-2xl font-extrabold text-sky-400 border-b border-slate-600 pb-3 mb-1">3D Nav Lights</h1>
             
@@ -49,7 +44,7 @@
             <h2 class="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-wider mt-2 md:mt-4">Select Scenario</h2>
             
             <div id="btn-group" class="flex flex-col gap-2">
-                <!-- Buttons will be populated by JS -->
+                <!-- Buttons populated by JS -->
             </div>
             
             <div id="scenario-description" class="mt-auto pt-4 md:pt-6 border-t border-slate-600 text-sm text-sky-200">
@@ -57,7 +52,6 @@
             </div>
         </div>
         
-        <!-- Helpful HUD (Moved to top right so it doesn't block mobile UI) -->
         <div class="absolute top-4 right-4 text-slate-400 text-[10px] md:text-xs bg-slate-900/60 px-3 py-1.5 md:px-4 md:py-2 rounded-full pointer-events-none border border-slate-700 backdrop-blur-md">
             Bow is Fwd • Green is Stbd • Red is Port
         </div>
@@ -65,7 +59,9 @@
 
     <script>
         // --- THREE.JS SETUP ---
-        let scene, camera, renderer, controls, boatGroup, lightsGroup;
+        let scene, camera, renderer, controls, worldGroup, lightsGroup;
+        let boatStandard, boatLong, boatSail;
+        let activeBoat = null;
         
         // Colors
         const C_WHITE = 0xffffff;
@@ -73,21 +69,25 @@
         const C_GREEN = 0x11ff11;
         const C_YELLOW = 0xffdd00;
 
+        // Shared Materials
+        const matHull = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
+        const matDeck = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.9 });
+        const matCabin = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.5 });
+        const matMast = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, roughness: 0.4 });
+        const matSail = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.9, side: THREE.DoubleSide });
+
         function init3D() {
             const container = document.getElementById('canvas-container');
             
             scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x020617); // Slate 950 (Night sky)
+            scene.background = new THREE.Color(0x020617);
             scene.fog = new THREE.FogExp2(0x020617, 0.015);
 
-            // Camera Setup: Slightly above and forward of starboard bow
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-            
-            // Adjust camera distance for mobile vs desktop
             if (window.innerWidth < 768) {
-                camera.position.set(35, 20, 40); // Zoomed out more for mobile to account for bottom panel
+                camera.position.set(40, 25, 45);
             } else {
-                camera.position.set(25, 15, 30);
+                camera.position.set(30, 20, 35);
             }
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -95,108 +95,164 @@
             renderer.setPixelRatio(window.devicePixelRatio);
             container.appendChild(renderer.domElement);
 
-            // Orbit Controls
             controls = new THREE.OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
-            
-            // Shift target slightly up so the boat isn't hidden by the mobile menu
-            if (window.innerWidth < 768) {
-                controls.target.set(0, 8, 0); 
-            } else {
-                controls.target.set(0, 2, 0);
-            }
+            controls.target.set(0, window.innerWidth < 768 ? 8 : 2, 0);
 
-            // Environmental Lighting (Moonlight/Ambient)
-            const ambientLight = new THREE.AmbientLight(0x1e293b, 1.5);
-            scene.add(ambientLight);
-            
+            // Lighting
+            scene.add(new THREE.AmbientLight(0x1e293b, 1.5));
             const moonLight = new THREE.DirectionalLight(0x94a3b8, 0.5);
             moonLight.position.set(10, 20, 10);
             scene.add(moonLight);
 
-            // Ocean Plane (Made matte to remove specular light artifacts)
+            // Ocean
             const oceanGeo = new THREE.PlaneGeometry(200, 200);
-            const oceanMat = new THREE.MeshStandardMaterial({ 
-                color: 0x0f172a, 
-                roughness: 0.9, 
-                metalness: 0.1,
-                transparent: true,
-                opacity: 0.8
-            });
+            const oceanMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.9, metalness: 0.1, transparent: true, opacity: 0.8 });
             const ocean = new THREE.Mesh(oceanGeo, oceanMat);
             ocean.rotation.x = -Math.PI / 2;
             ocean.position.y = -0.5;
             scene.add(ocean);
 
-            buildBoat();
+            // World Group (Holds active boat + lights to bob together)
+            worldGroup = new THREE.Group();
+            scene.add(worldGroup);
 
-            // Group to hold all active navigation lights
+            // Build Models
+            boatStandard = buildStandardBoat();
+            boatLong = buildLongBoat();
+            boatSail = buildSailBoat();
+            
+            worldGroup.add(boatStandard);
+            worldGroup.add(boatLong);
+            worldGroup.add(boatSail);
+
             lightsGroup = new THREE.Group();
-            scene.add(lightsGroup);
+            worldGroup.add(lightsGroup);
 
-            // Handle Resize
             window.addEventListener('resize', onWindowResize, false);
         }
 
-        function buildBoat() {
-            boatGroup = new THREE.Group();
+        // --- BOAT BUILDERS ---
+        function buildStandardBoat() {
+            const group = new THREE.Group();
             
-            const matHull = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
-            const matDeck = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.9 });
-            const matCabin = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.5 });
-            const matMast = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, roughness: 0.4 });
-
-            // 1. Hull (Extruded Shape)
-            const hullShape = new THREE.Shape();
-            hullShape.moveTo(0, 12); // Bow
-            hullShape.lineTo(4, 6);  // Stbd Bow Curve
-            hullShape.lineTo(4, -10); // Stbd Stern
-            hullShape.lineTo(-4, -10); // Port Stern
-            hullShape.lineTo(-4, 6);  // Port Bow Curve
-            hullShape.lineTo(0, 12); // Back to Bow
-
-            const extrudeSettings = {
-                depth: 3,
-                bevelEnabled: true,
-                bevelSegments: 2,
-                steps: 1,
-                bevelSize: 0.5,
-                bevelThickness: 1
-            };
-
-            const hullGeo = new THREE.ExtrudeGeometry(hullShape, extrudeSettings);
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 12); shape.lineTo(4, 6); shape.lineTo(4, -10);
+            shape.lineTo(-4, -10); shape.lineTo(-4, 6); shape.lineTo(0, 12);
+            
+            const hullGeo = new THREE.ExtrudeGeometry(shape, { depth: 3, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.5, bevelThickness: 1 });
             const hull = new THREE.Mesh(hullGeo, matHull);
-            // Rotate shape to lie flat
-            hull.rotation.x = Math.PI / 2;
-            hull.position.y = 3;
-            boatGroup.add(hull);
+            hull.rotation.x = Math.PI / 2; hull.position.y = 3;
+            group.add(hull);
 
-            // 2. Main Deck Cabin
-            const cabinGeo = new THREE.BoxGeometry(6, 3, 8);
-            const cabin = new THREE.Mesh(cabinGeo, matCabin);
+            const cabin = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 8), matCabin);
             cabin.position.set(0, 4.5, -2);
-            boatGroup.add(cabin);
+            group.add(cabin);
 
-            // 3. Wheelhouse (Upper Cabin)
-            const wheelGeo = new THREE.BoxGeometry(4, 2.5, 4);
-            const wheelhouse = new THREE.Mesh(wheelGeo, matCabin);
+            const wheelhouse = new THREE.Mesh(new THREE.BoxGeometry(4, 2.5, 4), matCabin);
             wheelhouse.position.set(0, 7.25, -1);
-            boatGroup.add(wheelhouse);
+            group.add(wheelhouse);
 
-            // 4. Forward Mast
-            const fwdMastGeo = new THREE.CylinderGeometry(0.15, 0.15, 8);
-            const fwdMast = new THREE.Mesh(fwdMastGeo, matMast);
+            const fwdMast = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 8), matMast);
             fwdMast.position.set(0, 8, 4);
-            boatGroup.add(fwdMast);
+            group.add(fwdMast);
 
-            // 5. Aft Mast
-            const aftMastGeo = new THREE.CylinderGeometry(0.15, 0.15, 12);
-            const aftMast = new THREE.Mesh(aftMastGeo, matMast);
-            aftMast.position.set(0, 10, -4);
-            boatGroup.add(aftMast);
+            group.visible = false;
+            return group;
+        }
 
-            scene.add(boatGroup);
+        function buildLongBoat() {
+            const group = new THREE.Group();
+            
+            // Longer hull (>50m)
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 18); shape.lineTo(5, 12); shape.lineTo(5, -20);
+            shape.lineTo(-5, -20); shape.lineTo(-5, 12); shape.lineTo(0, 18);
+            
+            const hullGeo = new THREE.ExtrudeGeometry(shape, { depth: 4, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.5, bevelThickness: 1 });
+            const hull = new THREE.Mesh(hullGeo, matHull);
+            hull.rotation.x = Math.PI / 2; hull.position.y = 4;
+            group.add(hull);
+
+            // Superstructure pushed far aft
+            const cabin = new THREE.Mesh(new THREE.BoxGeometry(8, 6, 10), matCabin);
+            cabin.position.set(0, 7, -14);
+            group.add(cabin);
+
+            const bridge = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 4), matCabin);
+            bridge.position.set(0, 11.5, -13);
+            group.add(bridge);
+
+            // Cargo Hatches
+            const hatchGeo = new THREE.BoxGeometry(6, 1, 6);
+            for(let z = 8; z >= -4; z -= 8) {
+                const hatch = new THREE.Mesh(hatchGeo, matDeck);
+                hatch.position.set(0, 4.5, z);
+                group.add(hatch);
+            }
+
+            // Fwd Mast (Far forward)
+            const fwdMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 12), matMast);
+            fwdMast.position.set(0, 10, 14);
+            group.add(fwdMast);
+
+            // Aft Mast (On superstructure)
+            const aftMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 14), matMast);
+            aftMast.position.set(0, 14, -16);
+            group.add(aftMast);
+
+            group.visible = false;
+            return group;
+        }
+
+        function buildSailBoat() {
+            const group = new THREE.Group();
+            
+            // Sleeker hull
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 12); shape.lineTo(3.5, 6); shape.lineTo(3, -8);
+            shape.lineTo(-3, -8); shape.lineTo(-3.5, 6); shape.lineTo(0, 12);
+            
+            const hullGeo = new THREE.ExtrudeGeometry(shape, { depth: 2.5, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.5, bevelThickness: 1 });
+            const hull = new THREE.Mesh(hullGeo, matHull);
+            hull.rotation.x = Math.PI / 2; hull.position.y = 2.5;
+            group.add(hull);
+
+            // Small cabin
+            const cabin = new THREE.Mesh(new THREE.BoxGeometry(4, 1.5, 6), matCabin);
+            cabin.position.set(0, 3.25, -2);
+            group.add(cabin);
+
+            // Tall Mast
+            const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 16), matMast);
+            mast.position.set(0, 10.5, 2);
+            group.add(mast);
+
+            // Sails
+            // Rotate Y by Math.PI/2 means X coordinates become -Z coordinates.
+            const mainShape = new THREE.Shape();
+            mainShape.moveTo(0, 4); // Boom base
+            mainShape.lineTo(0, 17); // Top of mast
+            mainShape.lineTo(9, 4); // Aft end of boom (9 units back in Z)
+            
+            const mainSail = new THREE.Mesh(new THREE.ShapeGeometry(mainShape), matSail);
+            mainSail.rotation.y = Math.PI / 2; 
+            mainSail.position.set(0, 0, 2); // Attach at mast z=2
+            group.add(mainSail);
+
+            const jibShape = new THREE.Shape();
+            jibShape.moveTo(0, 4); 
+            jibShape.lineTo(0, 15);
+            jibShape.lineTo(-7, 4); // Fwd end (7 units fwd in Z)
+            
+            const jibSail = new THREE.Mesh(new THREE.ShapeGeometry(jibShape), matSail);
+            jibSail.rotation.y = Math.PI / 2;
+            jibSail.position.set(0, 0, 2);
+            group.add(jibSail);
+
+            group.visible = false;
+            return group;
         }
 
         // --- NAVIGATION LIGHT GENERATOR ---
@@ -204,119 +260,130 @@
             const lightGroup = new THREE.Group();
             lightGroup.position.set(x, y, z);
 
-            // The visible bulb
-            const bulbGeo = new THREE.SphereGeometry(0.3, 16, 16);
-            const bulbMat = new THREE.MeshBasicMaterial({ color: colorHex });
-            const bulb = new THREE.Mesh(bulbGeo, bulbMat);
+            const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), new THREE.MeshBasicMaterial({ color: colorHex }));
             lightGroup.add(bulb);
 
-            // The glowing halo (Increased size/opacity, set depthWrite to false to prevent clipping)
-            const haloGeo = new THREE.SphereGeometry(1.2, 16, 16);
-            const haloMat = new THREE.MeshBasicMaterial({ 
-                color: colorHex, 
-                transparent: true, 
-                opacity: 0.5,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false
-            });
-            const halo = new THREE.Mesh(haloGeo, haloMat);
+            const halo = new THREE.Mesh(
+                new THREE.SphereGeometry(1.2, 16, 16), 
+                new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false })
+            );
             lightGroup.add(halo);
-
-            // NOTE: Removed the THREE.PointLight to fix the distracting reflections on the water/hull.
-            // The MeshBasicMaterial with AdditiveBlending handles the glow beautifully on its own.
 
             lightsGroup.add(lightGroup);
         }
 
         // --- SCENARIOS ---
         const scenarios = {
+            'power_under_12': {
+                name: 'Power-Driven < 12m',
+                desc: 'Rule 23: May combine Masthead & Sternlight into one all-round White light, plus Sidelights.',
+                model: 'standard',
+                setup: () => {
+                    createNavLight(C_WHITE, 0, 12.2, 0); // All-round white (central)
+                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd
+                    createNavLight(C_RED, -4.2, 5, 2);   // Port
+                }
+            },
             'power_under_50': {
                 name: 'Power-Driven < 50m',
-                desc: '1 Masthead (Fwd), Sidelights, Sternlight.',
+                desc: 'Rule 23: 1 Masthead (Fwd), Sidelights, Sternlight.',
+                model: 'standard',
                 setup: () => {
                     createNavLight(C_WHITE, 0, 12.2, 4); // Fwd Masthead
-                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd Sidelight
-                    createNavLight(C_RED, -4.2, 5, 2);   // Port Sidelight
+                    createNavLight(C_GREEN, 4.2, 5, 2);  
+                    createNavLight(C_RED, -4.2, 5, 2);   
                     createNavLight(C_WHITE, 0, 4, -10.2); // Sternlight
                 }
             },
             'power_over_50': {
                 name: 'Power-Driven > 50m',
-                desc: '2 Mastheads (Aft is higher), Sidelights, Sternlight.',
+                desc: 'Rule 23: 2 Mastheads (Aft is higher), Sidelights, Sternlight.',
+                model: 'long',
                 setup: () => {
-                    createNavLight(C_WHITE, 0, 12.2, 4); // Fwd Masthead
-                    createNavLight(C_WHITE, 0, 16.2, -4); // Aft Masthead
-                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd
-                    createNavLight(C_RED, -4.2, 5, 2);   // Port
-                    createNavLight(C_WHITE, 0, 4, -10.2); // Stern
+                    createNavLight(C_WHITE, 0, 16.2, 14); // Fwd Masthead
+                    createNavLight(C_WHITE, 0, 21.2, -16); // Aft Masthead (higher)
+                    createNavLight(C_GREEN, 5.2, 6, -5);  
+                    createNavLight(C_RED, -5.2, 6, -5);   
+                    createNavLight(C_WHITE, 0, 5, -20.2); // Stern
                 }
             },
             'sailing': {
                 name: 'Sailing Vessel Underway',
-                desc: 'Sidelights and Sternlight ONLY. (Optional Red over Green shown here).',
+                desc: 'Rule 25: Sidelights & Sternlight. No white masthead light. (Optional Red over Green shown).',
+                model: 'sail',
                 setup: () => {
-                    // Optional Red over Green at mast top
-                    createNavLight(C_RED, 0, 16.2, -4); 
-                    createNavLight(C_GREEN, 0, 14.5, -4);
-                    // Standard
-                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd
-                    createNavLight(C_RED, -4.2, 5, 2);   // Port
-                    createNavLight(C_WHITE, 0, 4, -10.2); // Stern
+                    createNavLight(C_RED, 0, 19, 2);   // Mast top
+                    createNavLight(C_GREEN, 0, 17.5, 2); // Mast top
+                    createNavLight(C_GREEN, 3.2, 3.5, -2);  // Stbd
+                    createNavLight(C_RED, -3.2, 3.5, -2);   // Port
+                    createNavLight(C_WHITE, 0, 3.5, -8.2);  // Stern
                 }
             },
             'towing_astern': {
                 name: 'Towing Astern (< 200m)',
-                desc: 'Yellow over White at the stern, 2 Mastheads, Sidelights.',
+                desc: 'Rule 24: Yellow over White at stern, 2 Mastheads, Sidelights.',
+                model: 'standard',
                 setup: () => {
                     createNavLight(C_WHITE, 0, 12.2, 4); // Mast 1
                     createNavLight(C_WHITE, 0, 10.5, 4); // Mast 2
-                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd
-                    createNavLight(C_RED, -4.2, 5, 2);   // Port
+                    createNavLight(C_GREEN, 4.2, 5, 2);  
+                    createNavLight(C_RED, -4.2, 5, 2);   
                     createNavLight(C_YELLOW, 0, 5.5, -10.2); // Towing Yellow
                     createNavLight(C_WHITE, 0, 4, -10.2); // Stern White
                 }
             },
             'fishing': {
                 name: 'Fishing (Lines/Nets)',
-                desc: 'Red over White on mast. Sidelights/Sternlight only if making way.',
+                desc: 'Rule 26: Red over White. Sidelights/Sternlight only if making way.',
+                model: 'standard',
                 setup: () => {
-                    createNavLight(C_RED, 0, 12.2, 4); // Red
-                    createNavLight(C_WHITE, 0, 10.5, 4); // White
-                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd
-                    createNavLight(C_RED, -4.2, 5, 2);   // Port
-                    createNavLight(C_WHITE, 0, 4, -10.2); // Stern
+                    createNavLight(C_RED, 0, 12.2, 4); 
+                    createNavLight(C_WHITE, 0, 10.5, 4); 
+                    createNavLight(C_GREEN, 4.2, 5, 2);  
+                    createNavLight(C_RED, -4.2, 5, 2);   
+                    createNavLight(C_WHITE, 0, 4, -10.2); 
                 }
             },
             'ram': {
                 name: 'Restricted Maneuver (RAM)',
-                desc: 'Red-White-Red vertically. Power-driven lights if making way.',
+                desc: 'Rule 27: Red-White-Red vertically. Power-driven lights added if making way.',
+                model: 'standard',
                 setup: () => {
-                    createNavLight(C_RED, 0, 16.2, -4); // Red
-                    createNavLight(C_WHITE, 0, 14.5, -4); // White
-                    createNavLight(C_RED, 0, 12.8, -4); // Red
+                    createNavLight(C_RED, 0, 16.2, -4); 
+                    createNavLight(C_WHITE, 0, 14.5, -4); 
+                    createNavLight(C_RED, 0, 12.8, -4); 
                     
-                    // Power lights (making way)
-                    createNavLight(C_WHITE, 0, 12.2, 4); // Fwd Mast
-                    createNavLight(C_GREEN, 4.2, 5, 2);  // Stbd
-                    createNavLight(C_RED, -4.2, 5, 2);   // Port
-                    createNavLight(C_WHITE, 0, 4, -10.2); // Stern
+                    createNavLight(C_WHITE, 0, 12.2, 4); 
+                    createNavLight(C_GREEN, 4.2, 5, 2);  
+                    createNavLight(C_RED, -4.2, 5, 2);   
+                    createNavLight(C_WHITE, 0, 4, -10.2); 
                 }
             }
         };
 
         function setScenario(key) {
-            // Update UI
+            const data = scenarios[key];
+            
             document.querySelectorAll('#btn-group button').forEach(btn => btn.classList.remove('active'));
             document.getElementById('btn-' + key).classList.add('active');
-            document.getElementById('scenario-description').innerHTML = `<strong>${scenarios[key].name}</strong><br>${scenarios[key].desc}`;
+            document.getElementById('scenario-description').innerHTML = `<strong>${data.name}</strong><br>${data.desc}`;
 
             // Clear old lights
             while(lightsGroup.children.length > 0){ 
                 lightsGroup.remove(lightsGroup.children[0]); 
             }
 
+            // Switch Boat Model
+            boatStandard.visible = false;
+            boatLong.visible = false;
+            boatSail.visible = false;
+            
+            if (data.model === 'standard') boatStandard.visible = true;
+            if (data.model === 'long') boatLong.visible = true;
+            if (data.model === 'sail') boatSail.visible = true;
+
             // Setup new lights
-            scenarios[key].setup();
+            data.setup();
         }
 
         function createUI() {
@@ -335,8 +402,6 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-            
-            // Adjust camera dynamically on resize
             if (window.innerWidth < 768) {
                 controls.target.set(0, 8, 0); 
             } else {
@@ -347,24 +412,20 @@
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
-            // Subtle boat bobbing effect
-            const time = Date.now() * 0.001;
-            boatGroup.position.y = Math.sin(time * 1.5) * 0.2;
-            boatGroup.rotation.z = Math.sin(time * 0.8) * 0.02;
-            boatGroup.rotation.x = Math.sin(time * 1.1) * 0.02;
             
-            // Move lights with the boat
-            lightsGroup.position.copy(boatGroup.position);
-            lightsGroup.rotation.copy(boatGroup.rotation);
+            // Subtle boat bobbing effect applied to the entire world group
+            const time = Date.now() * 0.001;
+            worldGroup.position.y = Math.sin(time * 1.5) * 0.2;
+            worldGroup.rotation.z = Math.sin(time * 0.8) * 0.02;
+            worldGroup.rotation.x = Math.sin(time * 1.1) * 0.02;
 
             renderer.render(scene, camera);
         }
 
-        // --- INIT ---
         window.onload = () => {
             init3D();
             createUI();
-            setScenario('power_under_50'); // Default
+            setScenario('power_under_12'); 
             animate();
         };
     </script>
