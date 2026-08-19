@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USCG Navigation Lights &amp; Shapes Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+            scroll-behavior: smooth;
+        }
+
+        /* Glowing Light Effects (Text/Inline) */
+        .light {
+            width: 24px; height: 24px; border-radius: 50%;
+            display: inline-block; margin: 0 4px;
+            box-shadow: 0 0 15px currentColor;
+        }
+        .light-red { background-color: #ef4444; color: #ef4444; }
+        .light-green { background-color: #22c55e; color: #22c55e; }
+        .light-white { background-color: #ffffff; color: #ffffff; box-shadow: 0 0 15px rgba(255,255,255,0.8); }
+        .light-yellow { background-color: #eab308; color: #eab308; }
+
+        /* Boat Diagram Specific Lights (Absolute Positioning) */
+        .n-light { 
+            position: absolute; width: 10px; height: 10px; border-radius: 50%; 
+            transform: translate(-50%, -50%); z-index: 10; 
+        }
+        .nl-w { background: #fff; box-shadow: 0 0 10px 3px rgba(255,255,255,0.7); }
+        .nl-r { background: #ef4444; box-shadow: 0 0 10px 3px rgba(239,68,68,0.7); }
+        .nl-g { background: #22c55e; box-shadow: 0 0 10px 3px rgba(34,197,94,0.7); }
+        .nl-y { background: #eab308; box-shadow: 0 0 10px 3px rgba(234,179,8,0.7); }
+
+        /* Boat Diagram Specific Shapes */
+        .d-shape {
+            position: absolute; transform: translate(-50%, -50%); 
+            z-index: 10; overflow: visible; width: 1px; height: 1px;
+        }
+
+        /* Layout & Formatting */
+        .sidebar { height: 100vh; overflow-y: auto; }
+        .section-break {
+            border: 0; height: 2px; background: linear-gradient(to right, transparent, #ffffff, transparent);
+            margin: 4rem 0; opacity: 0.8; box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        .mnemonic {
+            background-color: rgba(56, 189, 248, 0.1); border-left: 4px solid #38bdf8;
+            padding: 12px; font-style: italic; margin-top: 12px; border-radius: 0 8px 8px 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #475569; padding: 12px; text-align: left; }
+        th { background-color: #1e293b; color: white; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.left-2{left:0.5rem}.top-0{top:0px}.top-1{top:0.25rem}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-\[2\/1\]{aspect-ratio:2/1}.h-full{height:100%}.w-48{width:12rem}.w-\[48\%\]{width:48%}.w-full{width:100%}.max-w-5xl{max-width:64rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-slate-400{--tw-border-opacity:1;border-color:rgb(148 163 184 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-l-sky-500{--tw-border-opacity:1;border-left-color:rgb(14 165 233 / var(--tw-border-opacity, 1))}.bg-\[\#0a0f18\]{--tw-bg-opacity:1;background-color:rgb(10 15 24 / var(--tw-bg-opacity, 1))}.bg-slate-300{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-800\/50{background-color:rgb(30 41 59 / 0.5)}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.pb-10{padding-bottom:2.5rem}.pl-5{padding-left:1.25rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-semibold{font-weight:600}.italic{font-style:italic}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-sky-400{--tw-text-opacity:1;color:rgb(56 189 248 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.opacity-40{opacity:0.4}.opacity-50{opacity:0.5}.opacity-70{opacity:0.7}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-slate-700\/50:hover{background-color:rgb(51 65 85 / 0.5)}.hover\:text-sky-300:hover{--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 768px){.md\:sticky{position:sticky}.md\:w-64{width:16rem}.md\:flex-row{flex-direction:row}.md\:border-b-0{border-bottom-width:0px}.md\:border-r{border-right-width:1px}.md\:p-12{padding:3rem}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style></head>
+<body class="flex flex-col md:flex-row">
+
+    <!-- REUSABLE SVG DEFINITIONS -->
+    <svg class="hidden">
+        <defs>
+            <!-- Side Boat (Bow pointing right). Shifted lower for headroom. -->
+            <g id="boat-side">
+                <path d="M 30 100 L 160 100 Q 180 100 190 70 L 30 70 Z" fill="currentColor" class="opacity-50"></path>
+                <path d="M 50 70 L 50 55 L 90 55 L 100 70 Z" fill="currentColor" class="opacity-70"></path>
+                <!-- Main Fwd Mast -->
+                <line x1="130" y1="70" x2="130" y2="30" stroke="currentColor" stroke-width="3" class="opacity-40"></line>
+                <!-- Aft Mast (Used for >50m) -->
+                <line x1="70" y1="55" x2="70" y2="20" stroke="currentColor" stroke-width="3" class="opacity-40" stroke-dasharray="2 2"></line>
+            </g>
+            <!-- Top Boat (Bow pointing right). -->
+            <g id="boat-top">
+                <path d="M 30 25 L 140 25 Q 180 25 190 50 Q 180 75 140 75 L 30 75 Z" fill="currentColor" class="opacity-50"></path>
+                <rect x="50" y="35" width="40" height="30" rx="2" fill="currentColor" class="opacity-70"></rect>
+                <circle cx="130" cy="50" r="3" fill="currentColor"></circle>
+                <circle cx="70" cy="50" r="3" fill="currentColor"></circle>
+            </g>
+            <!-- Day Shapes -->
+            <g id="shape-ball"><circle cx="0" cy="0" r="8" fill="black" stroke="white" stroke-width="1.5"></circle></g>
+            <g id="shape-diamond"><polygon points="0,-10 10,0 0,10 -10,0" fill="black" stroke="white" stroke-width="1.5"></polygon></g>
+            <g id="shape-cylinder"><rect x="-6" y="-10" width="12" height="20" fill="black" stroke="white" stroke-width="1.5"></rect></g>
+            <g id="shape-cone-down"><polygon points="-9,-9 9,-9 0,11" fill="black" stroke="white" stroke-width="1.5"></polygon></g>
+            <g id="shape-hourglass"><polygon points="-8,-10 8,-10 0,0 -8,10 8,10" fill="black" stroke="white" stroke-width="1.5"></polygon></g>
+        </defs>
+    </svg>
+
+    <!-- Sticky Navigation Sidebar -->
+    <nav class="sidebar w-full md:w-64 bg-slate-800 p-6 md:sticky top-0 shrink-0 border-b md:border-b-0 md:border-r border-slate-700 z-50">
+        <h2 class="text-xl font-bold text-white mb-6">Study Topics</h2>
+        <ul class="space-y-3 text-sm">
+            <li><a href="#power" class="hover:text-white transition">1. Power-Driven</a></li>
+            <li><a href="#sail" class="hover:text-white transition">2. Sailing</a></li>
+            <li><a href="#fishing" class="hover:text-white transition">3. Fishing/Trawling</a></li>
+            <li><a href="#nuc" class="hover:text-white transition">4. NUC</a></li>
+            <li><a href="#ram" class="hover:text-white transition">5. RAM</a></li>
+            <li><a href="#cbd" class="hover:text-white transition">6. CBD</a></li>
+            <li><a href="#towing" class="hover:text-white transition">7. Towing</a></li>
+            <li><a href="#anchored" class="hover:text-white transition">8. Anchored/Aground</a></li>
+            <li><a href="#pilot" class="hover:text-white transition">9. Pilot Vessels</a></li>
+            <li><a href="#cheatsheet" class="text-sky-400 font-bold hover:text-sky-300 transition mt-4 block">Master Cheat Sheet</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-12 max-w-5xl mx-auto overflow-y-auto">
+        <h1 class="text-4xl font-extrabold text-white mb-2">Lights &amp; Shapes Visual Guide</h1>
+        <p class="text-slate-400 mb-6 text-lg">A pedagogical guide showing exact physical placement on the vessel.</p>
+        
+        <div class="bg-slate-800/50 border border-slate-700 p-4 rounded-lg mb-10 text-sm text-slate-300 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400 shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <p><strong>Diagram Key:</strong> In all diagrams, the <strong>Bow points to the Right</strong>. Top Views show the Port side (Red) at the top edge, and Starboard side (Green) at the bottom edge. Side Views look directly at the Starboard side.</p>
+        </div>
+
+        <!-- SECTION 1 -->
+        <section id="power">
+            <h2 class="text-3xl font-bold text-white mb-6">1. Power-Driven Vessels (Underway)</h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                
+                <!-- Under 50m -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Under 50 Meters</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>1 Masthead (White, Fwd)</li>
+                        <li>Sidelights (Red/Green)</li>
+                        <li>Sternlight (White)</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Night Side -->
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Masthead -->
+                            <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Stbd side -->
+                            <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern -->
+                        </div>
+                        <!-- Night Top -->
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (TOP)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-top"></use></svg>
+                            <div class="n-light nl-r" style="left:55%; top:25%"></div> <!-- Port -->
+                            <div class="n-light nl-g" style="left:55%; top:75%"></div> <!-- Stbd -->
+                            <div class="n-light nl-w" style="left:65%; top:50%"></div> <!-- Masthead -->
+                            <div class="n-light nl-w" style="left:15%; top:50%"></div> <!-- Stern -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Over 50m -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Over 50 Meters</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li><strong>2</strong> Mastheads (Aft is higher)</li>
+                        <li>Sidelights &amp; Sternlight</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Fwd Mast -->
+                            <div class="n-light nl-w" style="left:35%; top:20%"></div> <!-- Aft Mast -->
+                            <div class="n-light nl-g" style="left:45%; top:65%"></div>
+                            <div class="n-light nl-w" style="left:15%; top:65%"></div>
+                        </div>
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (TOP)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-top"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:50%"></div>
+                            <div class="n-light nl-w" style="left:35%; top:50%"></div>
+                            <div class="n-light nl-r" style="left:55%; top:25%"></div>
+                            <div class="n-light nl-g" style="left:55%; top:75%"></div>
+                            <div class="n-light nl-w" style="left:15%; top:50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-break">
+
+        <!-- SECTION 2 -->
+        <section id="sail">
+            <h2 class="text-3xl font-bold text-white mb-6">2. Sailing Vessels</h2>
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                    <li>Sidelights &amp; Sternlight ONLY (No white masthead light).</li>
+                    <li>Optional at top of mast: Red over Green ("Sailing Machine").</li>
+                    <li>If using a motor, they display a cone apex down (acting as a power vessel).</li>
+                </ul>
+                <div class="flex flex-wrap gap-4">
+                    <div class="relative w-48 aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <div class="n-light nl-r" style="left:65%; top:15%"></div> <!-- Opt Mast -->
+                        <div class="n-light nl-g" style="left:65%; top:28%"></div>  <!-- Opt Mast -->
+                        <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Stbd -->
+                        <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern -->
+                    </div>
+                    <!-- Day View -->
+                    <div class="relative w-48 aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (MOTORSAILING)</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-cone-down"></use></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-break">
+
+        <!-- SECTION 3 -->
+        <section id="fishing">
+            <h2 class="text-3xl font-bold text-white mb-6">3. Fishing &amp; Trawling</h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Fishing -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Fishing (Lines/Nets)</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>Red over White ("Frying Fish Tonight").</li>
+                        <li>Sidelights/Sternlight added ONLY if making way.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-r" style="left:65%; top:17%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                        </div>
+                        <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- Trawling -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Trawling (Dragging net)</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>Green over White ("Trawling Tonight").</li>
+                        <li>Optional aft masthead if &gt;50m.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-g" style="left:65%; top:17%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                        </div>
+                        <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"></use></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-break">
+
+        <!-- SECTION 4 & 5 (NUC & RAM) -->
+        <div class="grid lg:grid-cols-2 gap-8">
+            <section id="nuc" class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h2 class="text-2xl font-bold text-white mb-4">4. Not Under Command (NUC)</h2>
+                <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                    <li>Red over Red ("Captain is dead").</li>
+                    <li>No masthead light.</li>
+                </ul>
+                <div class="flex flex-wrap gap-3">
+                    <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <div class="n-light nl-r" style="left:65%; top:17%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:30%"></div>
+                    </div>
+                    <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:17%"><use href="#shape-ball"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:32%"><use href="#shape-ball"></use></svg>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ram" class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h2 class="text-2xl font-bold text-white mb-4">5. Restricted Maneuver (RAM)</h2>
+                <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                    <li>Red-White-Red ("Working ahead").</li>
+                    <li>Normal power lights added if making way.</li>
+                </ul>
+                <div class="flex flex-wrap gap-3">
+                    <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <div class="n-light nl-r" style="left:65%; top:10%"></div>
+                        <div class="n-light nl-w" style="left:65%; top:23%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:36%"></div>
+                    </div>
+                    <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:10%"><use href="#shape-ball"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:23%"><use href="#shape-diamond"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:36%"><use href="#shape-ball"></use></svg>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <hr class="section-break">
+
+        <!-- SECTION 6 (CBD) -->
+        <section id="cbd">
+            <h2 class="text-3xl font-bold text-white mb-6">6. Constrained by Draft (CBD - Int'l Only)</h2>
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 border-l-4 border-l-sky-500">
+                <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                    <li>3 Reds in a row ("No room below").</li>
+                    <li>Day shape is a single cylinder.</li>
+                </ul>
+                <div class="flex flex-wrap gap-4">
+                    <div class="relative w-48 aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <div class="n-light nl-r" style="left:65%; top:10%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:23%"></div>
+                        <div class="n-light nl-r" style="left:65%; top:36%"></div>
+                    </div>
+                    <div class="relative w-48 aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                        <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                        <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-cylinder"></use></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-break">
+
+        <!-- SECTION 7 (Towing) -->
+        <section id="towing">
+            <h2 class="text-3xl font-bold text-white mb-6">7. Towing &amp; Pushing</h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Astern -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Towing Astern</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>Yellow OVER White at the stern.</li>
+                        <li>Mast: 2 Whites if tow &lt; 200m, 3 Whites if &gt; 200m.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:17%"></div> <!-- Mast 1 -->
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Mast 2 -->
+                            <div class="n-light nl-y" style="left:15%; top:50%"></div> <!-- Stern Yellow -->
+                            <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern White -->
+                        </div>
+                        <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (&gt;200M TOW)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-diamond"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pushing -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Pushing Ahead (Inland)</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>Yellow OVER Yellow at the stern.</li>
+                        <li>Mast: 2 Whites.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:17%"></div>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                            <div class="n-light nl-y" style="left:15%; top:50%"></div>
+                            <div class="n-light nl-y" style="left:15%; top:65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-break">
+
+        <!-- SECTION 8 (Anchored/Aground) -->
+        <section id="anchored">
+            <h2 class="text-3xl font-bold text-white mb-6">8. Anchored &amp; Aground</h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Anchored</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>One all-around white light (fwd).</li>
+                        <li>Shape: One black ball.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                        </div>
+                        <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-ball"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-xl font-semibold mb-2">Aground</h3>
+                    <ul class="text-sm list-disc pl-5 space-y-1 mb-4 text-slate-300">
+                        <li>Anchor light(s) + Red over Red.</li>
+                        <li>Shape: Three black balls ("Not going anywhere at all").</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Anchor -->
+                            <div class="n-light nl-r" style="left:35%; top:17%"></div> <!-- NUC/Aground 1 -->
+                            <div class="n-light nl-r" style="left:35%; top:30%"></div> <!-- NUC/Aground 2 -->
+                        </div>
+                        <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                            <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                            <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"></use></svg>
+                            <svg class="d-shape" style="left:35%; top:10%"><use href="#shape-ball"></use></svg>
+                            <svg class="d-shape" style="left:35%; top:23%"><use href="#shape-ball"></use></svg>
+                            <svg class="d-shape" style="left:35%; top:36%"><use href="#shape-ball"></use></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MASTER CHEAT SHEET (Keep this intact) -->
+        <hr class="section-break">
+        <section id="cheatsheet">
+            <h2 class="text-4xl font-extrabold text-sky-400 mb-6 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Master Cheat Sheet
+            </h2>
+            <div class="overflow-x-auto bg-slate-800 rounded-xl border border-slate-700 shadow-xl">
+                <table class="w-full text-sm text-left">
+                    <thead>
+                        <tr>
+                            <th class="p-4">Vessel Status</th>
+                            <th class="p-4">Night Lights (Vertical)</th>
+                            <th class="p-4">Day Shape</th>
+                            <th class="p-4">Mnemonic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Sailing</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> over <span class="text-green-400">Green</span> (Optional)</td>
+                            <td class="p-4">Cone, apex down (if motor)</td>
+                            <td class="p-4 italic">Red over Green, Sailing Machine</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fishing</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> over <span class="text-white">White</span></td>
+                            <td class="p-4">Hourglass</td>
+                            <td class="p-4 italic">Red over White, Frying Fish Tonight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Trawling</td>
+                            <td class="p-4"><span class="text-green-400">Green</span> over <span class="text-white">White</span></td>
+                            <td class="p-4">Hourglass</td>
+                            <td class="p-4 italic">Green over White, Trawling Tonight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">NUC</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> over <span class="text-red-400">Red</span></td>
+                            <td class="p-4">Ball - Ball</td>
+                            <td class="p-4 italic">Red over Red, Captain is Dead</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">RAM</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> - <span class="text-white">White</span> - <span class="text-red-400">Red</span></td>
+                            <td class="p-4">Ball - Diamond - Ball</td>
+                            <td class="p-4 italic">Red, White, Red, Working Ahead</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">CBD (Int'l)</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> - <span class="text-red-400">Red</span> - <span class="text-red-400">Red</span></td>
+                            <td class="p-4">Cylinder</td>
+                            <td class="p-4 italic">3 Reds in a row, no room below</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Towing Astern</td>
+                            <td class="p-4"><span class="text-yellow-400">Yellow</span> over <span class="text-white">White</span> (Stern)</td>
+                            <td class="p-4">Diamond (if tow &gt;200m)</td>
+                            <td class="p-4 italic">Yellow over White, tow line is tight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Pushing Ahead</td>
+                            <td class="p-4"><span class="text-yellow-400">Yellow</span> over <span class="text-yellow-400">Yellow</span> (Stern)</td>
+                            <td class="p-4">-</td>
+                            <td class="p-4 italic">Yellow over Yellow, pushing fellow</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <footer class="mt-16 text-center text-slate-500 text-sm pb-10">
+            <p>Designed for USCG License Prep. Study hard!</p>
+        </footer>
+    </main>
+
+
+
+</body></html>
