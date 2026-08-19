@@ -16,40 +16,28 @@
         }
 
         /* --- Dynamic Grid Flashcard CSS --- */
-        .flip-card {
-            perspective: 1000px;
-            width: 100%;
-        }
+        .flip-card { perspective: 1000px; width: 100%; }
         .flip-card-inner {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: grid; grid-template-columns: 1fr;
             transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-            transform-style: preserve-3d;
-            width: 100%;
+            transform-style: preserve-3d; width: 100%;
         }
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateX(180deg);
-        }
+        .flip-card.flipped .flip-card-inner { transform: rotateX(180deg); }
         .flip-card-front, .flip-card-back {
-            grid-area: 1 / 1 / 2 / 2;
-            width: 100%;
-            height: 100%; /* Ensures front stretches to match back height */
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+            grid-area: 1 / 1 / 2 / 2; width: 100%; height: 100%; 
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
         }
-        .flip-card-back {
-            transform: rotateX(180deg);
-        }
+        .flip-card-back { transform: rotateX(180deg); }
 
         /* --- Glowing Light Effects --- */
         .n-light { 
-            position: absolute; width: 12px; height: 12px; border-radius: 50%; 
+            position: absolute; width: 10px; height: 10px; border-radius: 50%; 
             transform: translate(-50%, -50%); z-index: 20; 
         }
-        .nl-w { background: #fff; box-shadow: 0 0 12px 4px rgba(255,255,255,0.8); }
-        .nl-r { background: #ef4444; box-shadow: 0 0 12px 4px rgba(239,68,68,0.8); }
-        .nl-g { background: #22c55e; box-shadow: 0 0 12px 4px rgba(34,197,94,0.8); }
-        .nl-y { background: #eab308; box-shadow: 0 0 12px 4px rgba(234,179,8,0.8); }
+        .nl-w { background: #fff; box-shadow: 0 0 10px 3px rgba(255,255,255,0.7); }
+        .nl-r { background: #ef4444; box-shadow: 0 0 10px 3px rgba(239,68,68,0.7); }
+        .nl-g { background: #22c55e; box-shadow: 0 0 10px 3px rgba(34,197,94,0.7); }
+        .nl-y { background: #eab308; box-shadow: 0 0 10px 3px rgba(234,179,8,0.7); }
         .nl-flash { animation: flash 1s infinite; }
         @keyframes flash { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.2; } }
 
@@ -77,42 +65,35 @@
 </head>
 <body class="flex flex-col md:flex-row relative">
 
-    <!-- REUSABLE SVG DEFINITIONS -->
+    <!-- REUSABLE SVG DEFINITIONS (2D Top and Side Views) -->
     <svg class="hidden">
         <defs>
-            <!-- 3D ISOMETRIC BOAT (Forward Starboard Quarter View) -->
-            <g id="boat-3d">
-                <!-- Port Side/Stern invisible area shading -->
-                <path d="M 30,55 L 50,65 L 140,25 Z" fill="#1e293b"/>
-                <!-- Starboard Hull -->
-                <path d="M 50,65 L 170,30 L 160,45 L 50,80 Z" fill="#334155"/>
-                <!-- Stern Hull -->
-                <path d="M 30,55 L 50,65 L 50,80 L 30,70 Z" fill="#1e293b"/>
-                <!-- Deck -->
-                <path d="M 30,55 L 50,65 L 170,30 L 150,20 Z" fill="#475569"/>
-                <!-- Cabin -->
-                <path d="M 60,50 L 80,55 L 110,45 L 90,40 Z" fill="#94a3b8"/> <!-- Roof -->
-                <path d="M 80,55 L 80,45 L 110,35 L 110,45 Z" fill="#64748b"/> <!-- Stbd wall -->
-                <path d="M 60,50 L 60,40 L 80,45 L 80,55 Z" fill="#475569"/> <!-- Stern wall -->
-                <!-- Mast Base Fwd -->
-                <line x1="130" y1="35" x2="130" y2="-10" stroke="#cbd5e1" stroke-width="2.5" class="opacity-70"/>
-                <!-- Mast Base Aft (Optional for >50m) -->
-                <line x1="85" y1="45" x2="85" y2="-20" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="2 2" class="opacity-50"/>
+            <!-- Side Boat (Bow pointing right). Shifted lower for headroom. -->
+            <g id="boat-side">
+                <path d="M 30 100 L 160 100 Q 180 100 190 70 L 30 70 Z" fill="currentColor" class="opacity-50"/>
+                <path d="M 50 70 L 50 55 L 90 55 L 100 70 Z" fill="currentColor" class="opacity-70"/>
+                <!-- Main Fwd Mast -->
+                <line x1="130" y1="70" x2="130" y2="30" stroke="currentColor" stroke-width="3" class="opacity-40"/>
+                <!-- Aft Mast (Used for >50m) -->
+                <line x1="70" y1="55" x2="70" y2="20" stroke="currentColor" stroke-width="3" class="opacity-40" stroke-dasharray="2 2"/>
             </g>
-
-            <!-- 3D Towed Object (Barge/Log) -->
-            <g id="towed-object">
-                <path d="M 10,70 L 30,80 L 90,60 L 70,50 Z" fill="#475569"/> <!-- Deck -->
-                <path d="M 30,80 L 90,60 L 90,70 L 30,90 Z" fill="#334155"/> <!-- Stbd -->
-                <path d="M 10,70 L 30,80 L 30,90 L 10,80 Z" fill="#1e293b"/> <!-- Stern -->
+            <!-- Top Boat (Bow pointing right). -->
+            <g id="boat-top">
+                <path d="M 30 25 L 140 25 Q 180 25 190 50 Q 180 75 140 75 L 30 75 Z" fill="currentColor" class="opacity-50"/>
+                <rect x="50" y="35" width="40" height="30" rx="2" fill="currentColor" class="opacity-70"/>
+                <circle cx="130" cy="50" r="3" fill="currentColor"/>
+                <circle cx="70" cy="50" r="3" fill="currentColor"/>
             </g>
-
+            <!-- Towed Object Side -->
+            <g id="towed-side">
+                <path d="M 10 90 L 110 90 L 90 75 L 10 75 Z" fill="currentColor" class="opacity-50"/>
+            </g>
             <!-- Day Shapes -->
-            <g id="shape-ball"><circle cx="0" cy="0" r="10" fill="black" stroke="white" stroke-width="1.5"/></g>
-            <g id="shape-diamond"><polygon points="0,-12 12,0 0,12 -12,0" fill="black" stroke="white" stroke-width="1.5"/></g>
-            <g id="shape-cylinder"><rect x="-8" y="-12" width="16" height="24" fill="black" stroke="white" stroke-width="1.5"/></g>
-            <g id="shape-cone-down"><polygon points="-10,-10 10,-10 0,12" fill="black" stroke="white" stroke-width="1.5"/></g>
-            <g id="shape-hourglass"><polygon points="-10,-12 10,-12 0,0 -10,12 10,12" fill="black" stroke="white" stroke-width="1.5"/></g>
+            <g id="shape-ball"><circle cx="0" cy="0" r="8" fill="black" stroke="white" stroke-width="1.5"/></g>
+            <g id="shape-diamond"><polygon points="0,-10 10,0 0,10 -10,0" fill="black" stroke="white" stroke-width="1.5"/></g>
+            <g id="shape-cylinder"><rect x="-6" y="-10" width="12" height="20" fill="black" stroke="white" stroke-width="1.5"/></g>
+            <g id="shape-cone-down"><polygon points="-9,-9 9,-9 0,11" fill="black" stroke="white" stroke-width="1.5"/></g>
+            <g id="shape-hourglass"><polygon points="-8,-10 8,-10 0,0 -8,10 8,10" fill="black" stroke="white" stroke-width="1.5"/></g>
         </defs>
     </svg>
 
@@ -158,7 +139,8 @@
                             <h3 class="text-xl font-semibold text-white mb-2">Light Arcs & Definitions</h3>
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
-                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6">
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col">
+                            <h3 class="text-xl font-semibold text-sky-400 mb-4 border-b border-slate-700 pb-2">Light Arcs & Definitions</h3>
                             <ul class="list-disc pl-5 space-y-3 text-slate-300">
                                 <li><strong>Masthead Light:</strong> White light over fore/aft centerline. Shows unbroken arc of <strong>225°</strong> (from dead ahead to 22.5° abaft the beam on both sides).</li>
                                 <li><strong>Sidelights:</strong> Green (Starboard) and Red (Port). Each shows an unbroken arc of <strong>112.5°</strong> (from dead ahead to 22.5° abaft the beam on its respective side).</li>
@@ -186,20 +168,28 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Power-Driven < 50m</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>1 Masthead (White, Fwd)</li>
                                 <li>Sidelights (Red/Green)</li>
                                 <li>Sternlight (White)</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <div class="absolute top-2 left-2 text-[10px] text-slate-500 font-bold z-20">NIGHT (3D ISO)</div>
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <!-- Lights -->
-                                    <div class="n-light nl-w" style="left:67%; top:30%"></div> <!-- Fwd Mast -->
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div> <!-- Stbd -->
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div> <!-- Stern -->
-                                </svg>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Masthead -->
+                                    <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Stbd side -->
+                                    <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern -->
+                                </div>
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (TOP)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-top"/></svg>
+                                    <div class="n-light nl-r" style="left:55%; top:25%"></div> <!-- Port -->
+                                    <div class="n-light nl-g" style="left:55%; top:75%"></div> <!-- Stbd -->
+                                    <div class="n-light nl-w" style="left:65%; top:50%"></div> <!-- Masthead -->
+                                    <div class="n-light nl-w" style="left:15%; top:50%"></div> <!-- Stern -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -213,19 +203,29 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Power-Driven > 50m</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li><strong>2</strong> Mastheads (Aft is higher)</li>
-                                <li>Sidelights (Red/Green)</li>
-                                <li>Sternlight (White)</li>
+                                <li>Sidelights & Sternlight</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <div class="n-light nl-w" style="left:67%; top:30%"></div> <!-- Fwd Mast -->
-                                    <div class="n-light nl-w" style="left:45%; top:15%"></div> <!-- Aft Mast -->
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div> <!-- Stbd -->
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div> <!-- Stern -->
-                                </svg>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-w" style="left:65%; top:30%"></div> <!-- Fwd Mast -->
+                                    <div class="n-light nl-w" style="left:35%; top:20%"></div> <!-- Aft Mast -->
+                                    <div class="n-light nl-g" style="left:45%; top:65%"></div>
+                                    <div class="n-light nl-w" style="left:15%; top:65%"></div>
+                                </div>
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (TOP)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-top"/></svg>
+                                    <div class="n-light nl-w" style="left:65%; top:50%"></div>
+                                    <div class="n-light nl-w" style="left:35%; top:50%"></div>
+                                    <div class="n-light nl-r" style="left:55%; top:25%"></div>
+                                    <div class="n-light nl-g" style="left:55%; top:75%"></div>
+                                    <div class="n-light nl-w" style="left:15%; top:50%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -239,9 +239,10 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Power-Driven < 12m</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>May exhibit an all-round white light.</li>
-                                <li>Sidelights.</li>
+                                <li>Must also exhibit Sidelights.</li>
                                 <li>(Masthead and Sternlight combined into one 360° light).</li>
                             </ul>
                         </div>
@@ -256,7 +257,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Power-Driven < 7m & < 7 knots</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>May exhibit an all-round white light.</li>
                                 <li>Sidelights <em>shall</em> be exhibited if practicable.</li>
                             </ul>
@@ -272,18 +274,22 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col md:flex-row gap-6">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300 flex-1">
-                                <li>In addition to standard power-driven lights.</li>
-                                <li>Must display an all-round <strong>Flashing Yellow</strong> light where it can best be seen.</li>
-                            </ul>
-                            <div class="w-full md:w-1/2 bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <div class="n-light nl-y nl-flash" style="left:67%; top:15%"></div>
-                                    <div class="n-light nl-w" style="left:67%; top:30%"></div>
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div>
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div>
-                                </svg>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2 mb-4">Hovercraft (Non-Displacement Mode)</h3>
+                                <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                    <li>In addition to standard power-driven lights...</li>
+                                    <li>Must display an all-round <strong>Flashing Yellow</strong> light where it can best be seen.</li>
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/2 flex gap-2">
+                                <div class="relative w-full aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-y nl-flash" style="left:65%; top:15%"></div>
+                                    <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                                    <div class="n-light nl-g" style="left:45%; top:65%"></div>
+                                    <div class="n-light nl-w" style="left:15%; top:65%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -304,35 +310,48 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-6">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Towing Astern</h3>
                             <div class="flex flex-col md:flex-row gap-6">
                                 <div class="flex-1">
-                                    <h4 class="font-bold text-white mb-2">Towing Vessel Displays:</h4>
+                                    <h4 class="font-bold text-white mb-1">Towing Vessel Displays:</h4>
                                     <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300 mb-4">
                                         <li>Standard Sidelights.</li>
                                         <li>Stern: Yellow OVER White ("Tow line is tight").</li>
                                         <li>Mast: 2 Whites if tow < 200m. 3 Whites if tow > 200m.</li>
                                         <li><strong>Day Shape:</strong> Diamond <em>only</em> if tow exceeds 200m.</li>
                                     </ul>
-                                    <h4 class="font-bold text-white mb-2">Towed Object Displays:</h4>
+                                    <h4 class="font-bold text-white mb-1">Towed Object Displays:</h4>
                                     <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                         <li>Sidelights and a Sternlight.</li>
                                         <li><strong>Day Shape:</strong> Diamond <em>only</em> if tow exceeds 200m.</li>
                                     </ul>
                                 </div>
-                                <div class="w-full md:w-1/2 bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center min-h-[200px]">
-                                    <svg viewBox="-60 -40 260 140" class="w-full h-full">
-                                        <use href="#towed-object" x="-50" y="0"/>
-                                        <use href="#boat-3d"/>
-                                        <!-- Tug Lights -->
-                                        <div class="n-light nl-w" style="left:65%; top:15%"></div>
-                                        <div class="n-light nl-w" style="left:65%; top:30%"></div>
-                                        <div class="n-light nl-g" style="left:55%; top:65%"></div>
-                                        <div class="n-light nl-y" style="left:20%; top:35%"></div> <!-- Yellow over... -->
-                                        <div class="n-light nl-w" style="left:20%; top:50%"></div> <!-- White -->
-                                        <!-- Barge Lights -->
-                                        <div class="n-light nl-g" style="left:20%; top:65%"></div>
-                                        <div class="n-light nl-w" style="left:-5%; top:50%"></div>
-                                    </svg>
+                                <div class="w-full md:w-1/2 flex flex-col gap-2">
+                                    <div class="relative w-full aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                        <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                        <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="-60 0 260 100">
+                                            <use href="#towed-side" x="-60" y="0"/>
+                                            <use href="#boat-side" x="0" y="0"/>
+                                            <!-- Tug Lights -->
+                                            <div class="n-light nl-w" style="left:65%; top:17%"></div>
+                                            <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                                            <div class="n-light nl-y" style="left:15%; top:50%"></div> <!-- Yellow over... -->
+                                            <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- White -->
+                                            <div class="n-light nl-g" style="left:45%; top:65%"></div>
+                                            <!-- Tow Lights -->
+                                            <div class="n-light nl-g" style="left:-5%; top:65%"></div>
+                                            <div class="n-light nl-w" style="left:-25%; top:65%"></div>
+                                        </svg>
+                                    </div>
+                                    <div class="relative w-full aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (>200M TOW)</div>
+                                        <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="-60 0 260 100">
+                                            <use href="#towed-side" x="-60" y="0"/>
+                                            <use href="#boat-side" x="0" y="0"/>
+                                            <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-diamond"/></svg>
+                                            <svg class="d-shape" style="left:-10%; top:60%"><use href="#shape-diamond"/></svg>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -343,13 +362,14 @@
                 <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
-                            <h3 class="text-xl font-semibold text-white mb-2">Pushing Ahead (Inland) & Rigid Composite</h3>
+                            <h3 class="text-xl font-semibold text-white mb-2">Pushing Ahead & Rigid Composite</h3>
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Pushing Ahead & Rigid Composite</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li><strong>Rigidly Connected:</strong> If pushing vessel and pushed vessel are rigidly connected in a composite unit, they are regarded as <strong>one power-driven vessel</strong> and show standard lights.</li>
-                                <li><strong>Pushing Ahead (Not rigidly):</strong> Towing vessel shows Sidelights, 2 Masthead lights, and <strong>Yellow OVER Yellow</strong> at the stern. Pushed vessel shows Sidelights at forward end.</li>
+                                <li><strong>Pushing Ahead (Inland):</strong> Towing vessel shows Sidelights, 2 Masthead lights, and <strong>Yellow OVER Yellow</strong> at the stern. Pushed vessel shows Sidelights at forward end.</li>
                             </ul>
                         </div>
                     </div>
@@ -363,7 +383,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Submerged Objects</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>Rule 24(g). An inconspicuous, partly submerged vessel or object being towed shall exhibit:</li>
                                 <li>One all-round white light at or near the forward end.</li>
                                 <li>One all-round white light at or near the after end.</li>
@@ -388,6 +409,7 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-6">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Sailing Vessels</h3>
                             <div class="flex flex-col md:flex-row gap-6">
                                 <div class="flex-1">
                                     <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
@@ -397,14 +419,20 @@
                                         <li><strong>Motorsailing:</strong> If propelled by machinery, must act as a power-driven vessel. <strong>Day shape:</strong> Cone apex pointing down.</li>
                                     </ul>
                                 </div>
-                                <div class="w-full md:w-1/2 bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center min-h-[200px]">
-                                    <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                        <use href="#boat-3d"/>
-                                        <div class="n-light nl-r" style="left:67%; top:-5%"></div> <!-- Opt Mast -->
-                                        <div class="n-light nl-g" style="left:67%; top:10%"></div> <!-- Opt Mast -->
-                                        <div class="n-light nl-g" style="left:55%; top:65%"></div> <!-- Stbd -->
-                                        <div class="n-light nl-w" style="left:20%; top:45%"></div> <!-- Stern -->
-                                    </svg>
+                                <div class="w-full md:w-1/2 flex flex-col gap-2 mt-auto">
+                                    <div class="relative w-full aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                        <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                        <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                        <div class="n-light nl-r" style="left:65%; top:15%"></div> <!-- Opt Mast -->
+                                        <div class="n-light nl-g" style="left:65%; top:28%"></div>  <!-- Opt Mast -->
+                                        <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Stbd -->
+                                        <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Stern -->
+                                    </div>
+                                    <div class="relative w-full aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                        <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (MOTORSAILING)</div>
+                                        <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                        <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-cone-down"/></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -419,7 +447,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Sail < 7m & Vessels Under Oars</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>Shall, if practicable, exhibit normal sailing lights.</li>
                                 <li>If not, they shall have ready at hand an <strong>electric torch or lighted lantern showing a white light</strong>.</li>
                                 <li>This light shall be exhibited in sufficient time to prevent collision.</li>
@@ -443,19 +472,26 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Fishing (Lines/Nets)</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>Red over White ("Frying Fish Tonight").</li>
                                 <li>Sidelights/Sternlight added ONLY if making way through water.</li>
                                 <li><strong>Day Shape:</strong> Hourglass (Two cones apex to apex).</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <div class="n-light nl-r" style="left:67%; top:15%"></div>
-                                    <div class="n-light nl-w" style="left:67%; top:30%"></div>
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div> <!-- Making way -->
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div> <!-- Making way -->
-                                </svg>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-r" style="left:65%; top:17%"></div>
+                                    <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                                    <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Making way -->
+                                    <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Making way -->
+                                </div>
+                                <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"/></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -469,20 +505,27 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Trawling (Dragging Net)</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>Green over White ("Trawling Tonight").</li>
                                 <li>Optional aft masthead if > 50m.</li>
                                 <li>Sidelights/Sternlight added ONLY if making way.</li>
                                 <li><strong>Day Shape:</strong> Hourglass.</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <div class="n-light nl-g" style="left:67%; top:15%"></div>
-                                    <div class="n-light nl-w" style="left:67%; top:30%"></div>
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div> <!-- Making way -->
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div> <!-- Making way -->
-                                </svg>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-g" style="left:65%; top:17%"></div>
+                                    <div class="n-light nl-w" style="left:65%; top:30%"></div>
+                                    <div class="n-light nl-g" style="left:45%; top:65%"></div> <!-- Making way -->
+                                    <div class="n-light nl-w" style="left:15%; top:65%"></div> <!-- Making way -->
+                                </div>
+                                <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY (SIDE)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"/></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -503,20 +546,26 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Not Under Command (NUC)</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>Red over Red ("Captain is Dead").</li>
                                 <li>NO masthead lights.</li>
                                 <li>Sidelights/Sternlight added ONLY if making way.</li>
                                 <li><strong>Day Shape:</strong> Ball over Ball.</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <div class="n-light nl-r" style="left:67%; top:15%"></div>
-                                    <div class="n-light nl-r" style="left:67%; top:30%"></div>
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div>
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div>
-                                </svg>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-r" style="left:65%; top:17%"></div>
+                                    <div class="n-light nl-r" style="left:65%; top:30%"></div>
+                                </div>
+                                <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:17%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:32%"><use href="#shape-ball"/></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -526,22 +575,31 @@
                 <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
-                            <h3 class="text-xl font-semibold text-white mb-2">Restricted Maneuver (RAM) Base</h3>
+                            <h3 class="text-xl font-semibold text-white mb-2">Restricted Maneuver (RAM)</h3>
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Restricted Maneuver (RAM)</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>Red-White-Red ("Working ahead").</li>
                                 <li>Normal power lights added if making way.</li>
                                 <li><strong>Day Shape:</strong> Ball-Diamond-Ball.</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <div class="n-light nl-r" style="left:67%; top:0%"></div>
-                                    <div class="n-light nl-w" style="left:67%; top:15%"></div>
-                                    <div class="n-light nl-r" style="left:67%; top:30%"></div>
-                                </svg>
+                            <div class="flex flex-wrap gap-3 mt-auto">
+                                <div class="relative w-[48%] aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-r" style="left:65%; top:10%"></div>
+                                    <div class="n-light nl-w" style="left:65%; top:23%"></div>
+                                    <div class="n-light nl-r" style="left:65%; top:36%"></div>
+                                </div>
+                                <div class="relative w-[48%] aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:10%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:23%"><use href="#shape-diamond"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:36%"><use href="#shape-ball"/></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -551,11 +609,12 @@
                 <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
-                            <h3 class="text-xl font-semibold text-white mb-2">RAM: Dredging & Underwater Operations</h3>
+                            <h3 class="text-xl font-semibold text-white mb-2">RAM: Dredging & Underwater Ops</h3>
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">RAM: Dredging & Underwater Ops</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>Displays standard RAM lights/shapes (Red-White-Red).</li>
                                 <li><strong>Obstruction Side:</strong> Two vertical Red lights. Day shape: Two Balls.</li>
                                 <li><strong>Clear Side:</strong> Two vertical Green lights. Day shape: Two Diamonds.</li>
@@ -572,7 +631,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">RAM: Diving (Small Vessels)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>If size makes standard RAM lights/shapes impracticable:</li>
                                 <li>Must display Red-White-Red all-round lights.</li>
                                 <li><strong>Day Shape:</strong> A rigid replica of the International Code flag "A" (Alpha) at least 1m high.</li>
@@ -589,7 +649,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Mineclearance Vessels</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>In addition to standard power-driven vessel lights.</li>
                                 <li>Three all-round Green lights (one at foremast head, one at each end of foreyard).</li>
                                 <li><strong>Day Shape:</strong> Three black balls in the same configuration. Indicates it is dangerous to approach within 1000m.</li>
@@ -613,23 +674,25 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Constrained by Draft (Int'l)</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li><strong>In addition to</strong> the regular lights a vessel of that size must display (power-driven lights), also display:</li>
                                 <li>Three all-round Red lights in a vertical line ("No room below").</li>
                                 <li><strong>Day shape:</strong> Single black cylinder.</li>
                             </ul>
-                            <div class="w-full bg-[#0a0f18] rounded-lg relative overflow-hidden flex items-center justify-center h-48">
-                                <svg viewBox="-20 -40 220 140" class="w-full h-full">
-                                    <use href="#boat-3d"/>
-                                    <!-- Additional 3 Reds -->
-                                    <div class="n-light nl-r" style="left:67%; top:-5%"></div>
-                                    <div class="n-light nl-r" style="left:67%; top:10%"></div>
-                                    <div class="n-light nl-r" style="left:67%; top:25%"></div>
-                                    <!-- Base PDV lights -->
-                                    <div class="n-light nl-w" style="left:85%; top:45%"></div> <!-- Mast -->
-                                    <div class="n-light nl-g" style="left:55%; top:65%"></div> <!-- Stbd -->
-                                    <div class="n-light nl-w" style="left:20%; top:45%"></div> <!-- Stern -->
-                                </svg>
+                            <div class="flex flex-wrap gap-4 mt-auto">
+                                <div class="relative w-48 aspect-[2/1] bg-[#0a0f18] border border-slate-700 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-500 font-bold z-20">NIGHT</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-700 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <div class="n-light nl-r" style="left:65%; top:10%"></div>
+                                    <div class="n-light nl-r" style="left:65%; top:23%"></div>
+                                    <div class="n-light nl-r" style="left:65%; top:36%"></div>
+                                </div>
+                                <div class="relative w-48 aspect-[2/1] bg-slate-300 border border-slate-400 rounded-lg overflow-hidden">
+                                    <div class="absolute top-1 left-2 text-[9px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-cylinder"/></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -643,7 +706,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Pilot Vessels</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>White over Red ("Pilot Ahead" or "White hat, red nose").</li>
                                 <li>Sidelights and sternlight apply when underway.</li>
                                 <li>When at anchor, shows White over Red PLUS normal anchor lights.</li>
@@ -660,6 +724,7 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Anchored & Aground</h3>
                             <h4 class="font-bold text-white">Anchored:</h4>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300 mb-2">
                                 <li>Under 50m: One all-round white light.</li>
@@ -683,7 +748,8 @@
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                            <h3 class="text-xl font-semibold text-sky-400 border-b border-slate-700 pb-2">Seaplanes & WIG Craft</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
                                 <li>Where it is impracticable for a seaplane or a WIG (Wing-In-Ground) craft to exhibit lights and shapes of the characteristics or in the exact positions specified in the Rules...</li>
                                 <li>She shall exhibit lights and shapes as closely similar in characteristics and position as is possible.</li>
                             </ul>
