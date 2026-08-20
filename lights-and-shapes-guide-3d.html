@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D USCG Navigation Lights & Shapes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; 
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed 3D Canvas sits above background but behind text overlays */
+        #webgl-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 5;
+            pointer-events: none; /* Clicks pass through to OrbitControls containers */
+        }
+
+        /* --- Dynamic Grid Flashcard CSS --- */
+        .flip-card { perspective: 1000px; width: 100%; z-index: 10; position: relative; }
+        .flip-card-inner {
+            display: grid; grid-template-columns: 1fr;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d; width: 100%;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateX(180deg); }
+        .flip-card-front, .flip-card-back {
+            grid-area: 1 / 1 / 2 / 2; width: 100%; height: 100%;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back { transform: rotateX(180deg); }
+
+        /* Container for the 3D views */
+        .scene-container {
+            width: 100%; height: 250px; 
+            border-radius: 0.5rem;
+            cursor: grab;
+            position: relative;
+            background-color: transparent; /* WebGL draws here */
+            border: 1px solid #334155;
+            overflow: hidden;
+            pointer-events: auto; /* Catches orbit events */
+        }
+        .scene-container:active { cursor: grabbing; }
+
+        .sidebar { height: 100vh; overflow-y: auto; z-index: 20; position: relative; }
+        .section-break { border: 0; height: 2px; background: linear-gradient(to right, transparent, #ffffff, transparent); margin: 4rem 0; opacity: 0.3; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #475569; padding: 12px; text-align: left; }
+        th { background-color: #1e293b; color: white; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row relative">
+
+    <!-- The single master canvas for all 3D rendering -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Sticky Navigation Sidebar -->
+    <nav class="sidebar w-full md:w-64 bg-slate-900/90 backdrop-blur-md p-6 md:sticky top-0 shrink-0 border-b md:border-b-0 md:border-r border-slate-700">
+        <h2 class="text-xl font-bold text-white mb-6">Study Topics</h2>
+        <ul class="space-y-3 text-sm">
+            <li><a href="#rule21" class="hover:text-white transition">Rule 21: Definitions</a></li>
+            <li><a href="#rule23" class="hover:text-white transition">Rule 23: Power-Driven</a></li>
+            <li><a href="#rule24" class="hover:text-white transition">Rule 24: Towing/Pushing</a></li>
+            <li><a href="#rule25" class="hover:text-white transition">Rule 25: Sailing/Oars</a></li>
+            <li><a href="#rule26" class="hover:text-white transition">Rule 26: Fishing</a></li>
+            <li><a href="#rule27" class="hover:text-white transition">Rule 27: NUC & RAM</a></li>
+            <li><a href="#rule28" class="hover:text-white transition">Rule 28: CBD</a></li>
+            <li><a href="#rule29" class="hover:text-white transition">Rule 29: Pilot</a></li>
+            <li><a href="#rule30" class="hover:text-white transition">Rule 30: Anchored/Aground</a></li>
+            <li><a href="#rule31" class="hover:text-white transition">Rule 31: Seaplanes</a></li>
+            <li><a href="#cheatsheet" class="text-sky-400 font-bold hover:text-sky-300 transition mt-4 block">Master Cheat Sheet</a></li>
+        </ul>
+        <div class="mt-8 text-xs text-slate-500">
+            <p><strong>3D Controls:</strong></p>
+            <p>Drag to Orbit. Scroll to Zoom.</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-12 max-w-5xl mx-auto overflow-y-auto relative z-10">
+        
+        <!-- FLIP ALL BUTTON -->
+        <div class="sticky top-4 z-40 flex justify-end mb-4 pointer-events-none">
+            <button onclick="flipAllCards()" class="pointer-events-auto bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                Toggle All Flashcards
+            </button>
+        </div>
+
+        <h1 class="text-4xl font-extrabold text-white mb-2">Master 50 Ton: Lights & Shapes</h1>
+        <p class="text-slate-400 mb-10 text-lg">Interactive 3D Flashcard Guide for the Rules of the Road.</p>
+
+        <!-- RULE 21 -->
+        <section id="rule21">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 21: Definitions</h2>
+            <div class="mb-6">
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[150px]">
+                            <h3 class="text-xl font-semibold text-white mb-2">Light Arcs & Definitions</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6">
+                            <h3 class="text-lg font-bold text-white mb-4">Light Arcs & Definitions</h3>
+                            <ul class="list-disc pl-5 space-y-3 text-slate-300">
+                                <li><strong>Masthead Light:</strong> White light over centerline. Unbroken arc of <strong>225°</strong> (dead ahead to 22.5° abaft the beam).</li>
+                                <li><strong>Sidelights:</strong> Green (Stbd) and Red (Port). Arc of <strong>112.5°</strong> each.</li>
+                                <li><strong>Sternlight:</strong> White light at the stern. Arc of <strong>135°</strong>.</li>
+                                <li><strong>Towing Light:</strong> Yellow light having the same characteristics as the sternlight (<strong>135°</strong>).</li>
+                                <li><strong>All-Round Light:</strong> Unbroken arc of <strong>360°</strong>.</li>
+                                <li><strong>Flashing Light:</strong> Flashes <strong>120 or more times per minute</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RULE 23 -->
+        <section id="rule23" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 23: Power-Driven Underway</h2>
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Power-Driven < 50m</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Power-Driven < 50m</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>1 Masthead (White, Fwd)</li>
+                                <li>Sidelights (Red/Green)</li>
+                                <li>Sternlight (White)</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="power_under_50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Power-Driven > 50m</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Power-Driven > 50m</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>2</strong> Mastheads (Aft is higher)</li>
+                                <li>Sidelights & Sternlight</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="power_over_50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Power-Driven < 12m</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Power-Driven < 12m</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>May combine Masthead and Sternlight into a single all-round 360° white light.</li>
+                                <li>Sidelights.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="power_under_12"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Hovercraft</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Hovercraft</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>Standard power-driven lights PLUS an all-round <strong>Flashing Yellow</strong> light.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="hovercraft"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RULE 24 -->
+        <section id="rule24" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 24: Towing & Pushing</h2>
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Towing Astern (< 200m)</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Towing Astern (< 200m)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>Yellow OVER White</strong> at the stern.</li>
+                                <li>2 Mastheads, Sidelights.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="towing_astern"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Towing Astern (> 200m)</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Towing Astern (> 200m)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>3 Mastheads</strong> in a vertical line.</li>
+                                <li><strong>Day Shape:</strong> Black Diamond.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="towing_long"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Pushing Ahead</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Pushing Ahead</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>Inland:</strong> Yellow OVER Yellow at stern.</li>
+                                <li><strong>Int'l (Shown):</strong> Standard White sternlight.</li>
+                                <li>2 Mastheads, Sidelights.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="pushing_ahead"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Submerged Object (Dracone)</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Submerged Object</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>The towed object displays: One all-round white fwd, one aft.</li>
+                                <li><strong>Day Shape:</strong> Diamond on the aftermost extremity.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="submerged_tow"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RULE 25 (Completely Overhauled) -->
+        <section id="rule25" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 25: Sailing & Oars</h2>
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Sailing (> 20m)</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Sailing (> 20m)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>Sidelights & Sternlight. NO white masthead.</li>
+                                <li><strong>Optional:</strong> Red over Green at masthead.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="sailing_standard"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Sailing (< 20m)</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Sailing (< 20m)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>May combine Sidelights and Sternlight into a single <strong>Tricolor Lantern</strong> at top of mast.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="sailing_tricolor"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Sailing (< 7m) & Rowboats</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Sailing (< 7m) & Rowboats</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>If standard lights are impracticable, must have an <strong>electric torch or lantern</strong> ready to show in time to prevent collision.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="sailing_torch"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Motorsailing</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Motorsailing</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>Acts as a power-driven vessel (displays standard white masthead light).</li>
+                                <li><strong>Day Shape:</strong> Cone apex down.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="motorsailing"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RULES 26, 27, 28, 29, 30 -->
+        <section id="advanced-rules" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 26-30: Fishing, RAM, Pilot, Anchor</h2>
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Fishing & Trawling</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Fishing / Trawling</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>Fishing:</strong> Red over White.</li>
+                                <li><strong>Trawling:</strong> Green over White.</li>
+                                <li><strong>Day Shape:</strong> Hourglass.</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="fishing"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">NUC & RAM Base</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">NUC & RAM</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>NUC:</strong> Red over Red (Ball-Ball).</li>
+                                <li><strong>RAM:</strong> Red-White-Red (Ball-Diamond-Ball).</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="ram_nuc"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">RAM: Obstructions (Dredging)</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">RAM: Obstructions</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>Obstructed Side:</strong> Red over Red (2 Balls).</li>
+                                <li><strong>Clear Side:</strong> Green over Green (2 Diamonds).</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="ram_obstruction"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Pilot & Anchored</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Pilot & Anchored</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li><strong>Pilot:</strong> White over Red.</li>
+                                <li><strong>Anchored:</strong> All-round White (Ball shape).</li>
+                                <li><strong>Aground:</strong> Anchor + Red over Red (3 Balls).</li>
+                            </ul>
+                            <div class="scene-container" data-scenario="pilot_anchor"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MASTER CHEAT SHEET -->
+        <hr class="section-break">
+        <section id="cheatsheet">
+            <h2 class="text-4xl font-extrabold text-sky-400 mb-6">Master Cheat Sheet</h2>
+            <div class="overflow-x-auto bg-slate-800 rounded-xl border border-slate-700 shadow-xl relative z-20 pointer-events-auto">
+                <table class="w-full text-sm text-left">
+                    <thead>
+                        <tr>
+                            <th class="p-4">Vessel Status</th>
+                            <th class="p-4">Night Lights (Vertical)</th>
+                            <th class="p-4">Day Shape</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Sailing</td>
+                            <td class="p-4">Sidelights/Sternlight. (Opt: <span class="text-red-400">Red</span>/<span class="text-green-400">Green</span>)</td>
+                            <td class="p-4">Cone apex down (if motor)</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fishing</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> over <span class="text-white">White</span></td>
+                            <td class="p-4">Hourglass</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Trawling</td>
+                            <td class="p-4"><span class="text-green-400">Green</span> over <span class="text-white">White</span></td>
+                            <td class="p-4">Hourglass</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">NUC</td>
+                            <td class="p-4"><span class="text-red-400">Red</span> over <span class="text-red-400">Red</span></td>
+                            <td class="p-4">Ball - Ball</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">RAM</td>
+                            <td class="p-4"><span class="text-red-400">Red</span>-<span class="text-white">White</span>-<span class="text-red-400">Red</span></td>
+                            <td class="p-4">Ball - Diamond - Ball</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">CBD (Int'l)</td>
+                            <td class="p-4"><span class="text-red-400">Red-Red-Red</span> (in addition to PDV)</td>
+                            <td class="p-4">Cylinder</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Towing Astern</td>
+                            <td class="p-4"><span class="text-yellow-400">Yellow</span> over <span class="text-white">White</span> (Stern)</td>
+                            <td class="p-4">Diamond (if tow >200m)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <footer class="mt-16 text-center text-slate-500 text-sm pb-10">
+            <p>Designed for USCG License Prep. Study hard!</p>
+        </footer>
+    </main>
+
+    <!-- MULTI-VIEW THREE.JS ENGINE -->
+    <script>
+        function flipAllCards() {
+            const cards = document.querySelectorAll('.flip-card');
+            const allFlipped = Array.from(cards).every(c => c.classList.contains('flipped'));
+            cards.forEach(c => {
+                if (allFlipped) c.classList.remove('flipped');
+                else c.classList.add('flipped');
+            });
+        }
+
+        // ThreeJS variables
+        let canvas, renderer, scenes = [];
+        
+        // Colors
+        const W = 0xffffff, R = 0xff1111, G = 0x11ff11, Y = 0xffdd00, B = 0x000000;
+
+        // Shared Geometry
+        const matHull = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
+        const matCabin = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.5 });
+        const matMast = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, roughness: 0.4 });
+        const matSail = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, side: THREE.DoubleSide });
+
+        function createStandardBoat() {
+            const group = new THREE.Group();
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 10); shape.lineTo(3, 5); shape.lineTo(3, -8);
+            shape.lineTo(-3, -8); shape.lineTo(-3, 5); shape.lineTo(0, 10);
+            
+            const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 2.5, bevelEnabled: true, bevelSize: 0.5, bevelThickness: 0.5 }), matHull);
+            hull.rotation.x = Math.PI / 2; hull.position.y = 2.5;
+            group.add(hull);
+
+            const cabin = new THREE.Mesh(new THREE.BoxGeometry(5, 2.5, 6), matCabin);
+            cabin.position.set(0, 3.75, -2);
+            group.add(cabin);
+
+            const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 7), matMast);
+            mast.position.set(0, 7, 2);
+            group.add(mast);
+            return group;
+        }
+
+        function createLongBoat() {
+            const group = new THREE.Group();
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 15); shape.lineTo(4, 10); shape.lineTo(4, -15);
+            shape.lineTo(-4, -15); shape.lineTo(-4, 10); shape.lineTo(0, 15);
+            
+            const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 3 }), matHull);
+            hull.rotation.x = Math.PI / 2; hull.position.y = 3;
+            group.add(hull);
+
+            const cabin = new THREE.Mesh(new THREE.BoxGeometry(7, 5, 8), matCabin);
+            cabin.position.set(0, 5.5, -10);
+            group.add(cabin);
+
+            const fwdMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 10), matMast);
+            fwdMast.position.set(0, 8, 12);
+            group.add(fwdMast);
+
+            const aftMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 12), matMast);
+            aftMast.position.set(0, 11, -12);
+            group.add(aftMast);
+            return group;
+        }
+
+        function createSailBoat() {
+            const group = new THREE.Group();
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 10); shape.lineTo(2.5, 5); shape.lineTo(2.5, -6);
+            shape.lineTo(-2.5, -6); shape.lineTo(-2.5, 5); shape.lineTo(0, 10);
+            
+            const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 2, bevelEnabled: true, bevelSize: 0.3, bevelThickness: 0.3 }), matHull);
+            hull.rotation.x = Math.PI / 2; hull.position.y = 2;
+            group.add(hull);
+
+            const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 14), matMast);
+            mast.position.set(0, 9, 1);
+            group.add(mast);
+
+            const mainShape = new THREE.Shape();
+            mainShape.moveTo(0, 3); mainShape.lineTo(0, 14); mainShape.lineTo(7, 3);
+            const mainSail = new THREE.Mesh(new THREE.ShapeGeometry(mainShape), matSail);
+            mainSail.rotation.y = Math.PI / 2; mainSail.position.set(0, 0, 1);
+            group.add(mainSail);
+
+            return group;
+        }
+
+        function addLight(group, color, x, y, z) {
+            const lGroup = new THREE.Group();
+            lGroup.position.set(x, y, z);
+            lGroup.add(new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8), new THREE.MeshBasicMaterial({ color: color })));
+            lGroup.add(new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 16), new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false })));
+            group.add(lGroup);
+        }
+
+        function addShape(group, type, x, y, z) {
+            let geo;
+            if (type === 'ball') geo = new THREE.SphereGeometry(0.6, 16, 16);
+            if (type === 'diamond') geo = new THREE.OctahedronGeometry(0.6, 0);
+            if (type === 'cone_down') { geo = new THREE.ConeGeometry(0.6, 1.2, 16); geo.rotateX(Math.PI); }
+            const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x000000 }));
+            const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: 0xffffff }));
+            mesh.position.set(x, y, z); edges.position.set(x, y, z);
+            group.add(mesh); group.add(edges);
+        }
+
+        // Scenario Data Configurations
+        const configData = {
+            'power_under_50': { 
+                boat: 'standard', 
+                lights: [[W,0,10.5,2], [G,3.2,4,0], [R,-3.2,4,0], [W,0,3,-8.2]] 
+            },
+            'power_over_50': {
+                boat: 'long',
+                lights: [[W,0,13.2,12], [W,0,17.2,-12], [G,4.2,5,-5], [R,-4.2,5,-5], [W,0,4,-15.2]]
+            },
+            'power_under_12': {
+                boat: 'standard',
+                lights: [[W,0,10.5,0], [G,3.2,4,0], [R,-3.2,4,0]] // All-round white
+            },
+            'hovercraft': {
+                boat: 'standard',
+                lights: [[W,0,10.5,2], [Y,0,12.5,2], [G,3.2,4,0], [R,-3.2,4,0], [W,0,3,-8.2]] // Flashing yellow top
+            },
+            'towing_astern': {
+                boat: 'standard',
+                lights: [[W,0,10.5,2], [W,0,9,2], [G,3.2,4,0], [R,-3.2,4,0], [Y,0,4.5,-8.2], [W,0,3,-8.2]]
+            },
+            'towing_long': {
+                boat: 'standard',
+                lights: [[W,0,10.5,2], [W,0,9,2], [W,0,7.5,2], [G,3.2,4,0], [R,-3.2,4,0], [Y,0,4.5,-8.2], [W,0,3,-8.2]],
+                shapes: [['diamond',0,12,2]]
+            },
+            'pushing_ahead': {
+                boat: 'standard',
+                lights: [[W,0,10.5,2], [W,0,9,2], [G,3.2,4,0], [R,-3.2,4,0], [W,0,3,-8.2]] // Int'l sternlight
+            },
+            'submerged_tow': {
+                boat: 'long',
+                lights: [[W,0,5,14], [W,0,5,-14]], // Fwd/Aft white
+                shapes: [['diamond',0,7,-14]]
+            },
+            'sailing_standard': {
+                boat: 'sail',
+                lights: [[R,0,16.5,1], [G,0,15,1], [G,2.7,3.5,0], [R,-2.7,3.5,0], [W,0,2.5,-6.2]]
+            },
+            'sailing_tricolor': {
+                boat: 'sail',
+                lights: [[R,-0.3,16,1], [G,0.3,16,1], [W,0,16,0.7]] // Compact tricolor top
+            },
+            'sailing_torch': {
+                boat: 'sail',
+                lights: [[W,2,5,-2]] // Handheld torch near stern
+            },
+            'motorsailing': {
+                boat: 'sail',
+                lights: [[W,0,11,1], [G,2.7,3.5,0], [R,-2.7,3.5,0], [W,0,2.5,-6.2]],
+                shapes: [['cone_down', 0, 7, 5]]
+            },
+            'fishing': {
+                boat: 'standard',
+                lights: [[R,0,10.5,2], [W,0,9,2]],
+                shapes: [] // No way making lights shown to keep it simple, add shapes IRL
+            },
+            'ram_nuc': {
+                boat: 'standard',
+                lights: [[R,0,10.5,2], [R,0,9,2]], // NUC style
+                shapes: [['ball',0,13,2], ['ball',0,11.5,2]]
+            },
+            'ram_obstruction': {
+                boat: 'standard',
+                lights: [[R,-4,10,2], [R,-4,8.5,2], [G,4,10,2], [G,4,8.5,2], [R,0,12,2], [W,0,10.5,2], [R,0,9,2]],
+                shapes: [['ball',-4,13,2], ['ball',-4,11.5,2], ['diamond',4,13,2], ['diamond',4,11.5,2]]
+            },
+            'pilot_anchor': {
+                boat: 'standard',
+                lights: [[W,0,10.5,2], [R,0,9,2]], // Pilot style
+            }
+        };
+
+        function init() {
+            canvas = document.getElementById('webgl-canvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            const containers = document.querySelectorAll('.scene-container');
+            
+            containers.forEach(container => {
+                const scenarioKey = container.getAttribute('data-scenario');
+                if (!configData[scenarioKey]) return;
+                
+                const data = configData[scenarioKey];
+                
+                const scene = new THREE.Scene();
+                // Set background color of scene to match slate-900
+                scene.background = new THREE.Color(0x0f172a); 
+                
+                // Add Lights
+                scene.add(new THREE.AmbientLight(0x1e293b, 1.5));
+                const dirLight = new THREE.DirectionalLight(0x94a3b8, 0.5);
+                dirLight.position.set(5, 10, 5);
+                scene.add(dirLight);
+
+                // Add Ocean
+                const ocean = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshStandardMaterial({ color: 0x0a0f18, roughness: 1 }));
+                ocean.rotation.x = -Math.PI / 2; ocean.position.y = -0.5;
+                scene.add(ocean);
+
+                // Camera & Controls
+                const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
+                camera.position.set(25, 15, 25);
+                
+                const controls = new THREE.OrbitControls(camera, container); // Controls attached to the div!
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+                controls.enableZoom = false; // Disable zoom on cards so page scrolling works normally
+
+                // Build specific boat for this scene
+                const worldGroup = new THREE.Group();
+                scene.add(worldGroup);
+
+                if (data.boat === 'standard') worldGroup.add(createStandardBoat());
+                if (data.boat === 'long') worldGroup.add(createLongBoat());
+                if (data.boat === 'sail') worldGroup.add(createSailBoat());
+
+                if (data.lights) {
+                    data.lights.forEach(l => addLight(worldGroup, l[0], l[1], l[2], l[3]));
+                }
+                if (data.shapes) {
+                    data.shapes.forEach(s => addShape(worldGroup, s[0], s[1], s[2], s[3]));
+                }
+
+                scenes.push({ scene, camera, controls, container, worldGroup, offset: Math.random() * Math.PI });
+            });
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            animate();
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            renderer.setSize(window.innerWidth, window.innerHeight, false);
+        }
+
+        function animate(time) {
+            requestAnimationFrame(animate);
+
+            // Essential logic: Only render scenes that are visible AND whose card is flipped
+            renderer.setScissorTest(true);
+            renderer.setClearColor(0x0f172a, 0); // Transparent global clear
+
+            scenes.forEach(s => {
+                s.controls.update();
+                
+                // Bobbing animation
+                s.worldGroup.position.y = Math.sin((time * 0.001) * 1.5 + s.offset) * 0.2;
+                s.worldGroup.rotation.z = Math.sin((time * 0.001) * 0.8 + s.offset) * 0.02;
+
+                const rect = s.container.getBoundingClientRect();
+                
+                // Check if off-screen
+                if (rect.bottom < 0 || rect.top > renderer.domElement.clientHeight ||
+                    rect.right < 0 || rect.left > renderer.domElement.clientWidth) {
+                    return;
+                }
+
+                // Check if card is flipped (if not flipped, don't waste GPU rendering it)
+                const card = s.container.closest('.flip-card');
+                if (card && !card.classList.contains('flipped')) {
+                    return; 
+                }
+
+                // Map HTML container coordinates to WebGL viewport
+                const width = rect.right - rect.left;
+                const height = rect.bottom - rect.top;
+                const left = rect.left;
+                const bottom = renderer.domElement.clientHeight - rect.bottom;
+
+                // Set Viewport and Scissor for this specific scene
+                renderer.setViewport(left, bottom, width, height);
+                renderer.setScissor(left, bottom, width, height);
+
+                // Update Camera Aspect just in case box resized
+                s.camera.aspect = width / height;
+                s.camera.updateProjectionMatrix();
+
+                renderer.render(s.scene, s.camera);
+            });
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
+
