@@ -10,14 +10,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; 
-            color: #e2e8f0;
-            scroll-behavior: smooth;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #e2e8f0; scroll-behavior: smooth; }
 
-        /* --- Dynamic Grid Flashcard CSS --- */
+        /* Dynamic Grid Flashcard CSS */
         .flip-card { perspective: 1000px; width: 100%; z-index: 10; position: relative; }
         .flip-card-inner {
             display: grid; grid-template-columns: 1fr;
@@ -32,20 +27,11 @@
         .flip-card-back { transform: rotateX(180deg); }
 
         /* Container for the 3D views */
-        .scene-container {
-            width: 100%; height: 250px; 
-            border-radius: 0.5rem;
-            position: relative;
-            background-color: #0f172a; 
-            border: 1px solid #334155;
-            overflow: hidden;
-        }
-        
-        .scene-container canvas {
-            cursor: grab;
-            outline: none;
-        }
-        .scene-container canvas:active { cursor: grabbing; }
+        .scene-container { background-color: #0f172a; cursor: grab; outline: none; }
+        .scene-container:active { cursor: grabbing; }
+
+        /* 2D SVG Day Shapes */
+        .d-shape { position: absolute; transform: translate(-50%, -50%); z-index: 10; overflow: visible; width: 1px; height: 1px; }
 
         .sidebar { height: 100vh; overflow-y: auto; z-index: 20; position: relative; }
         .section-break { border: 0; height: 2px; background: linear-gradient(to right, transparent, #ffffff, transparent); margin: 4rem 0; opacity: 0.3; }
@@ -61,6 +47,23 @@
 </head>
 <body class="flex flex-col md:flex-row relative">
 
+    <!-- REUSABLE SVG DEFINITIONS FOR DAY SHAPES -->
+    <svg class="hidden">
+        <defs>
+            <g id="boat-side">
+                <path d="M 30 100 L 160 100 Q 180 100 190 70 L 30 70 Z" fill="currentColor" class="opacity-50"></path>
+                <path d="M 50 70 L 50 55 L 90 55 L 100 70 Z" fill="currentColor" class="opacity-70"></path>
+                <line x1="130" y1="70" x2="130" y2="30" stroke="currentColor" stroke-width="3" class="opacity-40"></line>
+                <line x1="70" y1="55" x2="70" y2="20" stroke="currentColor" stroke-width="3" class="opacity-40" stroke-dasharray="2 2"></line>
+            </g>
+            <g id="shape-ball"><circle cx="0" cy="0" r="8" fill="black" stroke="white" stroke-width="1.5"></circle></g>
+            <g id="shape-diamond"><polygon points="0,-10 10,0 0,10 -10,0" fill="black" stroke="white" stroke-width="1.5"></polygon></g>
+            <g id="shape-cylinder"><rect x="-6" y="-12" width="12" height="24" fill="black" stroke="white" stroke-width="1.5"></rect></g>
+            <g id="shape-cone-down"><polygon points="-9,-9 9,-9 0,11" fill="black" stroke="white" stroke-width="1.5"></polygon></g>
+            <g id="shape-hourglass"><polygon points="-8,-10 8,-10 0,0 -8,10 8,10" fill="black" stroke="white" stroke-width="1.5"></polygon></g>
+        </defs>
+    </svg>
+
     <!-- Sticky Navigation Sidebar -->
     <nav class="sidebar w-full md:w-64 bg-slate-900/90 backdrop-blur-md p-6 md:sticky top-0 shrink-0 border-b md:border-b-0 md:border-r border-slate-700">
         <h2 class="text-xl font-bold text-white mb-6">Study Topics</h2>
@@ -74,7 +77,6 @@
             <li><a href="#rule28" class="hover:text-white transition">Rule 28: CBD</a></li>
             <li><a href="#rule29" class="hover:text-white transition">Rule 29: Pilot</a></li>
             <li><a href="#rule30" class="hover:text-white transition">Rule 30: Anchored/Aground</a></li>
-            <li><a href="#rule31" class="hover:text-white transition">Rule 31: Seaplanes</a></li>
             <li><a href="#cheatsheet" class="text-sky-400 font-bold hover:text-sky-300 transition mt-4 block">Master Cheat Sheet</a></li>
         </ul>
         <div class="mt-8 text-xs text-slate-500">
@@ -86,7 +88,6 @@
     <!-- Main Content -->
     <main class="flex-1 p-6 md:p-12 max-w-5xl mx-auto overflow-y-auto relative z-10">
         
-        <!-- FLIP ALL BUTTON -->
         <div class="sticky top-4 z-40 flex justify-end mb-4 pointer-events-none">
             <button onclick="flipAllCards()" class="pointer-events-auto bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2">
                 Toggle All Flashcards
@@ -95,32 +96,6 @@
 
         <h1 class="text-4xl font-extrabold text-white mb-2">Master 50 Ton: Lights & Shapes</h1>
         <p class="text-slate-400 mb-10 text-lg">Interactive 3D Flashcard Guide for the Rules of the Road.</p>
-
-        <!-- RULE 21 -->
-        <section id="rule21">
-            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 21: Definitions</h2>
-            <div class="mb-6">
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[150px]">
-                            <h3 class="text-xl font-semibold text-white mb-2">Light Arcs & Definitions</h3>
-                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
-                        </div>
-                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6">
-                            <h3 class="text-lg font-bold text-white mb-4">Light Arcs & Definitions</h3>
-                            <ul class="list-disc pl-5 space-y-3 text-slate-300">
-                                <li><strong>Masthead Light:</strong> White light over centerline. Unbroken arc of <strong>225°</strong> (dead ahead to 22.5° abaft the beam).</li>
-                                <li><strong>Sidelights:</strong> Green (Stbd) and Red (Port). Arc of <strong>112.5°</strong> each.</li>
-                                <li><strong>Sternlight:</strong> White light at the stern. Arc of <strong>135°</strong>.</li>
-                                <li><strong>Towing Light:</strong> Yellow light having the same characteristics as the sternlight (<strong>135°</strong>).</li>
-                                <li><strong>All-Round Light:</strong> Unbroken arc of <strong>360°</strong>.</li>
-                                <li><strong>Flashing Light:</strong> Flashes <strong>120 or more times per minute</strong>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- RULE 23 -->
         <section id="rule23" class="mt-12">
@@ -140,7 +115,9 @@
                                 <li>Sidelights (Red/Green)</li>
                                 <li>Sternlight (White)</li>
                             </ul>
-                            <div class="scene-container" data-scenario="power_under_50"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="power_under_50">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,7 +134,9 @@
                                 <li><strong>2</strong> Mastheads (Aft is higher)</li>
                                 <li>Sidelights & Sternlight</li>
                             </ul>
-                            <div class="scene-container" data-scenario="power_over_50"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="power_over_50">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,7 +153,9 @@
                                 <li>May combine Masthead and Sternlight into a single all-round 360° white light.</li>
                                 <li>Sidelights.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="power_under_12"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="power_under_12">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +171,9 @@
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>Standard power-driven lights PLUS an all-round <strong>Flashing Yellow</strong> light.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="hovercraft"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="hovercraft">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -215,12 +198,14 @@
                                 <li><strong>Yellow OVER White</strong> at the stern.</li>
                                 <li>2 Mastheads, Sidelights.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="towing_astern"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="towing_astern">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
                             <h3 class="text-xl font-semibold text-white mb-2">Towing Astern (> 200m)</h3>
@@ -232,7 +217,16 @@
                                 <li><strong>3 Mastheads</strong> in a vertical line.</li>
                                 <li><strong>Day Shape:</strong> Black Diamond.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="towing_long"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="towing_long">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-diamond"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -250,12 +244,14 @@
                                 <li><strong>Int'l (Shown):</strong> Standard White sternlight.</li>
                                 <li>2 Mastheads, Sidelights.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="pushing_ahead"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="pushing_ahead">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
                             <h3 class="text-xl font-semibold text-white mb-2">Submerged Object (Dracone)</h3>
@@ -267,7 +263,16 @@
                                 <li>The towed object displays: One all-round white fwd, one aft.</li>
                                 <li><strong>Day Shape:</strong> Diamond on the aftermost extremity.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="submerged_tow"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="submerged_tow">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-diamond"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,7 +297,9 @@
                                 <li>Sidelights & Sternlight. NO white masthead.</li>
                                 <li><strong>Optional:</strong> Red over Green at masthead.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="sailing_standard"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="sailing_standard">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -308,28 +315,14 @@
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li>May combine Sidelights and Sternlight into a single <strong>Tricolor Lantern</strong> at top of mast.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="sailing_tricolor"></div>
+                            <div class="scene-container rounded-lg border border-slate-600 relative overflow-hidden h-[250px] w-full" data-scenario="sailing_tricolor">
+                                <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
-                            <h3 class="text-xl font-semibold text-white mb-2">Sailing (< 7m) & Rowboats</h3>
-                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
-                        </div>
-                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
-                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Sailing (< 7m) & Rowboats</h3>
-                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
-                                <li>If standard lights are impracticable, must have an <strong>electric torch or lantern</strong> ready to show in time.</li>
-                            </ul>
-                            <div class="scene-container" data-scenario="sailing_torch"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
                             <h3 class="text-xl font-semibold text-white mb-2">Motorsailing</h3>
@@ -341,7 +334,16 @@
                                 <li>Acts as a power-driven vessel (displays standard white masthead light).</li>
                                 <li><strong>Day Shape:</strong> Cone apex down.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="motorsailing"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="motorsailing">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-cone-down"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -354,7 +356,7 @@
             <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Rule 26-30: Fishing, RAM, Pilot, Anchor</h2>
             <div class="grid lg:grid-cols-2 gap-6">
                 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
                             <h3 class="text-xl font-semibold text-white mb-2">Fishing & Trawling</h3>
@@ -363,33 +365,79 @@
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
                             <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Fishing / Trawling</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
-                                <li><strong>Fishing:</strong> Red over White.</li>
-                                <li><strong>Trawling:</strong> Green over White.</li>
+                                <li><strong>Fishing:</strong> Red over White. <strong>Trawling:</strong> Green over White.</li>
                                 <li><strong>Day Shape:</strong> Hourglass.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="fishing"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="fishing">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-hourglass"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
-                            <h3 class="text-xl font-semibold text-white mb-2">NUC & RAM Base</h3>
+                            <h3 class="text-xl font-semibold text-white mb-2">Not Under Command (NUC)</h3>
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
-                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">NUC & RAM</h3>
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Not Under Command (NUC)</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
-                                <li><strong>NUC:</strong> Red over Red (Ball-Ball).</li>
-                                <li><strong>RAM:</strong> Red-White-Red (Ball-Diamond-Ball).</li>
+                                <li>Red over Red ("Captain is Dead").</li>
+                                <li><strong>Day Shape:</strong> Ball - Ball.</li>
                             </ul>
-                            <div class="scene-container" data-scenario="ram_nuc"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="nuc">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:15%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:30%"><use href="#shape-ball"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Restricted Maneuver (RAM) Base</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Restricted Maneuver (RAM) Base</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
+                                <li>Red - White - Red ("Working ahead").</li>
+                                <li><strong>Day Shape:</strong> Ball - Diamond - Ball.</li>
+                            </ul>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="ram">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:10%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:23%"><use href="#shape-diamond"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:36%"><use href="#shape-ball"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
                             <h3 class="text-xl font-semibold text-white mb-2">RAM: Obstructions (Dredging)</h3>
@@ -401,25 +449,79 @@
                                 <li><strong>Obstructed Side:</strong> Red over Red (2 Balls).</li>
                                 <li><strong>Clear Side:</strong> Green over Green (2 Diamonds).</li>
                             </ul>
-                            <div class="scene-container" data-scenario="ram_obstruction"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="ram_obstruction">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <!-- Center -->
+                                    <svg class="d-shape" style="left:65%; top:10%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:23%"><use href="#shape-diamond"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:36%"><use href="#shape-ball"/></svg>
+                                    <!-- Port (Obstructed) -->
+                                    <svg class="d-shape" style="left:45%; top:10%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:45%; top:23%"><use href="#shape-ball"/></svg>
+                                    <!-- Stbd (Clear) -->
+                                    <svg class="d-shape" style="left:85%; top:10%"><use href="#shape-diamond"/></svg>
+                                    <svg class="d-shape" style="left:85%; top:23%"><use href="#shape-diamond"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
-                            <h3 class="text-xl font-semibold text-white mb-2">Pilot & Anchored</h3>
+                            <h3 class="text-xl font-semibold text-white mb-2">Constrained by Draft (CBD - Int'l)</h3>
                             <p class="text-sky-400 font-bold text-sm">Click to flip</p>
                         </div>
                         <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
-                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Pilot & Anchored</h3>
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Constrained by Draft</h3>
                             <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
-                                <li><strong>Pilot:</strong> White over Red.</li>
+                                <li>In addition to standard power-driven lights, 3 Reds in a vertical line.</li>
+                                <li><strong>Day Shape:</strong> Cylinder.</li>
+                            </ul>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="cbd">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:65%; top:25%"><use href="#shape-cylinder"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition">
+                            <h3 class="text-xl font-semibold text-white mb-2">Anchored & Aground</h3>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4" onclick="event.stopPropagation()">
+                            <h3 class="text-lg font-bold text-white mb-2 cursor-pointer" onclick="this.closest('.flip-card').classList.toggle('flipped')">Anchored & Aground</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-1 text-slate-300">
                                 <li><strong>Anchored:</strong> All-round White (Ball shape).</li>
                                 <li><strong>Aground:</strong> Anchor + Red over Red (3 Balls).</li>
                             </ul>
-                            <div class="scene-container" data-scenario="pilot_anchor"></div>
+                            <div class="flex flex-col md:flex-row gap-4 h-[250px]">
+                                <div class="scene-container flex-1 rounded-lg border border-slate-600 relative overflow-hidden" data-scenario="aground">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-400 font-bold z-20 pointer-events-none">NIGHT (3D - Aground)</div>
+                                </div>
+                                <div class="flex-1 bg-slate-300 relative rounded-lg border border-slate-400 overflow-hidden">
+                                    <div class="absolute top-2 left-2 text-[10px] text-slate-600 font-bold z-20">DAY (AGROUND)</div>
+                                    <svg class="absolute inset-0 w-full h-full text-slate-400 p-2" viewBox="0 0 200 100"><use href="#boat-side"/></svg>
+                                    <svg class="d-shape" style="left:40%; top:10%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:40%; top:23%"><use href="#shape-ball"/></svg>
+                                    <svg class="d-shape" style="left:40%; top:36%"><use href="#shape-ball"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -486,7 +588,7 @@
         </footer>
     </main>
 
-    <!-- MULTI-VIEW THREE.JS ENGINE (Virtual Renderer Pattern) -->
+    <!-- MULTI-VIEW THREE.JS ENGINE -->
     <script>
         function flipAllCards() {
             const cards = document.querySelectorAll('.flip-card');
@@ -512,13 +614,13 @@
             shape.moveTo(0, 10); shape.lineTo(3, 5); shape.lineTo(3, -8);
             shape.lineTo(-3, -8); shape.lineTo(-3, 5); shape.lineTo(0, 10);
             const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 2.5, bevelEnabled: true, bevelSize: 0.5, bevelThickness: 0.5 }), matHull);
-            hull.rotation.x = Math.PI / 2; hull.position.y = 2.5;
+            hull.rotation.x = Math.PI / 2; hull.position.y = 1; // Moved down
             group.add(hull);
             const cabin = new THREE.Mesh(new THREE.BoxGeometry(5, 2.5, 6), matCabin);
-            cabin.position.set(0, 3.75, -2);
+            cabin.position.set(0, 2.25, -2);
             group.add(cabin);
             const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 7), matMast);
-            mast.position.set(0, 7, 2);
+            mast.position.set(0, 5.5, 2);
             group.add(mast);
             return group;
         }
@@ -526,19 +628,19 @@
         function createLongBoat() {
             const group = new THREE.Group();
             const shape = new THREE.Shape();
-            shape.moveTo(0, 15); shape.lineTo(4, 10); shape.lineTo(4, -15);
-            shape.lineTo(-4, -15); shape.lineTo(-4, 10); shape.lineTo(0, 15);
+            shape.moveTo(0, 20); shape.lineTo(4, 12); shape.lineTo(4, -20);
+            shape.lineTo(-4, -20); shape.lineTo(-4, 12); shape.lineTo(0, 20);
             const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 3 }), matHull);
-            hull.rotation.x = Math.PI / 2; hull.position.y = 3;
+            hull.rotation.x = Math.PI / 2; hull.position.y = 1; // Moved down
             group.add(hull);
-            const cabin = new THREE.Mesh(new THREE.BoxGeometry(7, 5, 8), matCabin);
-            cabin.position.set(0, 5.5, -10);
+            const cabin = new THREE.Mesh(new THREE.BoxGeometry(7, 6, 8), matCabin);
+            cabin.position.set(0, 4, -14); // Pushed far aft
             group.add(cabin);
             const fwdMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 10), matMast);
-            fwdMast.position.set(0, 8, 12);
+            fwdMast.position.set(0, 6, 12); // Pushed far fwd
             group.add(fwdMast);
-            const aftMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 12), matMast);
-            aftMast.position.set(0, 11, -12);
+            const aftMast = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 14), matMast);
+            aftMast.position.set(0, 10, -14); // On cabin
             group.add(aftMast);
             return group;
         }
@@ -549,17 +651,32 @@
             shape.moveTo(0, 10); shape.lineTo(2.5, 5); shape.lineTo(2.5, -6);
             shape.lineTo(-2.5, -6); shape.lineTo(-2.5, 5); shape.lineTo(0, 10);
             const hull = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, { depth: 2, bevelEnabled: true, bevelSize: 0.3, bevelThickness: 0.3 }), matHull);
-            hull.rotation.x = Math.PI / 2; hull.position.y = 2;
+            hull.rotation.x = Math.PI / 2; hull.position.y = 1; // Moved down
             group.add(hull);
             const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 14), matMast);
-            mast.position.set(0, 9, 1);
+            mast.position.set(0, 8, 1);
             group.add(mast);
             const mainShape = new THREE.Shape();
             mainShape.moveTo(0, 3); mainShape.lineTo(0, 14); mainShape.lineTo(7, 3);
             const mainSail = new THREE.Mesh(new THREE.ShapeGeometry(mainShape), matSail);
-            mainSail.rotation.y = Math.PI / 2; mainSail.position.set(0, 0, 1);
+            mainSail.rotation.y = Math.PI / 2; mainSail.position.set(0, -1, 1);
             group.add(mainSail);
             return group;
+        }
+
+        function createDracone() {
+            const group = new THREE.Group();
+            const mesh = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 20, 16), new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.9 }));
+            mesh.rotation.x = Math.PI / 2; mesh.position.y = 0.5; // Very low in water
+            group.add(mesh);
+            return group;
+        }
+
+        function createTowLine(isDracone) {
+            const mesh = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 25), new THREE.MeshBasicMaterial({ color: 0x94a3b8 }));
+            mesh.rotation.x = Math.PI / 2;
+            mesh.position.set(0, 1.5, isDracone ? 18 : -18);
+            return mesh;
         }
 
         function addLight(group, color, x, y, z) {
@@ -570,76 +687,62 @@
             group.add(lGroup);
         }
 
-        function addShape(group, type, x, y, z) {
-            let geo;
-            if (type === 'ball') geo = new THREE.SphereGeometry(0.6, 16, 16);
-            if (type === 'diamond') geo = new THREE.OctahedronGeometry(0.6, 0);
-            if (type === 'cone_down') { geo = new THREE.ConeGeometry(0.6, 1.2, 16); geo.rotateX(Math.PI); }
-            const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x000000 }));
-            const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: 0xffffff }));
-            mesh.position.set(x, y, z); edges.position.set(x, y, z);
-            group.add(mesh); group.add(edges);
-        }
-
+        // Configuration mapping
         const configData = {
-            'power_under_50': { boat: 'standard', lights: [[W,0,10.5,2], [G,3.2,4,0], [R,-3.2,4,0], [W,0,3,-8.2]] },
-            'power_over_50': { boat: 'long', lights: [[W,0,13.2,12], [W,0,17.2,-12], [G,4.2,5,-5], [R,-4.2,5,-5], [W,0,4,-15.2]] },
-            'power_under_12': { boat: 'standard', lights: [[W,0,10.5,0], [G,3.2,4,0], [R,-3.2,4,0]] },
-            'hovercraft': { boat: 'standard', lights: [[W,0,10.5,2], [Y,0,12.5,2], [G,3.2,4,0], [R,-3.2,4,0], [W,0,3,-8.2]] },
-            'towing_astern': { boat: 'standard', lights: [[W,0,10.5,2], [W,0,9,2], [G,3.2,4,0], [R,-3.2,4,0], [Y,0,4.5,-8.2], [W,0,3,-8.2]] },
-            'towing_long': { boat: 'standard', lights: [[W,0,10.5,2], [W,0,9,2], [W,0,7.5,2], [G,3.2,4,0], [R,-3.2,4,0], [Y,0,4.5,-8.2], [W,0,3,-8.2]], shapes: [['diamond',0,12,2]] },
-            'pushing_ahead': { boat: 'standard', lights: [[W,0,10.5,2], [W,0,9,2], [G,3.2,4,0], [R,-3.2,4,0], [W,0,3,-8.2]] },
-            'submerged_tow': { boat: 'long', lights: [[W,0,5,14], [W,0,5,-14]], shapes: [['diamond',0,7,-14]] },
-            'sailing_standard': { boat: 'sail', lights: [[R,0,16.5,1], [G,0,15,1], [G,2.7,3.5,0], [R,-2.7,3.5,0], [W,0,2.5,-6.2]] },
-            'sailing_tricolor': { boat: 'sail', lights: [[R,-0.3,16,1], [G,0.3,16,1], [W,0,16,0.7]] },
-            'sailing_torch': { boat: 'sail', lights: [[W,2,5,-2]] },
-            'motorsailing': { boat: 'sail', lights: [[W,0,11,1], [G,2.7,3.5,0], [R,-2.7,3.5,0], [W,0,2.5,-6.2]], shapes: [['cone_down', 0, 7, 5]] },
-            'fishing': { boat: 'standard', lights: [[R,0,10.5,2], [W,0,9,2]] },
-            'ram_nuc': { boat: 'standard', lights: [[R,0,10.5,2], [R,0,9,2]], shapes: [['ball',0,13,2], ['ball',0,11.5,2]] },
-            'ram_obstruction': { boat: 'standard', lights: [[R,-4,10,2], [R,-4,8.5,2], [G,4,10,2], [G,4,8.5,2], [R,0,12,2], [W,0,10.5,2], [R,0,9,2]], shapes: [['ball',-4,13,2], ['ball',-4,11.5,2], ['diamond',4,13,2], ['diamond',4,11.5,2]] },
-            'pilot_anchor': { boat: 'standard', lights: [[W,0,10.5,2], [R,0,9,2]] }
+            'power_under_50': { boat: 'standard', targetY: 4, camDist: 30, lights: [[W,0,9,2], [G,3.2,2.5,0], [R,-3.2,2.5,0], [W,0,1.5,-8.2]] },
+            'power_over_50': { boat: 'long', targetY: 5, camDist: 42, lights: [[W,0,11,12], [W,0,17,-14], [G,4.2,3,-5], [R,-4.2,3,-5], [W,0,2,-20.2]] },
+            'power_under_12': { boat: 'standard', targetY: 4, camDist: 30, lights: [[W,0,9,0], [G,3.2,2.5,0], [R,-3.2,2.5,0]] },
+            'hovercraft': { boat: 'standard', targetY: 5, camDist: 30, lights: [[W,0,9,2], [Y,0,10.5,2], [G,3.2,2.5,0], [R,-3.2,2.5,0], [W,0,1.5,-8.2]] },
+            'towing_astern': { boat: 'standard', targetY: 4, camDist: 35, towLine: true, lights: [[W,0,9,2], [W,0,7.5,2], [G,3.2,2.5,0], [R,-3.2,2.5,0], [Y,0,3,-8.2], [W,0,1.5,-8.2]] },
+            'towing_long': { boat: 'standard', targetY: 5, camDist: 35, towLine: true, lights: [[W,0,10.5,2], [W,0,9,2], [W,0,7.5,2], [G,3.2,2.5,0], [R,-3.2,2.5,0], [Y,0,3,-8.2], [W,0,1.5,-8.2]] },
+            'pushing_ahead': { boat: 'standard', targetY: 4, camDist: 30, lights: [[W,0,9,2], [W,0,7.5,2], [G,3.2,2.5,0], [R,-3.2,2.5,0], [W,0,1.5,-8.2]] },
+            'submerged_tow': { boat: 'dracone', targetY: 2, camDist: 32, towLine: true, lights: [[W,0,2,8], [W,0,2,-8]] },
+            'sailing_standard': { boat: 'sail', targetY: 7, camDist: 35, lights: [[R,0,15,1], [G,0,13.5,1], [G,2.7,2,0], [R,-2.7,2,0], [W,0,1,-6.2]] },
+            'sailing_tricolor': { boat: 'sail', targetY: 7, camDist: 35, lights: [[R,-0.3,15,1], [G,0.3,15,1], [W,0,15,0.7]] },
+            'sailing_torch': { boat: 'sail', targetY: 5, camDist: 30, lights: [[W,2,3,-2]] },
+            'motorsailing': { boat: 'sail', targetY: 7, camDist: 35, lights: [[W,0,9,1], [G,2.7,2,0], [R,-2.7,2,0], [W,0,1,-6.2]] },
+            'fishing': { boat: 'standard', targetY: 5, camDist: 30, lights: [[R,0,9,2], [W,0,7.5,2]] },
+            'nuc': { boat: 'standard', targetY: 5, camDist: 30, lights: [[R,0,9,2], [R,0,7.5,2]] },
+            'ram': { boat: 'standard', targetY: 5, camDist: 30, lights: [[R,0,10.5,2], [W,0,9,2], [R,0,7.5,2]] },
+            'ram_obstruction': { boat: 'standard', targetY: 6, camDist: 35, lights: [[R,-4,9,2], [R,-4,7.5,2], [G,4,9,2], [G,4,7.5,2], [R,0,10.5,2], [W,0,9,2], [R,0,7.5,2]] },
+            'cbd': { boat: 'standard', targetY: 5, camDist: 30, lights: [[R,0,12,2], [R,0,10.5,2], [R,0,9,2], [W,0,7.5,2], [G,3.2,2.5,0], [R,-3.2,2.5,0], [W,0,1.5,-8.2]] },
+            'aground': { boat: 'standard', targetY: 5, camDist: 30, lights: [[W,0,10.5,2], [R,0,9,2], [R,0,7.5,2]] }
         };
 
         function init() {
-            // One master off-screen renderer
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setPixelRatio(window.devicePixelRatio);
-            // DO NOT append renderer.domElement to the document!
 
             const containers = document.querySelectorAll('.scene-container');
-            
             containers.forEach(container => {
                 const scenarioKey = container.getAttribute('data-scenario');
                 if (!configData[scenarioKey]) return;
-                
                 const data = configData[scenarioKey];
                 
-                // Build virtual scene
                 const scene = new THREE.Scene();
                 scene.background = new THREE.Color(0x0f172a); 
                 scene.add(new THREE.AmbientLight(0x1e293b, 1.5));
                 const dirLight = new THREE.DirectionalLight(0x94a3b8, 0.5);
                 dirLight.position.set(5, 10, 5);
                 scene.add(dirLight);
-
                 const ocean = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshStandardMaterial({ color: 0x0a0f18, roughness: 1 }));
                 ocean.rotation.x = -Math.PI / 2; ocean.position.y = -0.5;
                 scene.add(ocean);
 
-                // Create local 2D Canvas inside the container to display the snapshot
                 const targetCanvas = document.createElement('canvas');
                 targetCanvas.className = "w-full h-full absolute inset-0";
                 container.appendChild(targetCanvas);
-                const ctx = targetCanvas.getContext('2d');
+                const ctx = targetCanvas.getContext('2d', { alpha: false });
 
                 const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
-                camera.position.set(25, 15, 25);
+                const camDist = data.camDist || 30;
+                camera.position.set(camDist * 0.8, camDist * 0.5, camDist);
                 
-                // Attach OrbitControls to the local 2D Canvas so dragging works
                 const controls = new THREE.OrbitControls(camera, targetCanvas);
                 controls.enableDamping = true;
                 controls.dampingFactor = 0.05;
                 controls.enableZoom = false;
+                controls.target.set(0, data.targetY || 4, 0); // Explicit targets to fix framing!
 
                 const worldGroup = new THREE.Group();
                 scene.add(worldGroup);
@@ -647,9 +750,10 @@
                 if (data.boat === 'standard') worldGroup.add(createStandardBoat());
                 if (data.boat === 'long') worldGroup.add(createLongBoat());
                 if (data.boat === 'sail') worldGroup.add(createSailBoat());
+                if (data.boat === 'dracone') worldGroup.add(createDracone());
 
+                if (data.towLine) worldGroup.add(createTowLine(data.boat === 'dracone'));
                 if (data.lights) data.lights.forEach(l => addLight(worldGroup, l[0], l[1], l[2], l[3]));
-                if (data.shapes) data.shapes.forEach(s => addShape(worldGroup, s[0], s[1], s[2], s[3]));
 
                 scenes.push({ scene, camera, controls, container, targetCanvas, ctx, worldGroup, offset: Math.random() * Math.PI });
             });
@@ -659,47 +763,37 @@
 
         function animate(time) {
             requestAnimationFrame(animate);
-
             const dpr = window.devicePixelRatio;
 
             scenes.forEach(s => {
-                // Optimization: Skip rendering if card is NOT flipped
                 const card = s.container.closest('.flip-card');
                 if (card && !card.classList.contains('flipped')) return;
 
-                // Optimization: Skip rendering if scrolled off screen
                 const rect = s.container.getBoundingClientRect();
                 if (rect.bottom < 0 || rect.top > window.innerHeight || rect.right < 0 || rect.left > window.innerWidth || rect.width === 0) return;
 
                 s.controls.update();
-                
-                // Bobbing animation
                 s.worldGroup.position.y = Math.sin((time * 0.001) * 1.5 + s.offset) * 0.2;
                 s.worldGroup.rotation.z = Math.sin((time * 0.001) * 0.8 + s.offset) * 0.02;
 
                 const width = Math.floor(rect.width);
                 const height = Math.floor(rect.height);
-
-                // Resize local 2D canvas if necessary
                 if (s.targetCanvas.width !== width * dpr || s.targetCanvas.height !== height * dpr) {
                     s.targetCanvas.width = width * dpr;
                     s.targetCanvas.height = height * dpr;
                 }
 
-                // Render the 3D scene off-screen
                 renderer.setSize(width, height, false);
                 s.camera.aspect = width / height;
                 s.camera.updateProjectionMatrix();
                 renderer.render(s.scene, s.camera);
 
-                // Take snapshot and draw it to the visible 2D canvas!
-                s.ctx.clearRect(0, 0, s.targetCanvas.width, s.targetCanvas.height);
                 s.ctx.drawImage(renderer.domElement, 0, 0, s.targetCanvas.width, s.targetCanvas.height);
             });
         }
-
         window.onload = init;
     </script>
 </body>
 </html>
+
 
