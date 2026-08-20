@@ -801,7 +801,7 @@
         function createDracone() {
             const group = new THREE.Group();
             // Lighter slate color so it contrasts with the dark water
-            const mesh = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 20, 16), new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.9 }));
+            const mesh = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 20, 16), new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.9 }));
             mesh.rotation.x = Math.PI / 2; mesh.position.y = 0.5; // Very low in water
             group.add(mesh);
             return group;
@@ -814,10 +814,10 @@
             return mesh;
         }
 
-        // New, precise angular cylinder lights
+        // New, precise angular cylinder lights (Increased Size 3x)
         function addLight(group, type, color, x, y, z) {
-            const radius = 0.6;
-            const height = 0.15;
+            const radius = 1.8;
+            const height = 0.45;
             let tStart = 0;
             let tLength = Math.PI * 2; // Default to allround (360)
 
