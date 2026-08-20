@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USCG OUPV Sixpack & 25/50/100 Ton Master - Sound Signals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #e2e8f0; scroll-behavior: smooth; }
+
+        /* Dynamic Grid Flashcard CSS */
+        .flip-card { perspective: 1000px; width: 100%; z-index: 10; position: relative; }
+        .flip-card-inner {
+            display: grid; grid-template-columns: 1fr;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d; width: 100%;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateX(180deg); }
+        .flip-card-front, .flip-card-back {
+            grid-area: 1 / 1 / 2 / 2; width: 100%; height: 100%;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back { transform: rotateX(180deg); }
+
+        /* Sound Blast Visuals */
+        .blast-short {
+            width: 24px; height: 24px; border-radius: 50%;
+            background-color: #38bdf8;
+            box-shadow: 0 0 12px 2px rgba(56, 189, 248, 0.8);
+            display: inline-block;
+        }
+        .blast-long {
+            width: 80px; height: 24px; border-radius: 12px;
+            background-color: #38bdf8;
+            box-shadow: 0 0 12px 2px rgba(56, 189, 248, 0.8);
+            display: inline-block;
+        }
+        .blast-bell {
+            width: 32px; height: 32px;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: #fbbf24; filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+        }
+
+        .sidebar { height: 100vh; overflow-y: auto; z-index: 20; position: relative; }
+        .section-break { border: 0; height: 2px; background: linear-gradient(to right, transparent, #ffffff, transparent); margin: 4rem 0; opacity: 0.3; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #475569; padding: 12px; text-align: left; }
+        th { background-color: #1e293b; color: white; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row relative">
+
+    <!-- Sticky Navigation Sidebar -->
+    <nav class="sidebar w-full md:w-64 bg-slate-900/90 backdrop-blur-md p-6 md:sticky top-0 shrink-0 border-b md:border-b-0 md:border-r border-slate-700">
+        <h2 class="text-xl font-bold text-white mb-6">Study Topics</h2>
+        <ul class="space-y-3 text-sm">
+            <li><a href="#definitions" class="text-sky-400 font-bold transition">Definitions</a></li>
+            <li><a href="#maneuvering" class="hover:text-white transition">Maneuvering & Warning</a></li>
+            <li><a href="#overtaking" class="hover:text-white transition">Overtaking Signals</a></li>
+            <li><a href="#restricted-vis" class="hover:text-white transition">Restricted Visibility</a></li>
+            <li><a href="#cheatsheet" class="text-sky-400 font-bold hover:text-sky-300 transition mt-4 block">Master Cheat Sheet</a></li>
+        </ul>
+        <div class="mt-8 text-xs text-slate-500">
+            <p><strong>Remember:</strong> Inland and International rules differ significantly for overtaking and intent!</p>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-12 max-w-5xl mx-auto overflow-y-auto relative z-10">
+        
+        <div class="sticky top-4 z-40 flex justify-end mb-4 pointer-events-none">
+            <button onclick="flipAllCards()" class="pointer-events-auto bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2">
+                Toggle All Flashcards
+            </button>
+        </div>
+
+        <h1 class="text-4xl font-extrabold text-white mb-2">USCG OUPV Sixpack & 25/50/100 Ton Master</h1>
+        <p class="text-slate-400 mb-10 text-lg">Interactive Flashcard Guide: Audible Sound Signals.</p>
+
+        <!-- DEFINITIONS -->
+        <section id="definitions" class="mb-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Definitions & Equipment</h2>
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-8 shadow-lg">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <ul class="list-disc pl-5 space-y-3 text-slate-300">
+                        <li><strong>Short Blast:</strong> A blast of about <strong>1 second</strong> duration.</li>
+                        <li><strong>Prolonged Blast:</strong> A blast of from <strong>4 to 6 seconds</strong> duration.</li>
+                        <li><strong>Vessels < 12m:</strong> Not obliged to carry sound signaling appliances, but must have some other means of making an efficient sound signal.</li>
+                    </ul>
+                    <ul class="list-disc pl-5 space-y-3 text-slate-300">
+                        <li><strong>Vessels 12m - 20m:</strong> Must carry a whistle.</li>
+                        <li><strong>Vessels 20m - 100m:</strong> Must carry a whistle and a bell.</li>
+                        <li><strong>Vessels > 100m:</strong> Must carry a whistle, a bell, and a gong (whose tone cannot be confused with the bell).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANEUVERING & WARNING -->
+        <section id="maneuvering" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Maneuvering & Warning Signals</h2>
+            <p class="text-slate-400 mb-6 text-sm italic">Used when vessels are in sight of one another.</p>
+            
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <!-- 1 Short -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[220px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">1 Short Blast</h3>
+                            <div class="flex gap-2"><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                1 Short Blast
+                                <div class="flex gap-2"><div class="blast-short"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>International:</strong> "I am altering my course to starboard." (Action)</li>
+                                <li><strong>Inland:</strong> "I intend to leave you on my port side." (Proposal/Agreement)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 Short -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[220px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">2 Short Blasts</h3>
+                            <div class="flex gap-2"><div class="blast-short"></div><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                2 Short Blasts
+                                <div class="flex gap-2"><div class="blast-short"></div><div class="blast-short"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>International:</strong> "I am altering my course to port." (Action)</li>
+                                <li><strong>Inland:</strong> "I intend to leave you on my starboard side." (Proposal/Agreement)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Short -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[220px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">3 Short Blasts</h3>
+                            <div class="flex gap-2"><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                3 Short Blasts
+                                <div class="flex gap-2"><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Both Inland & Int'l:</strong> "I am operating astern propulsion."</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[220px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">5 or More Short Blasts</h3>
+                            <div class="flex gap-1"><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-red-400 flex items-center gap-3">
+                                Danger / Doubt Signal
+                                <div class="flex gap-1"><div class="blast-short bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div><div class="blast-short bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div><div class="blast-short bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div><div class="blast-short bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div><div class="blast-short bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Both Inland & Int'l:</strong> Fails to understand the intentions or actions of the other, or is in doubt whether sufficient action is being taken to avoid collision.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 Prolonged (Bend) -->
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[150px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">1 Prolonged Blast</h3>
+                            <div class="flex gap-2"><div class="blast-long"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-4">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Blind Bend / Leaving Dock
+                                <div class="flex gap-2"><div class="blast-long"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Nearing a blind bend:</strong> Sounded by a vessel nearing a bend or an area where other vessels may be obscured. Answered with 1 prolonged blast by any approaching vessel.</li>
+                                <li><strong>Inland Only:</strong> Also sounded by a power-driven vessel leaving a dock or berth.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- OVERTAKING -->
+        <section id="overtaking" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Overtaking Signals</h2>
+            <div class="bg-slate-800 border border-sky-900 bg-sky-900/20 p-4 rounded-lg mb-6 text-sm text-sky-200">
+                <strong>Crucial Difference:</strong> International rules require complex signals to denote overtaking and require agreement via a distinct sequence. Inland rules simply use the standard 1 or 2 short blasts as proposals, requiring the exact same signal in return to agree.
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <!-- Overtaking Int'l -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[250px]">
+                            <h3 class="text-xl font-semibold text-white mb-2 text-center">Overtaking (International)</h3>
+                            <p class="text-slate-400 text-xs mb-4">Narrow channels or fairways</p>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white mb-2">Overtaking (International)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-3 text-slate-300">
+                                <li><strong>To pass on Stbd:</strong> 2 Prolonged, 1 Short. <div class="flex gap-1 mt-1"><div class="blast-long"></div><div class="blast-long"></div><div class="blast-short"></div></div></li>
+                                <li><strong>To pass on Port:</strong> 2 Prolonged, 2 Short. <div class="flex gap-1 mt-1"><div class="blast-long"></div><div class="blast-long"></div><div class="blast-short"></div><div class="blast-short"></div></div></li>
+                                <li><strong>Agreement (The "OK" signal):</strong> 1 Prolonged, 1 Short, 1 Prolonged, 1 Short. <div class="flex gap-1 mt-1"><div class="blast-long"></div><div class="blast-short"></div><div class="blast-long"></div><div class="blast-short"></div></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overtaking Inland -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[250px]">
+                            <h3 class="text-xl font-semibold text-white mb-2 text-center">Overtaking (Inland)</h3>
+                            <p class="text-slate-400 text-xs mb-4">Anywhere vessels are in sight</p>
+                            <p class="text-sky-400 font-bold text-sm">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white mb-2">Overtaking (Inland)</h3>
+                            <ul class="text-sm list-disc pl-5 space-y-3 text-slate-300">
+                                <li><strong>To pass on Stbd:</strong> 1 Short. <div class="flex gap-1 mt-1"><div class="blast-short"></div></div></li>
+                                <li><strong>To pass on Port:</strong> 2 Short. <div class="flex gap-1 mt-1"><div class="blast-short"></div><div class="blast-short"></div></div></li>
+                                <li><strong>Agreement:</strong> Sound the <em>same</em> signal back (1 short or 2 short).</li>
+                                <li><strong>Disagreement:</strong> Sound the Danger Signal (5+ short blasts).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RESTRICTED VISIBILITY -->
+        <section id="restricted-vis" class="mt-12">
+            <h2 class="text-3xl font-bold text-sky-400 mb-6 border-b border-slate-700 pb-2">Restricted Visibility (Fog Signals)</h2>
+            <p class="text-slate-400 mb-6 text-sm italic">Sounded continuously when in or near an area of restricted visibility. Intervals are "not more than X minutes."</p>
+            
+            <div class="grid lg:grid-cols-2 gap-6">
+                
+                <!-- Underway Making Way -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[200px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center text-center">Power-Driven, Underway & Making Way</h3>
+                            <div class="flex gap-2"><div class="blast-long"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Making Way
+                                <div class="flex gap-2"><div class="blast-long"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> One prolonged blast.</li>
+                                <li><strong>Interval:</strong> Not more than every 2 minutes.</li>
+                                <li>Applies to power-driven vessels actively moving through the water.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Underway Not Making Way -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[200px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">Power-Driven, Underway but STOPPED</h3>
+                            <div class="flex gap-2"><div class="blast-long"></div><div class="blast-long"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Stopped (Not Making Way)
+                                <div class="flex gap-2"><div class="blast-long"></div><div class="blast-long"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> Two prolonged blasts.</li>
+                                <li><strong>Interval:</strong> Not more than every 2 minutes.</li>
+                                <li>Applies to power-driven vessels underway but stopped and making no way through the water.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Complex Vessels (NUC, RAM, etc) -->
+                <div class="flip-card cursor-pointer md:col-span-2" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[200px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">NUC, RAM, CBD, Sailing, Fishing, Towing/Pushing</h3>
+                            <div class="flex gap-2"><div class="blast-long"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                "The Encumbered Vessels"
+                                <div class="flex gap-2"><div class="blast-long"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> One prolonged blast followed by two short blasts.</li>
+                                <li><strong>Interval:</strong> Not more than every 2 minutes.</li>
+                                <li>Used by: Not Under Command, Restricted Ability to Maneuver, Constrained by Draft, Sailing, Fishing, and vessels engaged in Towing or Pushing.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Towed Vessel -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[220px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">Towed Vessel (Manned)</h3>
+                            <div class="flex gap-2"><div class="blast-long"></div><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Towed Vessel
+                                <div class="flex gap-2"><div class="blast-long"></div><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> One prolonged blast followed by three short blasts.</li>
+                                <li><strong>Interval:</strong> Not more than every 2 minutes.</li>
+                                <li>Sounded immediately after the towing vessel's signal, if practical. Only required if the towed vessel is manned.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pilot Vessel -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[220px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">Pilot Vessel (Optional ID)</h3>
+                            <div class="flex gap-2"><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Pilot Vessel Identity
+                                <div class="flex gap-2"><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div><div class="blast-short"></div></div>
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> Four short blasts.</li>
+                                <li>May be sounded <em>in addition</em> to their standard required signal (e.g., underway or anchored) to identify themselves as a pilot vessel.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anchored -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[250px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">Anchored Vessel</h3>
+                            <div class="flex gap-2 items-center">
+                                <div class="blast-bell">🔔</div>
+                                <span class="text-slate-300 font-bold text-sm tracking-widest">(5 Seconds Rapid)</span>
+                            </div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Anchored
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> Rapid ringing of the bell for 5 seconds.</li>
+                                <li><strong>Interval:</strong> Not more than every 1 minute.</li>
+                                <li><strong>>100m:</strong> Bell in forepart, followed by 5 seconds of rapid gong ringing in the aft part.</li>
+                                <li><strong>Optional Warning:</strong> 1 short, 1 prolonged, 1 short ( <span class="text-sky-400 font-bold tracking-widest"> • ▬ • </span> ) to warn approaching vessels of position.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aground -->
+                <div class="flip-card cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-slate-800 rounded-xl border border-slate-700 flex flex-col items-center justify-center p-8 hover:bg-slate-700 transition min-h-[250px]">
+                            <h3 class="text-xl font-semibold text-white mb-4 text-center">Vessel Aground</h3>
+                            <div class="flex gap-2 items-center text-center">
+                                <span class="text-slate-300 font-bold">III</span>
+                                <div class="blast-bell mx-2">🔔</div>
+                                <span class="text-slate-300 font-bold">III</span>
+                            </div>
+                            <p class="text-sky-400 font-bold text-sm mt-6">Click to flip</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-800 rounded-xl border border-slate-700 p-6 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-3">
+                                Aground
+                            </h3>
+                            <ul class="text-sm list-disc pl-5 space-y-2 text-slate-300">
+                                <li><strong>Signal:</strong> 3 distinct bell strokes + 5 seconds rapid ringing + 3 distinct bell strokes.</li>
+                                <li><strong>Interval:</strong> Not more than every 1 minute.</li>
+                                <li><strong>>100m:</strong> Above sequence on the bell, followed by 5 seconds rapid gong ringing aft.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMPREHENSIVE MASTER CHEAT SHEET -->
+        <hr class="section-break">
+        <section id="cheatsheet">
+            <h2 class="text-4xl font-extrabold text-sky-400 mb-6">Master Cheat Sheet</h2>
+            <div class="overflow-x-auto bg-slate-800 rounded-xl border border-slate-700 shadow-xl relative z-20 pointer-events-auto">
+                <table class="w-full text-sm text-left">
+                    <thead>
+                        <tr>
+                            <th class="p-4">Situation / Action</th>
+                            <th class="p-4">Signal</th>
+                            <th class="p-4">Rule Base</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Alter course Starboard (Int'l)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">•</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Leave you to Port (Inland)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">•</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Alter course Port (Int'l)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">• •</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Leave you to Starboard (Inland)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">• •</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Operating Astern Propulsion</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">• • •</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Danger / Doubt</td>
+                            <td class="p-4 font-bold text-red-400 tracking-widest">• • • • • (or more)</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Nearing blind bend</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬</td>
+                            <td class="p-4">Both</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Leaving dock</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬</td>
+                            <td class="p-4">Inland Only</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Overtake on Stbd (Int'l)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ ▬ •</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Overtake on Port (Int'l)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ ▬ • •</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Agree to Overtake (Int'l)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ • ▬ •</td>
+                            <td class="p-4">In Sight</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: Power Making Way</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ (max 2 min)</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: Power Stopped</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ ▬ (max 2 min)</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: NUC, RAM, CBD, Sail, Fish, Tow</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ • • (max 2 min)</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: Towed Vessel</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">▬ • • • (max 2 min)</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: Anchored</td>
+                            <td class="p-4">5s Bell (max 1 min)</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                        <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: Anchored (Optional Warning)</td>
+                            <td class="p-4 font-bold text-sky-400 tracking-widest">• ▬ •</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/50">
+                            <td class="p-4 font-semibold text-white">Fog: Aground</td>
+                            <td class="p-4">3 strokes + 5s Bell + 3 strokes</td>
+                            <td class="p-4">Restricted Vis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <footer class="mt-16 text-center text-slate-500 text-sm pb-10">
+            <p>Designed for USCG License Prep. Study hard!</p>
+        </footer>
+    </main>
+
+    <script>
+        function flipAllCards() {
+            const cards = document.querySelectorAll('.flip-card');
+            const allFlipped = Array.from(cards).every(c => c.classList.contains('flipped'));
+            cards.forEach(c => {
+                if (allFlipped) {
+                    c.classList.remove('flipped');
+                } else {
+                    c.classList.add('flipped');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
