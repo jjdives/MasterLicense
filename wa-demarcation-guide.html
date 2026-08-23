@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USCG Demarcation Lines - Western Washington</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #e2e8f0; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body class="p-6 md:p-12 max-w-6xl mx-auto">
+
+    <!-- Top Navigation -->
+    <nav class="mb-8">
+        <a href="index.html" class="inline-flex items-center text-sky-400 hover:text-white transition font-semibold bg-slate-800 hover:bg-slate-700 border border-slate-600 py-2 px-4 rounded-lg shadow-md">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            Home / Study Hub
+        </a>
+    </nav>
+
+    <header class="mb-10 border-b border-slate-700 pb-6">
+        <h1 class="text-4xl font-extrabold text-white mb-2">COLREGS Demarcation Lines</h1>
+        <h2 class="text-2xl text-sky-400 font-semibold">Western Washington State</h2>
+        <p class="text-slate-400 mt-4 text-lg">
+            A visual guide to where International (72 COLREGS) and Inland Rules apply across the Pacific Northwest.
+        </p>
+    </header>
+
+    <div class="grid lg:grid-cols-3 gap-10">
+        
+        <!-- Interactive Map Column -->
+        <div class="lg:col-span-2">
+            <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl overflow-hidden relative">
+                <!-- SVG Map -->
+                <svg viewBox="0 0 800 800" class="w-full h-auto">
+                    
+                    <!-- International Water Background -->
+                    <rect width="800" height="800" fill="#0ea5e9" opacity="0.15" />
+                    
+                    <!-- Inland Water Zones -->
+                    <!-- Quillayute -->
+                    <rect x="100" y="200" width="80" height="20" fill="#10b981" opacity="0.3" />
+                    <!-- Grays Harbor -->
+                    <rect x="100" y="320" width="120" height="50" fill="#10b981" opacity="0.3" />
+                    <!-- Willapa Bay -->
+                    <rect x="100" y="450" width="100" height="80" fill="#10b981" opacity="0.3" />
+                    <!-- Columbia River -->
+                    <rect x="100" y="650" width="300" height="60" fill="#10b981" opacity="0.3" />
+
+                    <!-- Main WA Landmass -->
+                    <path d="
+                        M 100 800 
+                        L 800 800 
+                        L 800 50 
+                        L 450 50 
+                        L 450 400 
+                        L 350 400 
+                        L 350 150 
+                        L 100 150 
+                        L 100 200 L 150 200 L 150 220 L 100 220
+                        L 100 320 L 220 320 L 220 370 L 100 370
+                        L 100 450 L 200 450 L 200 530 L 100 530
+                        L 100 650 L 400 650 L 400 710 L 100 710
+                        Z" fill="#334155" stroke="#475569" stroke-width="4" stroke-linejoin="round" />
+
+                    <!-- Vancouver Island snippet -->
+                    <path d="M 50 0 L 450 0 L 400 90 L 50 90 Z" fill="#334155" opacity="0.7" />
+
+                    <!-- Canadian Border (Dotted) -->
+                    <line x1="100" y1="120" x2="800" y2="120" stroke="#94a3b8" stroke-width="3" stroke-dasharray="10,10" />
+                    <text x="650" y="110" fill="#94a3b8" font-size="14" font-weight="bold">CANADA</text>
+                    <text x="650" y="140" fill="#94a3b8" font-size="14" font-weight="bold">USA</text>
+
+                    <!-- Demarcation Lines (Dashed Magenta) -->
+                    <line x1="100" y1="200" x2="100" y2="220" stroke="#f43f5e" stroke-width="5" stroke-dasharray="8,6" />
+                    <line x1="100" y1="320" x2="100" y2="370" stroke="#f43f5e" stroke-width="5" stroke-dasharray="8,6" />
+                    <line x1="100" y1="450" x2="100" y2="530" stroke="#f43f5e" stroke-width="5" stroke-dasharray="8,6" />
+                    <line x1="100" y1="650" x2="100" y2="710" stroke="#f43f5e" stroke-width="5" stroke-dasharray="8,6" />
+
+                    <!-- Water Labels -->
+                    <text x="40" y="450" fill="#38bdf8" font-size="28" font-weight="bold" transform="translate(40, 450) rotate(-90)">PACIFIC OCEAN (Int'l)</text>
+                    
+                    <text x="400" y="180" fill="#38bdf8" font-size="20" font-weight="bold" text-anchor="middle">Strait of Juan de Fuca (Int'l)</text>
+                    
+                    <text x="400" y="270" fill="#38bdf8" font-size="20" font-weight="bold" text-anchor="middle">PUGET</text>
+                    <text x="400" y="295" fill="#38bdf8" font-size="20" font-weight="bold" text-anchor="middle">SOUND</text>
+                    <text x="400" y="320" fill="#38bdf8" font-size="16" font-weight="bold" text-anchor="middle">(Int'l)</text>
+
+                    <!-- Inland Labels -->
+                    <text x="160" y="215" fill="#34d399" font-size="14" font-weight="bold">Quillayute River</text>
+                    <text x="230" y="350" fill="#34d399" font-size="18" font-weight="bold">Grays Harbor (Inland)</text>
+                    <text x="210" y="495" fill="#34d399" font-size="18" font-weight="bold">Willapa Bay (Inland)</text>
+                    <text x="410" y="685" fill="#34d399" font-size="18" font-weight="bold">Columbia River (Inland)</text>
+
+                    <!-- Cities & Points of Interest -->
+                    <circle cx="450" cy="270" r="6" fill="#fbbf24" />
+                    <text x="465" y="275" fill="#f8fafc" font-size="18" font-weight="bold">Seattle</text>
+
+                    <circle cx="360" cy="135" r="4" fill="#fbbf24" />
+                    <text x="370" y="135" fill="#e2e8f0" font-size="14">Sucia Is.</text>
+                    
+                    <circle cx="100" cy="150" r="4" fill="#fbbf24" />
+                    <text x="20" y="155" fill="#e2e8f0" font-size="14">Cape Flattery</text>
+
+                    <!-- Legend -->
+                    <rect x="540" y="630" width="230" height="140" fill="#1e293b" stroke="#475569" stroke-width="2" rx="8" />
+                    <text x="560" y="660" fill="#f8fafc" font-size="18" font-weight="bold">Legend</text>
+                    
+                    <rect x="560" y="680" width="24" height="24" fill="#0ea5e9" opacity="0.3" />
+                    <text x="595" y="698" fill="#e2e8f0" font-size="16">Int'l Waters</text>
+                    
+                    <rect x="560" y="720" width="24" height="24" fill="#10b981" opacity="0.3" />
+                    <text x="595" y="738" fill="#e2e8f0" font-size="16">Inland Waters</text>
+
+                    <line x1="560" y1="760" x2="584" y2="760" stroke="#f43f5e" stroke-width="4" stroke-dasharray="6,4" />
+                    <text x="595" y="765" fill="#e2e8f0" font-size="14">Demarcation Line</text>
+                </svg>
+                
+                <div class="absolute bottom-2 left-2 text-[10px] text-slate-500">
+                    Schematic representation. Not for navigation.
+                </div>
+            </div>
+        </div>
+
+        <!-- Explanations Column -->
+        <div class="space-y-6">
+            
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-sky-400 flex items-center gap-2 mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    The Puget Sound Exception
+                </h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                    Despite being entirely enclosed by land, <strong>Puget Sound is not governed by Inland Rules.</strong> 
+                </p>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    Under 33 CFR § 80.1395, the 72 COLREGS (International Rules) apply to all waters of the Strait of Juan de Fuca, Haro Strait, Strait of Georgia, Puget Sound, Hood Canal, Lake Washington, Lake Union, and all their tributaries.
+                </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-emerald-400 flex items-center gap-2 mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    The Pacific Coast Inlets
+                </h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    Inland Rules apply in Washington State <em>only</em> inside the specific Demarcation Lines drawn across the entrances of the major coastal inlets bordering the Pacific Ocean:
+                </p>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li><strong class="text-white">Grays Harbor:</strong> A line drawn across the seaward extremities of the Entrance Jetties.</li>
+                    <li><strong class="text-white">Willapa Bay:</strong> A line drawn from Willapa Bay Light to the westernmost tripod south of Leadbetter Point.</li>
+                    <li><strong class="text-white">Columbia River:</strong> A line drawn from the seaward extremity of the North Jetty (155° true) to the South Jetty.</li>
+                    <li><strong class="text-white">Quillayute River:</strong> A line drawn from the East Jetty to James Island.</li>
+                </ul>
+            </div>
+
+            <div class="bg-sky-900/30 border border-sky-800 rounded-xl p-6 shadow-lg">
+                <h3 class="text-lg font-bold text-white mb-2">Exam Tip</h3>
+                <p class="text-sm text-sky-200 leading-relaxed">
+                    If a test question asks what rules apply to a vessel operating in Seattle, Tacoma, or Olympia, the answer is always <strong>International Rules</strong>. You only switch to Inland Rules if you physically transit the coastal inlets to the west.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
