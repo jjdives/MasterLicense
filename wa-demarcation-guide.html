@@ -15,11 +15,13 @@
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
         
-        /* Map Styling */
-        #map { height: 600px; width: 100%; border-radius: 0.75rem; z-index: 1; }
+        /* Map Container */
+        #map { height: 620px; width: 100%; border-radius: 0.75rem; z-index: 1; }
+        
+        /* Leaflet Popups */
         .leaflet-popup-content-wrapper { background-color: #1e293b; color: #e2e8f0; border-radius: 0.5rem; border: 1px solid #475569; }
         .leaflet-popup-tip { background-color: #1e293b; }
-        .leaflet-popup-content { margin: 16px; font-family: 'Inter', sans-serif; }
+        .leaflet-popup-content { margin: 14px; font-family: 'Inter', sans-serif; font-size: 13px; }
     </style>
 </head>
 <body class="p-6 md:p-12 max-w-7xl mx-auto">
@@ -44,16 +46,25 @@
         
         <!-- Interactive Map Column -->
         <div class="lg:col-span-2">
-            <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl p-2">
+            <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-2xl p-3">
                 <div id="map"></div>
                 <div class="p-4 text-sm text-slate-400 flex flex-wrap items-center justify-between gap-4">
-                    <div class="flex items-center gap-4">
-                        <span><strong>Legend:</strong></span>
-                        <span class="flex items-center gap-2"><span class="w-6 h-1 bg-red-400 block border-t border-b border-dashed border-slate-900"></span> Demarcation Line</span>
-                        <span class="flex items-center gap-2"><div class="w-3 h-3 bg-sky-500 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.8)]"></div> Int'l Waters</span>
-                        <span class="flex items-center gap-2"><div class="w-3 h-3 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div> Inland Waters</span>
+                    <div class="flex items-center gap-5">
+                        <span><strong>Map Layers:</strong></span>
+                        <span class="flex items-center gap-2">
+                            <span class="w-6 h-1 bg-red-500 block border-t border-b border-dashed border-slate-900"></span> 
+                            Demarcation Line
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <div class="w-3.5 h-3.5 bg-sky-500 rounded-sm border border-sky-300"></div> 
+                            International Waters
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <div class="w-3.5 h-3.5 bg-emerald-500 rounded-sm border border-emerald-300"></div> 
+                            Inland Waters
+                        </span>
                     </div>
-                    <span class="italic">Scroll to zoom. Drag to pan. Click markers for info.</span>
+                    <span class="italic text-xs">Scroll to zoom. Drag to pan. Click zones for details.</span>
                 </div>
             </div>
         </div>
@@ -67,10 +78,10 @@
                     The Puget Sound Exception
                 </h3>
                 <p class="text-sm text-slate-300 leading-relaxed mb-3">
-                    Despite being entirely enclosed by land, <strong>Puget Sound is not governed by Inland Rules.</strong> 
+                    Despite being entirely enclosed by land, <strong>Puget Sound is governed by International Rules</strong> (72 COLREGS).
                 </p>
                 <p class="text-sm text-slate-300 leading-relaxed">
-                    Under 33 CFR § 80.1395, the 72 COLREGS (International Rules) apply to all waters of the Strait of Juan de Fuca, Haro Strait, Strait of Georgia, Puget Sound, Hood Canal, Lake Washington, Lake Union, and all their tributaries (including Lake Sammamish).
+                    Under 33 CFR § 80.1395, the 72 COLREGS apply to all waters of the Strait of Juan de Fuca, Haro Strait, Strait of Georgia, Puget Sound, Hood Canal, Lake Washington, Lake Union, and Lake Sammamish (as a connected tributary).
                 </p>
             </div>
 
@@ -80,19 +91,20 @@
                     The Pacific Coast Inlets
                 </h3>
                 <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                    Inland Rules apply in Washington State <em>only</em> inside the specific Demarcation Lines drawn across the entrances of the major coastal inlets bordering the Pacific Ocean:
+                    Inland Rules apply in Washington State <em>only</em> inside the specific Demarcation Lines drawn across the entrances of the coastal Pacific inlets:
                 </p>
                 <ul class="space-y-3 text-sm text-slate-400">
                     <li><strong class="text-white">Grays Harbor:</strong> A line drawn across the seaward extremities of the Entrance Jetties.</li>
                     <li><strong class="text-white">Willapa Bay:</strong> A line drawn from Willapa Bay Light to the westernmost tripod south of Leadbetter Point.</li>
-                    <li><strong class="text-white">Columbia River:</strong> A line drawn from the seaward extremity of the North Jetty to the South Jetty.</li>
+                    <li><strong class="text-white">Columbia River:</strong> A line drawn from the North Jetty (155° true) to the South Jetty.</li>
+                    <li><strong class="text-white">Quillayute River:</strong> A line drawn from the East Jetty to James Island.</li>
                 </ul>
             </div>
 
             <div class="bg-sky-900/30 border border-sky-800 rounded-xl p-6 shadow-lg">
                 <h3 class="text-lg font-bold text-white mb-2">Exam Tip</h3>
                 <p class="text-sm text-sky-200 leading-relaxed">
-                    If a test question asks what rules apply to a vessel operating in Seattle, Tacoma, or Olympia, the answer is always <strong>International Rules</strong>. You only switch to Inland Rules if you physically transit the coastal inlets to the west.
+                    If a test question asks what rules apply to a vessel operating in Seattle, Tacoma, Olympia, Lake Washington, or Lake Sammamish, the answer is always <strong>International Rules</strong>.
                 </p>
             </div>
 
@@ -101,74 +113,158 @@
     </div>
 
     <script>
-        // Initialize Leaflet Map centered on Western WA
+        // 1. Initialize Leaflet Map centered on Western WA
         var map = L.map('map', {
-            center: [47.3, -123.3],
+            center: [47.4, -123.1],
             zoom: 8,
-            minZoom: 6
+            minZoom: 7,
+            maxZoom: 14
         });
 
-        // Add Dark Mode CartoDB Base Map
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+        // 2. Light Neutral Gray Basemap (CartoDB Positron)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
             subdomains: 'abcd',
-            maxZoom: 20
+            maxZoom: 19
         }).addTo(map);
 
-        // Styling for Demarcation Lines
-        var demLineStyle = { color: '#f87171', weight: 4, dashArray: '8, 8' };
+        // Styling Presets
+        var intlWaterStyle = {
+            color: '#0284c7',
+            weight: 1.5,
+            fillColor: '#38bdf8',
+            fillOpacity: 0.35
+        };
 
-        // 1. Quillayute River
-        L.polyline([[47.905, -124.64], [47.901, -124.64]], demLineStyle).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Quillayute River</strong><br>Inland rules apply east of the entrance jetties.");
+        var inlandWaterStyle = {
+            color: '#059669',
+            weight: 1.5,
+            fillColor: '#34d399',
+            fillOpacity: 0.45
+        };
 
-        // 2. Grays Harbor
+        var demLineStyle = {
+            color: '#ef4444',
+            weight: 4,
+            dashArray: '6, 6'
+        };
+
+        // 3. International Water Highlight Polygons
+
+        // Strait of Juan de Fuca & Puget Sound & San Juans
+        var pugetSoundPoly = L.polygon([
+            [48.55, -124.75],
+            [48.65, -123.10],
+            [48.85, -122.75],
+            [48.70, -122.45],
+            [48.30, -122.40],
+            [47.95, -122.15],
+            [47.50, -122.35],
+            [47.10, -122.60],
+            [47.05, -122.95],
+            [47.40, -123.15],
+            [47.75, -122.80],
+            [48.15, -123.40],
+            [48.38, -124.65]
+        ], intlWaterStyle).addTo(map);
+        pugetSoundPoly.bindPopup("<strong class='text-sky-400 text-base'>Puget Sound & Straits</strong><br><strong>Rulebook:</strong> International Rules (72 COLREGS)<br><span class='text-xs text-slate-300'>33 CFR § 80.1395</span>");
+
+        // Lake Washington
+        var lakeWashPoly = L.polygon([
+            [47.76, -122.28],
+            [47.69, -122.22],
+            [47.50, -122.20],
+            [47.50, -122.27],
+            [47.64, -122.28]
+        ], intlWaterStyle).addTo(map);
+        lakeWashPoly.bindPopup("<strong class='text-sky-400 text-base'>Lake Washington</strong><br><strong>Rulebook:</strong> International Rules<br><span class='text-xs text-slate-300'>Connected tributary of Puget Sound</span>");
+
+        // Lake Sammamish
+        var lakeSamPoly = L.polygon([
+            [47.66, -122.11],
+            [47.66, -122.06],
+            [47.54, -122.06],
+            [47.54, -122.11]
+        ], intlWaterStyle).addTo(map);
+        lakeSamPoly.bindPopup("<strong class='text-sky-400 text-base'>Lake Sammamish</strong><br><strong>Rulebook:</strong> International Rules<br><span class='text-xs text-slate-300'>Connected tributary via Sammamish River</span>");
+
+
+        // 4. Inland Water Highlight Polygons
+
+        // Grays Harbor
+        var graysHarborPoly = L.polygon([
+            [46.935, -124.18],
+            [47.08, -124.12],
+            [47.05, -123.80],
+            [46.96, -123.75],
+            [46.85, -123.95],
+            [46.85, -124.12],
+            [46.905, -124.18]
+        ], inlandWaterStyle).addTo(map);
+        graysHarborPoly.bindPopup("<strong class='text-emerald-400 text-base'>Grays Harbor</strong><br><strong>Rulebook:</strong> Inland Navigation Rules<br><span class='text-xs text-slate-300'>Inside the entrance jetties</span>");
+
+        // Willapa Bay
+        var willapaBayPoly = L.polygon([
+            [46.71, -124.08],
+            [46.76, -123.95],
+            [46.72, -123.75],
+            [46.45, -123.85],
+            [46.40, -124.03],
+            [46.64, -124.06]
+        ], inlandWaterStyle).addTo(map);
+        willapaBayPoly.bindPopup("<strong class='text-emerald-400 text-base'>Willapa Bay</strong><br><strong>Rulebook:</strong> Inland Navigation Rules<br><span class='text-xs text-slate-300'>Inside the Demarcation line</span>");
+
+        // Columbia River Estuary
+        var columbiaPoly = L.polygon([
+            [46.28, -124.08],
+            [46.33, -123.90],
+            [46.28, -123.45],
+            [46.12, -123.45],
+            [46.15, -123.95],
+            [46.23, -124.02]
+        ], inlandWaterStyle).addTo(map);
+        columbiaPoly.bindPopup("<strong class='text-emerald-400 text-base'>Columbia River Estuary</strong><br><strong>Rulebook:</strong> Inland Navigation Rules<br><span class='text-xs text-slate-300'>Upriver from the jetty entrance</span>");
+
+        // Quillayute River
+        var quillayutePoly = L.polygon([
+            [47.915, -124.64],
+            [47.915, -124.60],
+            [47.900, -124.60],
+            [47.900, -124.64]
+        ], inlandWaterStyle).addTo(map);
+        quillayutePoly.bindPopup("<strong class='text-emerald-400 text-base'>Quillayute River</strong><br><strong>Rulebook:</strong> Inland Navigation Rules");
+
+
+        // 5. Demarcation Lines (Red Dashed)
+        L.polyline([[47.915, -124.64], [47.900, -124.64]], demLineStyle).addTo(map)
+            .bindPopup("<strong class='text-red-400'>Quillayute Demarcation Line</strong><br>East Jetty to James Island");
+
         L.polyline([[46.935, -124.18], [46.905, -124.18]], demLineStyle).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Grays Harbor</strong><br>Inland rules apply inside the entrance jetties.");
+            .bindPopup("<strong class='text-red-400'>Grays Harbor Demarcation Line</strong><br>Seaward extremities of Entrance Jetties");
 
-        // 3. Willapa Bay
         L.polyline([[46.71, -124.08], [46.64, -124.06]], demLineStyle).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Willapa Bay</strong><br>Inland rules apply inside the bay.");
+            .bindPopup("<strong class='text-red-400'>Willapa Bay Demarcation Line</strong><br>Willapa Bay Light to Leadbetter Point");
 
-        // 4. Columbia River
         L.polyline([[46.28, -124.08], [46.23, -124.02]], demLineStyle).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Columbia River</strong><br>Inland rules apply upriver from the seaward jetty extremities.");
+            .bindPopup("<strong class='text-red-400'>Columbia River Demarcation Line</strong><br>North Jetty (155° True) to South Jetty");
 
-        // Marker Icons
-        var intlIcon = L.divIcon({ 
-            className: 'bg-sky-500 rounded-full w-3 h-3 shadow-[0_0_12px_rgba(14,165,233,1)] border border-sky-200', 
-            iconSize: [12, 12] 
+        // 6. City Reference Markers
+        var cityIcon = L.divIcon({
+            className: 'bg-slate-900 text-white text-[10px] font-bold px-1.5 py-0.5 rounded border border-slate-500 shadow-md whitespace-nowrap',
+            html: 'Seattle',
+            iconSize: [45, 18],
+            iconAnchor: [22, 9]
         });
-        var inlandIcon = L.divIcon({ 
-            className: 'bg-emerald-500 rounded-full w-3 h-3 shadow-[0_0_12px_rgba(16,185,129,1)] border border-emerald-200', 
-            iconSize: [12, 12] 
+        L.marker([47.6062, -122.3321], {icon: cityIcon}).addTo(map);
+
+        var bellevueIcon = L.divIcon({
+            className: 'bg-slate-900 text-white text-[10px] font-bold px-1.5 py-0.5 rounded border border-slate-500 shadow-md whitespace-nowrap',
+            html: 'Bellevue',
+            iconSize: [52, 18],
+            iconAnchor: [26, 9]
         });
+        L.marker([47.6101, -122.2015], {icon: bellevueIcon}).addTo(map);
 
-        // International Points of Interest
-        L.marker([47.6062, -122.3321], {icon: intlIcon}).addTo(map)
-            .bindPopup("<strong class='text-sky-400 text-lg'>Seattle (Puget Sound)</strong><br>International Rules Apply");
-        
-        L.marker([47.62, -122.24], {icon: intlIcon}).addTo(map)
-            .bindPopup("<strong class='text-sky-400 text-lg'>Lake Washington</strong><br>International Rules Apply (Tributary of Puget Sound)");
-        
-        L.marker([47.61, -122.08], {icon: intlIcon}).addTo(map)
-            .bindPopup("<strong class='text-sky-400 text-lg'>Lake Sammamish</strong><br>International Rules Apply (Tributary of Lake Washington)");
-        
-        L.marker([48.75, -122.90], {icon: intlIcon}).addTo(map)
-            .bindPopup("<strong class='text-sky-400 text-lg'>Sucia Island</strong><br>International Rules Apply");
-        
-        L.marker([48.3, -124.0], {icon: intlIcon}).addTo(map)
-            .bindPopup("<strong class='text-sky-400 text-lg'>Strait of Juan de Fuca</strong><br>International Rules Apply");
-
-        // Inland Points of Interest
-        L.marker([46.97, -123.8], {icon: inlandIcon}).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Aberdeen (Grays Harbor)</strong><br>Inland Rules Apply");
-        
-        L.marker([46.68, -123.8], {icon: inlandIcon}).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Raymond (Willapa Bay)</strong><br>Inland Rules Apply");
-            
-        L.marker([46.18, -123.83], {icon: inlandIcon}).addTo(map)
-            .bindPopup("<strong class='text-emerald-400 text-lg'>Astoria (Columbia River)</strong><br>Inland Rules Apply");
     </script>
 </body>
 </html>
