@@ -115,7 +115,7 @@
     <script>
         // 1. Initialize Leaflet Map centered on Western WA
         var map = L.map('map', {
-            center: [47.4, -123.1],
+            center: [47.5, -122.8],
             zoom: 8,
             minZoom: 7,
             maxZoom: 14
@@ -149,42 +149,47 @@
             dashArray: '6, 6'
         };
 
-        // 3. International Water Highlight Polygons
+        // 3. International Water Highlight Polygons (Tightened coordinates)
 
         // Strait of Juan de Fuca & Puget Sound & San Juans
         var pugetSoundPoly = L.polygon([
-            [48.55, -124.75],
-            [48.65, -123.10],
-            [48.85, -122.75],
-            [48.70, -122.45],
-            [48.30, -122.40],
-            [47.95, -122.15],
-            [47.50, -122.35],
-            [47.10, -122.60],
-            [47.05, -122.95],
-            [47.40, -123.15],
-            [47.75, -122.80],
-            [48.15, -123.40],
-            [48.38, -124.65]
+            [48.55, -124.75], // Cape Flattery
+            [48.65, -123.10], // Victoria
+            [48.85, -122.75], // Northern Border
+            [48.70, -122.45], // Bellingham
+            [48.30, -122.40], // Stanwood
+            [47.95, -122.30], // Mukilteo
+            [47.80, -122.38], // Edmonds
+            [47.65, -122.42], // West of Seattle (Magnolia)
+            [47.55, -122.35], // West Seattle
+            [47.30, -122.35], // Federal Way
+            [47.10, -122.45], // Tacoma
+            [47.05, -122.90], // Olympia
+            [47.35, -123.15], // Hood Canal Bottom
+            [47.85, -122.65], // Kitsap Peninsula
+            [48.15, -123.40], // Port Angeles
+            [48.38, -124.65]  // Neah Bay
         ], intlWaterStyle).addTo(map);
         pugetSoundPoly.bindPopup("<strong class='text-sky-400 text-base'>Puget Sound & Straits</strong><br><strong>Rulebook:</strong> International Rules (72 COLREGS)<br><span class='text-xs text-slate-300'>33 CFR § 80.1395</span>");
 
         // Lake Washington
         var lakeWashPoly = L.polygon([
-            [47.76, -122.28],
-            [47.69, -122.22],
-            [47.50, -122.20],
-            [47.50, -122.27],
-            [47.64, -122.28]
+            [47.76, -122.28], // Kenmore
+            [47.76, -122.24], // North end
+            [47.65, -122.20], // Kirkland
+            [47.55, -122.18], // Bellevue
+            [47.49, -122.20], // Renton
+            [47.50, -122.26], // South Seattle
+            [47.60, -122.27]  // Central Seattle
         ], intlWaterStyle).addTo(map);
         lakeWashPoly.bindPopup("<strong class='text-sky-400 text-base'>Lake Washington</strong><br><strong>Rulebook:</strong> International Rules<br><span class='text-xs text-slate-300'>Connected tributary of Puget Sound</span>");
 
         // Lake Sammamish
         var lakeSamPoly = L.polygon([
-            [47.66, -122.11],
-            [47.66, -122.06],
-            [47.54, -122.06],
-            [47.54, -122.11]
+            [47.64, -122.11], // Redmond
+            [47.64, -122.08], // North East
+            [47.56, -122.08], // Issaquah East
+            [47.56, -122.11]  // Issaquah West
         ], intlWaterStyle).addTo(map);
         lakeSamPoly.bindPopup("<strong class='text-sky-400 text-base'>Lake Sammamish</strong><br><strong>Rulebook:</strong> International Rules<br><span class='text-xs text-slate-300'>Connected tributary via Sammamish River</span>");
 
