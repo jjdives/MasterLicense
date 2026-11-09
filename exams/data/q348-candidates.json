@@ -1,0 +1,930 @@
+[
+  {
+    "id": "q348-001",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "Where is a vessel's center of gravity (G)?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The point through which the total weight can be considered to act"
+      },
+      {
+        "id": "o2",
+        "text": "The geometric center of the propeller"
+      },
+      {
+        "id": "o3",
+        "text": "The center of the rudder stock"
+      },
+      {
+        "id": "o4",
+        "text": "Always at the waterline"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The center of gravity is the point through which the resultant force of the vessel's weight acts.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-002",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "Where does the resultant buoyant force act on a floating vessel?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "At the center of buoyancy"
+      },
+      {
+        "id": "o2",
+        "text": "At the masthead"
+      },
+      {
+        "id": "o3",
+        "text": "At the center of gravity by definition"
+      },
+      {
+        "id": "o4",
+        "text": "At the center of lateral resistance only"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The center of buoyancy is the center of the displaced underwater volume and the point through which the resultant upward buoyant force acts.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-003",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "What generally happens when heavy cargo is moved higher in a vessel?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The center of gravity rises"
+      },
+      {
+        "id": "o2",
+        "text": "The center of gravity automatically lowers"
+      },
+      {
+        "id": "o3",
+        "text": "The metacenter becomes fixed at the deck"
+      },
+      {
+        "id": "o4",
+        "text": "The vessel's displacement becomes zero"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Moving weight higher raises the overall center of gravity and ordinarily reduces initial stability if other factors remain constant.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-004",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "How does a partially filled wide tank affect a vessel's initial stability?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It creates a free-surface effect that tends to reduce initial stability"
+      },
+      {
+        "id": "o2",
+        "text": "It always improves stability"
+      },
+      {
+        "id": "o3",
+        "text": "It eliminates rolling"
+      },
+      {
+        "id": "o4",
+        "text": "It has no effect unless salt water is used"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The liquid surface can shift as the vessel heels, producing a virtual rise in center of gravity and reduced stability.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-005",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "Which factor particularly increases the free-surface effect of liquid in a tank?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A large transverse breadth of free liquid surface"
+      },
+      {
+        "id": "o2",
+        "text": "A completely pressed-full tank"
+      },
+      {
+        "id": "o3",
+        "text": "A tank with no liquid"
+      },
+      {
+        "id": "o4",
+        "text": "A lower liquid density in every case regardless of geometry"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Free-surface moment increases strongly with the breadth of an unconfined liquid surface; full or empty tanks have no comparable free surface.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-006",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "If a vessel's transverse metacentric height GM is positive for small angles, what does that generally indicate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Positive initial stability"
+      },
+      {
+        "id": "o2",
+        "text": "Negative initial stability"
+      },
+      {
+        "id": "o3",
+        "text": "No buoyancy"
+      },
+      {
+        "id": "o4",
+        "text": "An automatic capsize"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Positive GM indicates a tendency to develop a restoring moment for small heel angles, subject to the broader stability curve.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-007",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "If the metacenter M and center of gravity G are at the same height for small angles, what is GM?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Zero"
+      },
+      {
+        "id": "o2",
+        "text": "Negative two meters"
+      },
+      {
+        "id": "o3",
+        "text": "One meter"
+      },
+      {
+        "id": "o4",
+        "text": "Always greater than the draft"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "GM is the vertical distance between G and M; if they coincide, the initial metacentric height is zero.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-008",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "What is a vessel's 'list'?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A persistent inclination commonly caused by off-center weight or flooding"
+      },
+      {
+        "id": "o2",
+        "text": "A periodic roll caused by passing wakes"
+      },
+      {
+        "id": "o3",
+        "text": "A one-time bow movement"
+      },
+      {
+        "id": "o4",
+        "text": "The maximum available trim"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "List is a sustained tilt away from the upright equilibrium, often due to asymmetric loading or flooding.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-009",
+    "module": "q348",
+    "topic": "Stability",
+    "stem": "Which motion is rotation about the transverse axis?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Pitch"
+      },
+      {
+        "id": "o2",
+        "text": "Roll"
+      },
+      {
+        "id": "o3",
+        "text": "Yaw"
+      },
+      {
+        "id": "o4",
+        "text": "Sway"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Pitch is the vessel's bow-up/bow-down angular motion around a transverse (athwartships) axis.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-010",
+    "module": "q348",
+    "topic": "Vessel construction",
+    "stem": "What does gross tonnage primarily measure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enclosed internal volume according to tonnage rules"
+      },
+      {
+        "id": "o2",
+        "text": "Actual weight of the vessel on a scale"
+      },
+      {
+        "id": "o3",
+        "text": "Cargo displacement in tons of water"
+      },
+      {
+        "id": "o4",
+        "text": "Maximum passenger mass"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Gross tonnage is a measure of vessel internal volume under tonnage measurement rules, not vessel weight.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-011",
+    "module": "q348",
+    "topic": "Damage control",
+    "stem": "Why must watertight closures be managed carefully during normal operations?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Open closures can allow progressive flooding across subdivision boundaries"
+      },
+      {
+        "id": "o2",
+        "text": "They determine a vessel's call sign"
+      },
+      {
+        "id": "o3",
+        "text": "They control the height of navigation lights"
+      },
+      {
+        "id": "o4",
+        "text": "They cannot affect survivability"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Watertight subdivision works only when the boundary and closures prevent water passing between spaces.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-012",
+    "module": "q348",
+    "topic": "Fire prevention",
+    "stem": "Which of the following is an ordinary combustible Class A fire?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Burning wooden furniture"
+      },
+      {
+        "id": "o2",
+        "text": "Burning gasoline vapors"
+      },
+      {
+        "id": "o3",
+        "text": "Burning energized switchgear"
+      },
+      {
+        "id": "o4",
+        "text": "Burning magnesium powder"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Class A covers ordinary solid combustibles including wood, cloth, and paper.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-013",
+    "module": "q348",
+    "topic": "Fire prevention",
+    "stem": "A fire involving flammable fuel oil is normally classified as what type?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Class A"
+      },
+      {
+        "id": "o2",
+        "text": "Class B"
+      },
+      {
+        "id": "o3",
+        "text": "Class C only because fuel is onboard"
+      },
+      {
+        "id": "o4",
+        "text": "Class D"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Class B covers flammable liquids such as gasoline and fuel oil.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-014",
+    "module": "q348",
+    "topic": "Fire prevention",
+    "stem": "What is the defining feature of a Class C fire in common US extinguisher classification?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Energized electrical equipment is involved"
+      },
+      {
+        "id": "o2",
+        "text": "Only burning magnesium is present"
+      },
+      {
+        "id": "o3",
+        "text": "Only cooking oil is involved"
+      },
+      {
+        "id": "o4",
+        "text": "Combustion is impossible"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Class C addresses energized electrical equipment where a nonconductive extinguishing agent is relevant; de-energizing may change the applicable class.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-015",
+    "module": "q348",
+    "topic": "Fire prevention",
+    "stem": "What normally distinguishes a Class D fire?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Combustible metals"
+      },
+      {
+        "id": "o2",
+        "text": "Ordinary paper"
+      },
+      {
+        "id": "o3",
+        "text": "Cooking grease only"
+      },
+      {
+        "id": "o4",
+        "text": "Fuel oil only"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Class D includes fires involving combustible metals such as magnesium or finely divided aluminum/titanium.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-016",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "What is the fourth element added to the fire triangle to form the fire tetrahedron?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Chemical chain reaction"
+      },
+      {
+        "id": "o2",
+        "text": "Air pressure"
+      },
+      {
+        "id": "o3",
+        "text": "Gravity"
+      },
+      {
+        "id": "o4",
+        "text": "Water temperature"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The fire tetrahedron includes fuel, heat, oxygen, and the sustaining chemical chain reaction.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-017",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "How does a water stream most commonly suppress a Class A fire?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "By cooling the fuel below a temperature required to sustain burning"
+      },
+      {
+        "id": "o2",
+        "text": "By providing additional oxygen"
+      },
+      {
+        "id": "o3",
+        "text": "By increasing the fire's surface area"
+      },
+      {
+        "id": "o4",
+        "text": "By making the fuel more volatile"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Water's principal suppression mechanism for ordinary solid combustibles is heat removal/cooling.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-018",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "Why can a CO2 extinguisher permit re-ignition of hot fuel after discharge?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "CO2 provides relatively little cooling"
+      },
+      {
+        "id": "o2",
+        "text": "CO2 always increases the fuel's flash point"
+      },
+      {
+        "id": "o3",
+        "text": "CO2 chemically produces gasoline"
+      },
+      {
+        "id": "o4",
+        "text": "CO2 adds oxygen to the fire"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "CO2 suppresses combustion chiefly by reducing available oxygen and provides limited cooling; hot fuel can reflash when oxygen returns.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-019",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "Why is discharge of a large CO2 extinguishing system hazardous to personnel in a confined space?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "CO2 can displace breathable oxygen and cause asphyxiation"
+      },
+      {
+        "id": "o2",
+        "text": "CO2 raises oxygen levels"
+      },
+      {
+        "id": "o3",
+        "text": "CO2 always explodes on contact with metal"
+      },
+      {
+        "id": "o4",
+        "text": "CO2 is harmless because it is a normal atmospheric gas"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "High CO2 concentrations can produce asphyxiation and physiologic toxicity; affected spaces must be evacuated before discharge.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-020",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "What is an important effect of dry chemical extinguishing agent on a flame?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It interrupts flame-propagating chemical reactions"
+      },
+      {
+        "id": "o2",
+        "text": "It always cools steel below freezing"
+      },
+      {
+        "id": "o3",
+        "text": "It removes all fuel from a tank"
+      },
+      {
+        "id": "o4",
+        "text": "It turns liquid fuel into water"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Many dry-chemical powders interrupt the chemical chain reactions that sustain a flame.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-021",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "How does convection commonly spread fire aboard a ship?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Through movement of hot gases along ventilation pathways"
+      },
+      {
+        "id": "o2",
+        "text": "Only by direct contact through a metal bulkhead"
+      },
+      {
+        "id": "o3",
+        "text": "Only by radiation across empty space"
+      },
+      {
+        "id": "o4",
+        "text": "Through electrical conduction in a copper wire alone"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Convection transfers heat via moving fluids and gases, including smoke and heated air through ducts.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-022",
+    "module": "q348",
+    "topic": "Firefighting",
+    "stem": "How does conduction move heat aboard a ship?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Through materials such as steel bulkheads and decks"
+      },
+      {
+        "id": "o2",
+        "text": "By direct light waves only"
+      },
+      {
+        "id": "o3",
+        "text": "Only by wind across open deck"
+      },
+      {
+        "id": "o4",
+        "text": "Only through hot gas rising"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Conduction transfers thermal energy through a material, often allowing heat to spread through metal structures.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-023",
+    "module": "q348",
+    "topic": "Emergency procedures",
+    "stem": "What is the first action a crew member should ordinarily take on discovering a shipboard fire?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Raise the alarm"
+      },
+      {
+        "id": "o2",
+        "text": "Open every ventilation intake"
+      },
+      {
+        "id": "o3",
+        "text": "Abandon ship immediately"
+      },
+      {
+        "id": "o4",
+        "text": "Use seawater on energized electrical equipment"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Alerting the crew permits coordinated response and prevents a small fire from remaining undiscovered while one person fights it.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-024",
+    "module": "q348",
+    "topic": "Emergency procedures",
+    "stem": "What is the role of the 'pointer' in a person-overboard recovery?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Maintain continuous visual observation and point toward the person until relieved"
+      },
+      {
+        "id": "o2",
+        "text": "Keep the engine at full power"
+      },
+      {
+        "id": "o3",
+        "text": "Take over the radio immediately"
+      },
+      {
+        "id": "o4",
+        "text": "Retrieve the vessel's charts"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The pointer tracks the person in the water and provides a continuously visible direction for the helmsman.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-025",
+    "module": "q348",
+    "topic": "Lifesaving",
+    "stem": "What does the liferaft 'painter' usually do during manual deployment?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Keep the raft attached to the vessel and actuate inflation when pulled fully out"
+      },
+      {
+        "id": "o2",
+        "text": "Serve only as an anchor rode after launch"
+      },
+      {
+        "id": "o3",
+        "text": "Replace the raft's boarding ladder"
+      },
+      {
+        "id": "o4",
+        "text": "Hold the raft's sea anchor open"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The painter is the line to the raft's inflation mechanism and initial tether; it is secured to the vessel before the canister is launched.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-026",
+    "module": "q348",
+    "topic": "Lifesaving",
+    "stem": "What is the purpose of a hydrostatic release arrangement for a stowed liferaft?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Permit the raft to release and float free as the vessel sinks when properly installed"
+      },
+      {
+        "id": "o2",
+        "text": "Keep the raft permanently attached under all conditions"
+      },
+      {
+        "id": "o3",
+        "text": "Inflate the raft every month"
+      },
+      {
+        "id": "o4",
+        "text": "Prevent the container from ever reaching the surface"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A hydrostatic release unit releases the raft when submerged; the associated painter and weak-link arrangement allows float-free inflation and separation.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-027",
+    "module": "q348",
+    "topic": "Lifesaving",
+    "stem": "What kind of signal does a 406 MHz EPIRB send for rescue alerting?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A digitally encoded distress signal through the satellite alerting system"
+      },
+      {
+        "id": "o2",
+        "text": "A continuous VHF channel 16 voice call"
+      },
+      {
+        "id": "o3",
+        "text": "Only a radar reflection"
+      },
+      {
+        "id": "o4",
+        "text": "A GPS route automatically uploaded to AIS"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A 406 MHz EPIRB transmits coded distress data detectable by the Cospas-Sarsat satellite system; GPS position can be included when equipped.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-028",
+    "module": "q348",
+    "topic": "Lifesaving",
+    "stem": "Why are periodic EPIRB tests normally performed using the manufacturer's designated test function?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To avoid transmitting a false distress alert"
+      },
+      {
+        "id": "o2",
+        "text": "To ensure a MAYDAY is sent during every test"
+      },
+      {
+        "id": "o3",
+        "text": "To recharge the battery by radio waves"
+      },
+      {
+        "id": "o4",
+        "text": "To de-register the beacon"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "The self-test mode checks selected functions without transmitting an operational distress alert in the normal way.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q348-029",
+    "module": "q348",
+    "topic": "Lifesaving",
+    "stem": "Why does a personal flotation device light improve survival prospects during a nighttime rescue?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It helps searchers detect and locate the wearer"
+      },
+      {
+        "id": "o2",
+        "text": "It adds buoyancy to the PFD"
+      },
+      {
+        "id": "o3",
+        "text": "It guarantees automatic radio positioning"
+      },
+      {
+        "id": "o4",
+        "text": "It prevents hypothermia"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A water-activated or manually activated PFD light makes a person in dark water more conspicuous.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q348",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q348_deck_safety.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  }
+]

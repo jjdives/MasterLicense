@@ -1734,5 +1734,933 @@
       "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
     },
     "provenance": "original"
+  },
+  {
+    "id": "rr-057",
+    "module": "q100",
+    "topic": "Rule 2",
+    "stem": "Under Rule 2, who remains responsible for complying with the navigation rules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only the vessel's owner"
+      },
+      {
+        "id": "o2",
+        "text": "The master, owner and crew as applicable; the Rules do not excuse neglect"
+      },
+      {
+        "id": "o3",
+        "text": "Only the vessel's lookout"
+      },
+      {
+        "id": "o4",
+        "text": "Only vessels over 20 meters"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 2(a) does not exonerate a vessel, owner, master or crew from consequences of neglecting the Rules or ordinary seamanlike precautions.",
+    "source": {
+      "label": "Navigation Rules, Rule 2",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-058",
+    "module": "q100",
+    "topic": "Rule 2",
+    "stem": "May a vessel depart from a navigation rule when strict compliance creates immediate danger?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Never"
+      },
+      {
+        "id": "o2",
+        "text": "Only if a local harbor master approves"
+      },
+      {
+        "id": "o3",
+        "text": "Yes, when special circumstances make departure necessary to avoid immediate danger"
+      },
+      {
+        "id": "o4",
+        "text": "Only when crossing a traffic separation scheme"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 2(b) recognizes special circumstances and immediate danger that may necessitate departure from the Rules.",
+    "source": {
+      "label": "Navigation Rules, Rule 2",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-059",
+    "module": "q100",
+    "topic": "Rule 3",
+    "stem": "Under the navigation rules, which condition means a vessel is 'underway'?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Made fast to a dock"
+      },
+      {
+        "id": "o2",
+        "text": "Aground"
+      },
+      {
+        "id": "o3",
+        "text": "Neither at anchor, made fast to shore, nor aground"
+      },
+      {
+        "id": "o4",
+        "text": "Only while making way through water"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Under Rule 3(i), 'underway' does not require movement; a vessel may be underway but stopped and making no way.",
+    "source": {
+      "label": "Navigation Rules, Rule 3",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-060",
+    "module": "q100",
+    "topic": "Rule 3",
+    "stem": "What distinguishes a vessel 'not under command' under Rule 3?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It is without a licensed master"
+      },
+      {
+        "id": "o2",
+        "text": "Exceptional circumstances prevent it from maneuvering as the Rules require"
+      },
+      {
+        "id": "o3",
+        "text": "It carries more passengers than its certificate allows"
+      },
+      {
+        "id": "o4",
+        "text": "It is at anchor"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 3(f) defines not-under-command as unable to maneuver as required due to exceptional circumstances.",
+    "source": {
+      "label": "Navigation Rules, Rule 3",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-061",
+    "module": "q100",
+    "topic": "Rule 3",
+    "stem": "When is a vessel considered 'restricted in her ability to maneuver'?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only when her draft is too deep"
+      },
+      {
+        "id": "o2",
+        "text": "When the nature of her work limits maneuvering as required by the Rules"
+      },
+      {
+        "id": "o3",
+        "text": "Whenever it is under sail"
+      },
+      {
+        "id": "o4",
+        "text": "Whenever the engine is idling"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 3(g) is based on the nature of the vessel's work, such as dredging or servicing navigation marks.",
+    "source": {
+      "label": "Navigation Rules, Rule 3",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-062",
+    "module": "q100",
+    "topic": "Rule 7",
+    "stem": "What is the primary requirement when determining collision risk with radar fitted and operational?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use long-range scanning and systematic observation or equivalent plotting"
+      },
+      {
+        "id": "o2",
+        "text": "Assume an AIS target has priority"
+      },
+      {
+        "id": "o3",
+        "text": "Track only vessels more than six miles away"
+      },
+      {
+        "id": "o4",
+        "text": "Wait until the target is visible"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 7(b) specifically calls for proper radar use including long-range scanning and radar plotting or equivalent systematic observation.",
+    "source": {
+      "label": "Navigation Rules, Rule 7",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-063",
+    "module": "q100",
+    "topic": "Rule 7",
+    "stem": "What should a navigator avoid when assessing collision risk?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Using multiple sources of information"
+      },
+      {
+        "id": "o2",
+        "text": "Making assumptions from scanty information, especially scanty radar information"
+      },
+      {
+        "id": "o3",
+        "text": "Taking compass bearings"
+      },
+      {
+        "id": "o4",
+        "text": "Using suitable lookout personnel"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 7(c) warns against assumptions based on scanty information, particularly scanty radar data.",
+    "source": {
+      "label": "Navigation Rules, Rule 7",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-064",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "What sound signal is required when approaching a bend in a narrow channel where other vessels may be obscured?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One prolonged blast"
+      },
+      {
+        "id": "o2",
+        "text": "Two short blasts"
+      },
+      {
+        "id": "o3",
+        "text": "At least five rapid blasts"
+      },
+      {
+        "id": "o4",
+        "text": "One short blast"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 34(e) requires one prolonged blast near a bend or obstructed area in a channel; a vessel hearing it around the bend answers with one prolonged.",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-065",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "A vessel hears a one-prolonged-blast signal around an obscured channel bend. What should it do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Answer with one prolonged blast if approaching the bend"
+      },
+      {
+        "id": "o2",
+        "text": "Answer with three short blasts"
+      },
+      {
+        "id": "o3",
+        "text": "Stop and sound MAYDAY"
+      },
+      {
+        "id": "o4",
+        "text": "Sound the anchor bell"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 34(e) requires answering a bend-warning signal with one prolonged blast when approaching from the other side.",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-066",
+    "module": "q100",
+    "topic": "Rule 16",
+    "stem": "What is a primary obligation under Rule 16 for a vessel required to give way?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Take early and substantial action to keep well clear"
+      },
+      {
+        "id": "o2",
+        "text": "Maintain course and speed regardless of risk"
+      },
+      {
+        "id": "o3",
+        "text": "Wait until the stand-on vessel alters"
+      },
+      {
+        "id": "o4",
+        "text": "Sound a distress signal"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 16 directs the give-way vessel to take early and substantial action to keep well clear.",
+    "source": {
+      "label": "Navigation Rules, Rule 16",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-067",
+    "module": "q100",
+    "topic": "Rule 19",
+    "stem": "In restricted visibility, you detect a vessel by radar alone forward of your beam. Which alteration should generally be avoided unless overtaking?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An alteration to port"
+      },
+      {
+        "id": "o2",
+        "text": "Any alteration to starboard"
+      },
+      {
+        "id": "o3",
+        "text": "A reduction in speed"
+      },
+      {
+        "id": "o4",
+        "text": "A substantial course change"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 19(d)(i) says, so far as possible, avoid altering to port for a vessel forward of the beam other than a vessel being overtaken.",
+    "source": {
+      "label": "Navigation Rules, Rule 19",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-068",
+    "module": "q100",
+    "topic": "Rule 19",
+    "stem": "In restricted visibility, a radar contact is abeam or abaft the beam. Which course alteration should generally be avoided?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An alteration away from the contact"
+      },
+      {
+        "id": "o2",
+        "text": "An alteration toward the contact"
+      },
+      {
+        "id": "o3",
+        "text": "A speed reduction"
+      },
+      {
+        "id": "o4",
+        "text": "A maneuver planned in ample time"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 19(d)(ii) calls for avoiding alteration toward a vessel abeam or abaft the beam, so far as possible.",
+    "source": {
+      "label": "Navigation Rules, Rule 19",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-069",
+    "module": "q100",
+    "topic": "Rule 20",
+    "stem": "When must vessel lights specified by the Rules be displayed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only during rain"
+      },
+      {
+        "id": "o2",
+        "text": "From sunset to sunrise, and also during restricted visibility where required"
+      },
+      {
+        "id": "o3",
+        "text": "Only when another vessel is visible"
+      },
+      {
+        "id": "o4",
+        "text": "Only on the high seas"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 20 states the lights shall be complied with from sunset to sunrise, and in restricted visibility by day where required.",
+    "source": {
+      "label": "Navigation Rules, Rule 20",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-070",
+    "module": "q100",
+    "topic": "Rule 23",
+    "stem": "At night, a power-driven vessel of 50 meters or more underway normally shows how many masthead lights?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "None"
+      },
+      {
+        "id": "o2",
+        "text": "One only"
+      },
+      {
+        "id": "o3",
+        "text": "Two, with the after light higher than the forward"
+      },
+      {
+        "id": "o4",
+        "text": "Three vertically"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 23(a) requires forward and aft masthead lights for power-driven vessels 50 meters or longer; the after masthead light is higher.",
+    "source": {
+      "label": "Navigation Rules, Rule 23",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-071",
+    "module": "q100",
+    "topic": "Rule 23",
+    "stem": "May a power-driven vessel under 50 meters underway carry a second masthead light?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "No, never"
+      },
+      {
+        "id": "o2",
+        "text": "Yes; it is not required but may be exhibited"
+      },
+      {
+        "id": "o3",
+        "text": "Only if towing"
+      },
+      {
+        "id": "o4",
+        "text": "Only with permission from the Coast Guard"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 23(a)(ii) permits, but does not require, the aft masthead light on power-driven vessels less than 50 meters.",
+    "source": {
+      "label": "Navigation Rules, Rule 23",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-072",
+    "module": "q100",
+    "topic": "Rule 24",
+    "stem": "Which light does a vessel towing astern exhibit near the stern in addition to its sternlight?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A yellow towing light above the sternlight"
+      },
+      {
+        "id": "o2",
+        "text": "A red all-round light below the sternlight"
+      },
+      {
+        "id": "o3",
+        "text": "A green all-round light"
+      },
+      {
+        "id": "o4",
+        "text": "A second masthead light astern"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 24(a)(iv) specifies a yellow towing light in a vertical line above the sternlight when towing astern.",
+    "source": {
+      "label": "Navigation Rules, Rule 24",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-073",
+    "module": "q100",
+    "topic": "Rule 24",
+    "stem": "What day shape does a vessel towing astern display when the tow exceeds 200 meters?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One black ball"
+      },
+      {
+        "id": "o2",
+        "text": "One black diamond"
+      },
+      {
+        "id": "o3",
+        "text": "Two black cones"
+      },
+      {
+        "id": "o4",
+        "text": "One black cylinder"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 24(a)(v) requires a diamond shape when the length of tow exceeds 200 meters.",
+    "source": {
+      "label": "Navigation Rules, Rule 24",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-074",
+    "module": "q100",
+    "topic": "Rule 25",
+    "stem": "A sailing vessel shows all-round red over green at or near the masthead. What do those optional lights identify?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A vessel under sail"
+      },
+      {
+        "id": "o2",
+        "text": "A vessel restricted in her ability to maneuver"
+      },
+      {
+        "id": "o3",
+        "text": "A vessel fishing other than trawling"
+      },
+      {
+        "id": "o4",
+        "text": "A vessel aground"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 25(c) permits red over green all-round lights for sailing vessels, in addition to required sidelights and sternlight, subject to placement rules.",
+    "source": {
+      "label": "Navigation Rules, Rule 25",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-075",
+    "module": "q100",
+    "topic": "Rule 20",
+    "stem": "When are a vessel's navigation-light requirements applicable even during daylight?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Whenever visibility is restricted"
+      },
+      {
+        "id": "o2",
+        "text": "Only while in a marina"
+      },
+      {
+        "id": "o3",
+        "text": "Only if another vessel asks"
+      },
+      {
+        "id": "o4",
+        "text": "Never"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 20(c) prescribes exhibition of Rule lights in restricted visibility from sunrise to sunset as well as at night.",
+    "source": {
+      "label": "Navigation Rules, Rule 20",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-076",
+    "module": "q100",
+    "topic": "Rule 26",
+    "stem": "Which all-round lights indicate a vessel engaged in fishing other than trawling?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Red over white"
+      },
+      {
+        "id": "o2",
+        "text": "Green over white"
+      },
+      {
+        "id": "o3",
+        "text": "Red over green"
+      },
+      {
+        "id": "o4",
+        "text": "Two white"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 26(c)(i) specifies a red all-round light over a white all-round light for fishing other than trawling.",
+    "source": {
+      "label": "Navigation Rules, Rule 26",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-077",
+    "module": "q100",
+    "topic": "Rule 27",
+    "stem": "For a vessel not under command and making way through the water, which additional lights are required beyond the two all-round red lights?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Sidelights and a sternlight"
+      },
+      {
+        "id": "o2",
+        "text": "Two masthead lights"
+      },
+      {
+        "id": "o3",
+        "text": "A yellow towing light"
+      },
+      {
+        "id": "o4",
+        "text": "An anchor light only"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 27(a)(iii) requires sidelights and a sternlight when a not-under-command vessel makes way through water.",
+    "source": {
+      "label": "Navigation Rules, Rule 27",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-078",
+    "module": "q100",
+    "topic": "Rule 27",
+    "stem": "A dredger restricted in her ability to maneuver marks the side on which vessels may pass with which lights?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Two all-round green lights vertically"
+      },
+      {
+        "id": "o2",
+        "text": "Two all-round red lights vertically"
+      },
+      {
+        "id": "o3",
+        "text": "A single white flashing light"
+      },
+      {
+        "id": "o4",
+        "text": "Two amber flashing lights"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 27(d)(ii) specifies two green all-round lights vertically on the side where another vessel may pass.",
+    "source": {
+      "label": "Navigation Rules, Rule 27",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-079",
+    "module": "q100",
+    "topic": "Rule 27",
+    "stem": "What day shape marks the obstructed side of a dredging vessel restricted in maneuverability?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Two black balls vertically"
+      },
+      {
+        "id": "o2",
+        "text": "Two black diamonds vertically"
+      },
+      {
+        "id": "o3",
+        "text": "A black cylinder"
+      },
+      {
+        "id": "o4",
+        "text": "One black cone"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 27(d)(i) marks the obstruction side with two balls in a vertical line; the safe side uses two diamonds.",
+    "source": {
+      "label": "Navigation Rules, Rule 27",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-080",
+    "module": "q100",
+    "topic": "Rule 30",
+    "stem": "What is the additional nighttime identification of a vessel aground, where Rule 30(d) applies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Two all-round red lights vertically in addition to applicable anchor lights"
+      },
+      {
+        "id": "o2",
+        "text": "Green over white all-round lights"
+      },
+      {
+        "id": "o3",
+        "text": "One flashing blue light"
+      },
+      {
+        "id": "o4",
+        "text": "A yellow towing light"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 30(d) requires two all-round red lights in a vertical line in addition to anchor lights, subject to exemptions for certain small vessels.",
+    "source": {
+      "label": "Navigation Rules, Rule 30",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-081",
+    "module": "q100",
+    "topic": "Rule 30",
+    "stem": "A vessel less than 50 meters long at anchor generally may display which anchor-light arrangement?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One all-round white light where best seen"
+      },
+      {
+        "id": "o2",
+        "text": "Two flashing red lights"
+      },
+      {
+        "id": "o3",
+        "text": "Only sidelights"
+      },
+      {
+        "id": "o4",
+        "text": "One green light over white"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 30(b) permits one all-round white light where best seen instead of the two-anchor-light arrangement for vessels under 50 meters.",
+    "source": {
+      "label": "Navigation Rules, Rule 30",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-082",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "Under International Rule 34(a), what does a whistle signal of two short blasts mean?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "I am altering my course to port"
+      },
+      {
+        "id": "o2",
+        "text": "I intend to leave you on my port side"
+      },
+      {
+        "id": "o3",
+        "text": "I am operating astern propulsion"
+      },
+      {
+        "id": "o4",
+        "text": "I am altering course to starboard"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "International Rule 34(a) uses two short blasts to signify an alteration of course to port; Inland passing-signal conventions differ.",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-083",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "Under Inland Rule 34(a), a two-short-blast passing signal indicates what intention?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To leave the other vessel on your starboard side"
+      },
+      {
+        "id": "o2",
+        "text": "To leave the other vessel on your port side"
+      },
+      {
+        "id": "o3",
+        "text": "To apply astern propulsion"
+      },
+      {
+        "id": "o4",
+        "text": "To turn to starboard"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Under Inland Rule 34(a), two short blasts mean 'I intend to leave you on my starboard side.'",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-084",
+    "module": "q100",
+    "topic": "Rule 35",
+    "stem": "In fog, what signal may a vessel at anchor give as an additional warning of its position and possible collision?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One short, one prolonged and one short whistle blast"
+      },
+      {
+        "id": "o2",
+        "text": "Five prolonged blasts"
+      },
+      {
+        "id": "o3",
+        "text": "Three long and two short blasts"
+      },
+      {
+        "id": "o4",
+        "text": "Two rapid short blasts"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 35(g) permits one short, one prolonged, one short as an additional warning by a vessel at anchor.",
+    "source": {
+      "label": "Navigation Rules, Rule 35",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "rr-085",
+    "module": "q100",
+    "topic": "Rule 35",
+    "stem": "In fog, what sound signal does the last vessel of a tow sound if manned, where practicable?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One prolonged followed by three short blasts"
+      },
+      {
+        "id": "o2",
+        "text": "One prolonged only"
+      },
+      {
+        "id": "o3",
+        "text": "Two prolonged blasts"
+      },
+      {
+        "id": "o4",
+        "text": "Five rapid short blasts"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 35(e) specifies one prolonged followed by three short blasts for the last vessel in a tow if manned, where practicable.",
+    "source": {
+      "label": "Navigation Rules, Rule 35",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
   }
 ]
