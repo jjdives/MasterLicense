@@ -1,6 +1,6 @@
 {
   "source": "https://www.dco.uscg.mil/nmc/examinations/",
-  "note": "Counts and pass scores are based on published NMC exam structure; time is a configurable practice preset and may not match local exam administration.",
+  "note": "Exam module counts and passing scores are from the NMC's published Deck and Engineering Examination Guide (GLI06/GLI07). The 210-minute timer is a practice setting based on the usual 3.5-hour REC session; verify the assigned modules and schedule from the applicant's approval to test. Q300 Inland-only is an alternative to Q100 in qualifying situations and entails a geographic COLREGS limitation.",
   "modules": [
     {
       "id": "q100",
@@ -12,6 +12,15 @@
       "bank": "q100.json",
       "status": "beta",
       "guide": "../lights-and-shapes-guide.html"
+    },
+    {
+      "id": "q300",
+      "code": "Q300",
+      "title": "Rules of the Road - Inland only (optional COLREGS-limited route)",
+      "count": 50,
+      "pass": 90,
+      "minutes": 210,
+      "status": "planned"
     },
     {
       "id": "q347",
@@ -85,5 +94,6 @@
       "minutes": 210,
       "status": "planned"
     }
-  ]
+  ],
+  "examGuide": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/deck_engineering_guide_as_of_3_24_14.pdf"
 }
