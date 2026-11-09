@@ -1,0 +1,994 @@
+[
+  {
+    "id": "q347-001",
+    "module": "q347",
+    "topic": "Seamanship",
+    "stem": "A synthetic line has a published breaking strength of 20,000 lb. With a specified safety factor of 5, what is the calculated working-load limit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "1,000 lb"
+      },
+      {
+        "id": "o2",
+        "text": "4,000 lb"
+      },
+      {
+        "id": "o3",
+        "text": "5,000 lb"
+      },
+      {
+        "id": "o4",
+        "text": "100,000 lb"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Divide the breaking strength by the specified safety factor: 20,000/5 = 4,000 lb. Always use the manufacturer's actual working-load rating when supplied.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-002",
+    "module": "q347",
+    "topic": "Marlinespike",
+    "stem": "Which bend is traditionally used to join two ropes of unequal diameter?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Sheet bend"
+      },
+      {
+        "id": "o2",
+        "text": "Square knot"
+      },
+      {
+        "id": "o3",
+        "text": "Figure-eight stopper"
+      },
+      {
+        "id": "o4",
+        "text": "Clove hitch"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A sheet bend is intended to join two lines, including lines of different sizes; arrange the smaller rope around the bight of the larger.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-003",
+    "module": "q347",
+    "topic": "Marlinespike",
+    "stem": "What is the primary purpose of whipping the end of a fiber rope?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Increase breaking strength"
+      },
+      {
+        "id": "o2",
+        "text": "Stop the strands and fibers from unraveling"
+      },
+      {
+        "id": "o3",
+        "text": "Make the rope buoyant"
+      },
+      {
+        "id": "o4",
+        "text": "Reduce stretch under load"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Whipping binds the end and helps prevent it from fraying or unlaying.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-004",
+    "module": "q347",
+    "topic": "Marlinespike",
+    "stem": "Which knot makes a fixed loop that normally does not tighten under load?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rolling hitch"
+      },
+      {
+        "id": "o2",
+        "text": "Bowline"
+      },
+      {
+        "id": "o3",
+        "text": "Overhand stopper"
+      },
+      {
+        "id": "o4",
+        "text": "Square knot"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "A correctly tied bowline forms a fixed eye. It is not a substitute for a certified personnel lifting harness.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-005",
+    "module": "q347",
+    "topic": "Marlinespike",
+    "stem": "Which knot commonly serves as a stopper near the end of a line?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Figure-eight knot"
+      },
+      {
+        "id": "o2",
+        "text": "Sheet bend"
+      },
+      {
+        "id": "o3",
+        "text": "Round turn"
+      },
+      {
+        "id": "o4",
+        "text": "Clove hitch"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A figure-eight is a bulkier stopper knot used to reduce the chance of a line running through a fitting.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-006",
+    "module": "q347",
+    "topic": "Mooring",
+    "stem": "What is the principal use of a cleat hitch?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Join two rope ends permanently"
+      },
+      {
+        "id": "o2",
+        "text": "Secure a line to a cleat while permitting intentional release"
+      },
+      {
+        "id": "o3",
+        "text": "Make a rope float"
+      },
+      {
+        "id": "o4",
+        "text": "Increase rope breaking load"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "A cleat hitch secures a line around a cleat horns and base in a controlled figure-eight pattern.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-007",
+    "module": "q347",
+    "topic": "Line handling",
+    "stem": "Why should a crew member avoid standing inside a bight of a loaded mooring line?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The line will always untie"
+      },
+      {
+        "id": "o2",
+        "text": "The loaded line may suddenly tighten and trap or injure the person"
+      },
+      {
+        "id": "o3",
+        "text": "It reduces the rope's ultraviolet resistance"
+      },
+      {
+        "id": "o4",
+        "text": "It makes the boat yaw"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "A bight can close abruptly when tension develops, crushing or dragging anyone standing in it.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-008",
+    "module": "q347",
+    "topic": "Line handling",
+    "stem": "Why is nylon line particularly hazardous when it parts under high load?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It has zero elasticity"
+      },
+      {
+        "id": "o2",
+        "text": "Stored elastic energy may cause violent snap-back"
+      },
+      {
+        "id": "o3",
+        "text": "It cannot be used in saltwater"
+      },
+      {
+        "id": "o4",
+        "text": "It catches fire when wet"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Nylon stretches significantly under load and can release stored energy violently if it fails.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-009",
+    "module": "q347",
+    "topic": "Line handling",
+    "stem": "Which common synthetic fiber rope is generally buoyant in water?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Nylon"
+      },
+      {
+        "id": "o2",
+        "text": "Polyester"
+      },
+      {
+        "id": "o3",
+        "text": "Polypropylene"
+      },
+      {
+        "id": "o4",
+        "text": "Aramid"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Polypropylene normally has a density below water and floats. Material formulation and contamination can affect real-world behavior.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-010",
+    "module": "q347",
+    "topic": "Mooring",
+    "stem": "Where should chafing protection be placed on a working mooring line?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only on its unused end"
+      },
+      {
+        "id": "o2",
+        "text": "At contact points where the line rubs against hardware or structure"
+      },
+      {
+        "id": "o3",
+        "text": "Only at the cleat"
+      },
+      {
+        "id": "o4",
+        "text": "Only on wire rope"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Chafe gear protects rope at fairleads, chocks, gunwales, and other points of abrasion.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-011",
+    "module": "q347",
+    "topic": "Mooring",
+    "stem": "Which mooring line most directly limits a vessel's longitudinal fore-and-aft movement?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spring line"
+      },
+      {
+        "id": "o2",
+        "text": "Breast line"
+      },
+      {
+        "id": "o3",
+        "text": "Messenger line"
+      },
+      {
+        "id": "o4",
+        "text": "Heaving line"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Spring lines resist fore-and-aft movement along the dock; breast lines primarily resist movement away from the dock.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-012",
+    "module": "q347",
+    "topic": "Mooring",
+    "stem": "Which mooring line is used primarily to hold a vessel close to a pier laterally?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spring line"
+      },
+      {
+        "id": "o2",
+        "text": "Breast line"
+      },
+      {
+        "id": "o3",
+        "text": "Towing hawser"
+      },
+      {
+        "id": "o4",
+        "text": "Anchor trip line"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "A breast line leads roughly perpendicular to the vessel and restrains movement away from the pier.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-013",
+    "module": "q347",
+    "topic": "Seamanship",
+    "stem": "What is a Jacob's ladder?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A rope ladder with rigid steps or wooden rungs"
+      },
+      {
+        "id": "o2",
+        "text": "A fixed steel inclined ladder"
+      },
+      {
+        "id": "o3",
+        "text": "A line joining two mooring posts"
+      },
+      {
+        "id": "o4",
+        "text": "A chart plotting instrument"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A Jacob's ladder is a flexible rope ladder with rigid steps, historically including wooden rungs.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-014",
+    "module": "q347",
+    "topic": "Anchoring",
+    "stem": "What does 'scope' mean when discussing an anchor rode?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rode length paid out divided by the vertical distance from bow fitting to seabed"
+      },
+      {
+        "id": "o2",
+        "text": "The size of the anchor shank"
+      },
+      {
+        "id": "o3",
+        "text": "The width of the anchor flukes"
+      },
+      {
+        "id": "o4",
+        "text": "The length of the anchor chain alone"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Anchor scope is rode length divided by the effective vertical distance from bow to bottom. Bow height above water is part of that depth.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-015",
+    "module": "q347",
+    "topic": "Anchoring",
+    "stem": "Which observation can provide early evidence of a dragging anchor?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A stationary bearing to several shoreside objects"
+      },
+      {
+        "id": "o2",
+        "text": "Changing position relative to fixed landmarks or an anchor alarm position"
+      },
+      {
+        "id": "o3",
+        "text": "A steady depth reading by itself"
+      },
+      {
+        "id": "o4",
+        "text": "A deployed snubber line"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Anchor watch uses bearings, electronic positions, and other observations to detect movement outside the intended swing circle.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-016",
+    "module": "q347",
+    "topic": "Marlinespike",
+    "stem": "What does the 'bitter end' of a rope refer to?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The rope's full-length midpoint"
+      },
+      {
+        "id": "o2",
+        "text": "The terminal end of a line, often the inboard end made fast on a vessel"
+      },
+      {
+        "id": "o3",
+        "text": "The knot closest to a shackle"
+      },
+      {
+        "id": "o4",
+        "text": "The chafed portion of a line"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "The bitter end is the end of a line; on anchor rodes it often refers to the inboard end secured aboard.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-017",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "What is 'squat' when a vessel proceeds in shallow or confined water?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reduction in effective draft at speed"
+      },
+      {
+        "id": "o2",
+        "text": "Increase in effective draft due to hydrodynamic pressure effects"
+      },
+      {
+        "id": "o3",
+        "text": "Rolling caused by beam seas"
+      },
+      {
+        "id": "o4",
+        "text": "Propeller cavitation during astern propulsion"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Squat is a dynamic sinkage/trim effect in shallow or restricted water that reduces under-keel clearance.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-018",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "As speed increases in shallow water, what generally happens to squat?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It generally becomes more pronounced"
+      },
+      {
+        "id": "o2",
+        "text": "It vanishes above displacement speed"
+      },
+      {
+        "id": "o3",
+        "text": "It is determined only by tide height"
+      },
+      {
+        "id": "o4",
+        "text": "It always reverses into lift"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Dynamic squat generally increases rapidly with vessel speed, especially when water flow is restricted.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-019",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "In a narrow channel close to a bank, what is 'bank cushion'?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Pressure near the bow that pushes it away from the bank"
+      },
+      {
+        "id": "o2",
+        "text": "A vacuum that pulls the bow directly into the bank"
+      },
+      {
+        "id": "o3",
+        "text": "A wave caused by a ship's anchor"
+      },
+      {
+        "id": "o4",
+        "text": "A current that forces the whole hull directly toward the bank"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Bank cushion refers to the bow-side pressure increase near the bank, usually tending to move the bow away.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-020",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "When a vessel passes very near a bank, what effect is commonly called 'bank suction'?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A tendency for the stern to be drawn toward the bank"
+      },
+      {
+        "id": "o2",
+        "text": "A guaranteed lift of the stern away from the bank"
+      },
+      {
+        "id": "o3",
+        "text": "A pressure wave that pushes both bow and stern away"
+      },
+      {
+        "id": "o4",
+        "text": "A loss of all rudder movement at any speed"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Lower pressure alongside the aft portion of the hull can pull the stern toward the bank.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-021",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "What is 'leeway' in navigation and boat handling?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Wind-caused sideways displacement of a vessel from its intended path"
+      },
+      {
+        "id": "o2",
+        "text": "The speed of the tidal current"
+      },
+      {
+        "id": "o3",
+        "text": "The distance travelled along the log line"
+      },
+      {
+        "id": "o4",
+        "text": "The heading shown on the compass"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Leeway is lateral movement caused by wind, distinct from current set and drift.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-022",
+    "module": "q347",
+    "topic": "Navigation principles",
+    "stem": "What is the difference between a vessel's heading and course over ground?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Heading is bow direction; course over ground is the direction of actual travel over Earth's surface"
+      },
+      {
+        "id": "o2",
+        "text": "They always have identical values"
+      },
+      {
+        "id": "o3",
+        "text": "Heading is measured in knots, course over ground in degrees"
+      },
+      {
+        "id": "o4",
+        "text": "Heading is always referenced to true north only"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Current and leeway can make a vessel's direction of travel over ground differ from the direction its bow points.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-023",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "What does a current's 'set' describe?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Its direction of flow"
+      },
+      {
+        "id": "o2",
+        "text": "Its speed in knots"
+      },
+      {
+        "id": "o3",
+        "text": "Its temperature"
+      },
+      {
+        "id": "o4",
+        "text": "Its tidal range"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Set denotes direction of current flow, while drift denotes its speed.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-024",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "What does a current's 'drift' describe?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Its rate or speed"
+      },
+      {
+        "id": "o2",
+        "text": "Its direction alone"
+      },
+      {
+        "id": "o3",
+        "text": "The depth of the fairway"
+      },
+      {
+        "id": "o4",
+        "text": "The angle between true and magnetic north"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Drift is the speed of the current, commonly expressed in knots.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-025",
+    "module": "q347",
+    "topic": "Towing",
+    "stem": "Which fitting is generally a suitable attachment point for an emergency tow?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A lightweight lifeline stanchion"
+      },
+      {
+        "id": "o2",
+        "text": "An adequately rated bollard or bitt designed for the load"
+      },
+      {
+        "id": "o3",
+        "text": "A windshield frame"
+      },
+      {
+        "id": "o4",
+        "text": "A grab rail on the cabin roof"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "A towline must be led to a sufficiently strong fitting rated or engineered for the load; not a light stanchion or railing.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-026",
+    "module": "q347",
+    "topic": "Towing",
+    "stem": "Why may a longer towline be preferable in rough water when it is safe to use one?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It can provide more scope and soften shock loading"
+      },
+      {
+        "id": "o2",
+        "text": "It prevents the tow from yawing in every condition"
+      },
+      {
+        "id": "o3",
+        "text": "It eliminates the need for a towing bridle"
+      },
+      {
+        "id": "o4",
+        "text": "It allows towing at maximum speed"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Appropriate length and catenary can help reduce shock loads, though safe length depends on sea state, hazards and rigging.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-027",
+    "module": "q347",
+    "topic": "Heavy weather",
+    "stem": "When a boat broaches in following seas, what happens?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The boat turns broadside to the waves, potentially losing control"
+      },
+      {
+        "id": "o2",
+        "text": "The bow rises evenly without turning"
+      },
+      {
+        "id": "o3",
+        "text": "The anchor pulls free"
+      },
+      {
+        "id": "o4",
+        "text": "The hull's freeboard increases"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A broach is an uncontrolled yaw or turn that can leave a vessel broadside to heavy seas.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-028",
+    "module": "q347",
+    "topic": "Wake reduction",
+    "stem": "What is the most dependable operational way to reduce wake damage to nearby moored boats?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Pass as close as possible"
+      },
+      {
+        "id": "o2",
+        "text": "Reduce speed enough to minimize the harmful wake"
+      },
+      {
+        "id": "o3",
+        "text": "Increase RPM while steering away"
+      },
+      {
+        "id": "o4",
+        "text": "Move passengers to the bow"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Reducing speed appropriately near other vessels and shorelines is a primary method of limiting wake impact.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-029",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "What is meant by a vessel's 'advance' during a turning maneuver?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Distance travelled in the original-course direction from beginning the turn to a specified heading change"
+      },
+      {
+        "id": "o2",
+        "text": "Distance directly perpendicular to the original course"
+      },
+      {
+        "id": "o3",
+        "text": "The vertical draft increase"
+      },
+      {
+        "id": "o4",
+        "text": "Distance measured only along the new heading"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Advance is a turning-circle distance measured parallel to the original course from the start of the maneuver to a defined point, commonly the 90-degree heading change.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-030",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "What is meant by a vessel's 'transfer' during a turning maneuver?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Lateral displacement from the original track at a specified stage of the turn"
+      },
+      {
+        "id": "o2",
+        "text": "The speed of the wake"
+      },
+      {
+        "id": "o3",
+        "text": "Distance travelled parallel to the original course"
+      },
+      {
+        "id": "o4",
+        "text": "Propeller blade pitch"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Transfer is the perpendicular displacement from the original course line during a turn, often specified at 90 degrees.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  },
+  {
+    "id": "q347-031",
+    "module": "q347",
+    "topic": "Vessel handling",
+    "stem": "Which vessel motion is rotation around the longitudinal axis?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Pitch"
+      },
+      {
+        "id": "o2",
+        "text": "Roll"
+      },
+      {
+        "id": "o3",
+        "text": "Yaw"
+      },
+      {
+        "id": "o4",
+        "text": "Heave"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Roll is rotation about the vessel's fore-and-aft axis; pitch is rotation about the transverse axis.",
+    "source": {
+      "label": "USCG NMC sample examination topics - Q347",
+      "url": "https://www.dco.uscg.mil/Portals/9/NMC/pdfs/examinations/q347_deck_general.pdf"
+    },
+    "provenance": "original",
+    "reviewStatus": "candidate"
+  }
+]
