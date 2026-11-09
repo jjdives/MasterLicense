@@ -1,0 +1,89 @@
+{
+  "source": "https://www.dco.uscg.mil/nmc/examinations/",
+  "note": "Counts and pass scores are based on published NMC exam structure; time is a configurable practice preset and may not match local exam administration.",
+  "modules": [
+    {
+      "id": "q100",
+      "code": "Q100",
+      "title": "Rules of the Road - International & Inland",
+      "count": 50,
+      "pass": 90,
+      "minutes": 210,
+      "bank": "q100.json",
+      "status": "beta",
+      "guide": "../lights-and-shapes-guide.html"
+    },
+    {
+      "id": "q347",
+      "code": "Q347",
+      "title": "Deck General",
+      "count": 50,
+      "pass": 70,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q348",
+      "code": "Q348",
+      "title": "Deck Safety",
+      "count": 50,
+      "pass": 70,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q349",
+      "code": "Q349",
+      "title": "Navigation General - Great Lakes & Inland",
+      "count": 50,
+      "pass": 70,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q350",
+      "code": "Q350",
+      "title": "Chart Plotting",
+      "count": 10,
+      "pass": 90,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q352",
+      "code": "Q352",
+      "title": "OUPV to Master - Upgrade",
+      "count": 50,
+      "pass": 70,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q356",
+      "code": "Q356",
+      "title": "OUPV - Deck General & Safety",
+      "count": 50,
+      "pass": 70,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q357",
+      "code": "Q357",
+      "title": "OUPV - Navigation General",
+      "count": 50,
+      "pass": 70,
+      "minutes": 210,
+      "status": "planned"
+    },
+    {
+      "id": "q358",
+      "code": "Q358",
+      "title": "OUPV - Chart Plotting",
+      "count": 10,
+      "pass": 90,
+      "minutes": 210,
+      "status": "planned"
+    }
+  ]
+}
