@@ -40,7 +40,9 @@
 - #4: Exam persistence, missed-question backlog, timer + automated tests: https://github.com/jjdives/MasterLicense/issues/4
 - #5: MMC application checklist research and verification: https://github.com/jjdives/MasterLicense/issues/5
 
-Related separately staged engine implementation: **draft PR #7** https://github.com/jjdives/MasterLicense/pull/7 (resumable exams, cumulative missed-question history, automated test sources; tests and browser QA still pending).\n\nThese are GitHub issues, not autonomous agents executing in the background. They are suitable as separate agent assignments when an agent-capable development workspace is used.
+Related separately staged engine implementation: **draft PR #7** https://github.com/jjdives/MasterLicense/pull/7 (resumable exams, cumulative missed-question history, automated test sources; tests and browser QA still pending).
+
+These are GitHub issues, not autonomous agents executing in the background. They are suitable as separate agent assignments when an agent-capable development workspace is used.
 
 ## Required review before enabling candidates
 1. Validate against NMC blueprint: exact module, subject area, question count and pass threshold; don't confuse GLI06 with the commercial course.
