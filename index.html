@@ -1,103 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USCG OUPV Sixpack & 25/50/100 Ton Master - Study Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #0f172a; /* Slate 900 */
-            color: #e2e8f0; 
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
-
-    <!-- Decorative background glow -->
-    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-sky-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 pointer-events-none"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 pointer-events-none"></div>
-
-    <main class="w-full max-w-6xl relative z-10">
-        
-        <header class="text-center mb-16">
-            <h1 class="text-5xl font-extrabold text-white mb-4 tracking-tight">USCG OUPV Sixpack & 25/50/100 Ton Master - Study Hub</h1>
-            <h2 class="text-2xl text-sky-400 font-semibold mb-4">Lights, Shapes & Sound Signals</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg">
-                Choose your interactive study guide below. Master the visual rules of the road with our 2D/3D rendering engines, or drill the audible signal patterns.
-            </p>
-        </header>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- 2D Guide Card -->
-            <a href="lights-and-shapes-guide.html" class="group block bg-slate-800 rounded-2xl border border-slate-700 p-8 hover:bg-slate-700 hover:border-sky-400 transition-all duration-300 transform hover:-translate-y-1 shadow-xl flex flex-col">
-                <div class="w-16 h-16 bg-slate-900 rounded-xl border border-slate-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shrink-0">
-                    <!-- 2D Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="3" y1="9" x2="21" y2="9"></line>
-                        <line x1="9" y1="21" x2="9" y2="9"></line>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-3">2D Lights & Shapes</h3>
-                <p class="text-slate-400 leading-relaxed mb-6 flex-1">
-                    Features clean, top-down and side-profile vector diagrams. Perfect for quick visual memorization, fast scrolling, and lower-power mobile devices.
-                </p>
-                <div class="flex items-center text-sky-400 font-semibold text-sm mt-auto">
-                    Launch 2D Guide
-                    <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </div>
-            </a>
-
-            <!-- 3D Guide Card -->
-            <a href="lights-and-shapes-guide-3d.html" class="group block bg-slate-800 rounded-2xl border border-slate-700 p-8 hover:bg-slate-700 hover:border-sky-400 transition-all duration-300 transform hover:-translate-y-1 shadow-xl flex flex-col">
-                <div class="w-16 h-16 bg-slate-900 rounded-xl border border-slate-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shrink-0">
-                    <!-- 3D Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-3">3D Lights & Shapes</h3>
-                <p class="text-slate-400 leading-relaxed mb-6 flex-1">
-                    Features fully interactive WebGL rendering. Click and drag to orbit around the vessels and study the exact mathematical arcs of visibility in real-time.
-                </p>
-                <div class="flex items-center text-sky-400 font-semibold text-sm mt-auto">
-                    Launch 3D Simulator
-                    <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </div>
-            </a>
-
-            <!-- Sound Signals Card -->
-            <a href="sound-signals-guide.html" class="group block bg-slate-800 rounded-2xl border border-slate-700 p-8 hover:bg-slate-700 hover:border-sky-400 transition-all duration-300 transform hover:-translate-y-1 shadow-xl flex flex-col">
-                <div class="w-16 h-16 bg-slate-900 rounded-xl border border-slate-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shrink-0">
-                    <!-- Sound Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-3">Audible Sound Signals</h3>
-                <p class="text-slate-400 leading-relaxed mb-6 flex-1">
-                    Master the inland and international audible signals for maneuvering, warning, overtaking, and restricted visibility with visual blast patterns.
-                </p>
-                <div class="flex items-center text-sky-400 font-semibold text-sm mt-auto">
-                    Launch Sound Signals
-                    <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </div>
-            </a>
-
-        </div>
-
-    </main>
-
-    <footer class="mt-16 text-center text-slate-500 text-sm relative z-10 pb-8">
-        <p>Interactive study tools for the United States Coast Guard Captain's License.</p>
-    </footer>
-
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>USCG Master License Study Hub</title><style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#0c1727;color:#edf5ff}*{box-sizing:border-box}body{margin:0}a{color:#7dd3fc;text-decoration:none}a:hover{text-decoration:underline}.layout{display:grid;grid-template-columns:265px minmax(0,1fr);min-height:100vh}aside{background:#16273f;padding:24px 17px;border-right:1px solid #385170}aside h2{font-size:.84rem;text-transform:uppercase;letter-spacing:.09em;color:#9db7d3;margin:24px 0 8px}nav a{display:block;padding:8px 11px;border-radius:7px;color:#d6e9fd;font-size:.94rem}nav a:hover{background:#274461;text-decoration:none}.content{padding:36px max(24px,5vw);max-width:1280px}h1{font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;max-width:780px;margin:0 0 15px}.muted{color:#afc0d4}h2{margin:38px 0 15px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:17px}.card{display:block;background:#182b43;border:1px solid #3a516e;border-radius:13px;padding:20px;min-height:156px;color:#eef5ff}.card:hover{border-color:#7dd3fc;transform:translateY(-2px);text-decoration:none}.card strong{font-size:1.15rem}.card p{line-height:1.5;color:#b7c7d8}.pill{display:inline-block;font-size:.77rem;color:#9ee3ff;border:1px solid #396785;padding:4px 8px;border-radius:14px}.lead{font-size:1.15rem;line-height:1.6;max-width:790px}footer{margin-top:50px;color:#8ca6bf;font-size:.85rem}@media(max-width:750px){.layout{display:block}aside{border-right:0;border-bottom:1px solid #385170;padding:14px}aside nav{display:flex;flex-wrap:wrap;gap:3px}aside h2{margin:15px 0 6px}.content{padding:25px 17px}.card{min-height:125px}}</style></head><body>
+<div class="layout"><aside><a href="index.html" style="color:#fff;font-size:1.18rem;font-weight:800">⚓ Master License</a><p class="muted" style="font-size:.82rem">Independent NMC examination study hub</p>
+<nav aria-label="Study navigation">
+<h2>Practice</h2><a href="exams/">Sample Exams</a><a href="exams/#q100">Rules of the Road (Q100)</a>
+<h2>Study Guides</h2>
+<a href="lights-and-shapes-guide.html">Rules: Lights & Shapes (2D)</a><a href="lights-and-shapes-guide-3d.html">Rules: Lights & Shapes (3D)</a><a href="sound-signals-guide.html">Rules: Sound Signals</a><a href="wa-demarcation-guide.html">Rules: WA Demarcation</a>
+<a href="#guide-planned">Deck General (Q347)</a><a href="#guide-planned">Deck Safety (Q348)</a><a href="#guide-planned">Navigation General (Q349)</a><a href="#guide-planned">Chart Plotting (Q350)</a><a href="#guide-planned">OUPV to Master Upgrade (Q352)</a>
+<h2>Credential</h2><a href="application/">Application Checklist</a><a href="https://www.dco.uscg.mil/nmc/examinations/" target="_blank" rel="noopener">NMC Official Samples</a>
+</nav></aside>
+<main class="content"><span class="pill">In development · NMC-aligned</span><h1>Prepare for your USCG Master License</h1><p class="lead muted">Practice with independently written, source-referenced questions organized by the <strong>NMC examination modules</strong>—not by a commercial course's lesson sequence. Track missed questions in your browser, study maritime rules, and manage the credential application checklist.</p>
+<h2>Practice exams</h2><div class="grid"><a class="card" href="exams/"><strong>Rules of the Road · Q100</strong><p>56 beta practice questions. Shuffle choices, answer with immediate explanations, or take a timed mock exam. Retest missed questions.</p><span class="pill">Available now</span></a><a class="card" href="exams/"><strong>Other Master modules</strong><p>Deck General, Deck Safety, Navigation General, and Chart Plotting are indexed using NMC module codes. Banks are being developed.</p><span class="pill">Coming soon</span></a><a class="card" href="exams/"><strong>OUPV and Upgrade modules</strong><p>Additional NMC modules for OUPV and OUPV-to-Master upgrade are listed in the exam catalog.</p><span class="pill">Coming soon</span></a></div>
+<h2>Study resources</h2><div class="grid">
+<a class="card" href="lights-and-shapes-guide.html"><strong>Lights and Day Shapes (2D)</strong><p>Fast vector reference for vessel identification.</p></a>
+<a class="card" href="lights-and-shapes-guide-3d.html"><strong>Lights and Day Shapes (3D)</strong><p>Interactive three-dimensional vessel lighting reference.</p></a>
+<a class="card" href="sound-signals-guide.html"><strong>Sound Signals</strong><p>Learn maneuvering, warning, and restricted-visibility signals.</p></a>
+<a class="card" href="wa-demarcation-guide.html"><strong>Washington Demarcation Lines</strong><p>Where Inland and International Rules apply in Washington.</p></a>
+</div>
+<h2 id="guide-planned">More study guides</h2><p class="muted">Deck General (Q347), Deck Safety (Q348), Navigation General (Q349), Chart Plotting (Q350), and OUPV-to-Master (Q352) guides are planned. Their exam modules are listed now so the study hub follows the official NMC structure.</p>
+<h2>Application preparation</h2><div class="grid"><a class="card" href="application/"><strong>MMC Application Checklist</strong><p>Track sea service, medical, TWIC, drug testing, approved course or exam evidence, CPR/first aid and supporting forms. Saved only in this browser.</p><span class="pill">Available now</span></a></div>
+<footer>Independent study aid. Not affiliated with or endorsed by the U.S. Coast Guard. Always verify requirements with the <a href="https://www.dco.uscg.mil/nmc/">National Maritime Center</a>.</footer>
+</main></div></body></html>
