@@ -1,0 +1,22 @@
+name: Exam engine tests
+on:
+  pull_request:
+    paths:
+      - "exams/**"
+      - ".github/workflows/exam-tests.yml"
+  push:
+    branches:
+      - "feature/exam-persistence-v2"
+    paths:
+      - "exams/**"
+      - ".github/workflows/exam-tests.yml"
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test practice exam core
+        run: node --test exams/tests/engine-core.test.mjs
