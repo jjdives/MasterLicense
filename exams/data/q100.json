@@ -1,0 +1,1738 @@
+[
+  {
+    "id": "rr-001",
+    "module": "q100",
+    "topic": "Rule 5",
+    "stem": "What must a proper lookout use to detect and assess nearby vessels?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only radar when available"
+      },
+      {
+        "id": "o2",
+        "text": "Sight, hearing, and all other available means appropriate to conditions"
+      },
+      {
+        "id": "o3",
+        "text": "Only binoculars during daylight"
+      },
+      {
+        "id": "o4",
+        "text": "Only AIS targets"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 5 requires a proper lookout by sight and hearing as well as all available means appropriate to the prevailing circumstances and conditions.",
+    "source": {
+      "label": "Navigation Rules, Rule 5",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-002",
+    "module": "q100",
+    "topic": "Rule 6",
+    "stem": "Which best describes safe speed under the navigation rules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A speed that produces no wake"
+      },
+      {
+        "id": "o2",
+        "text": "A speed below 10 knots"
+      },
+      {
+        "id": "o3",
+        "text": "A speed allowing proper and effective collision-avoidance action and stopping within an appropriate distance"
+      },
+      {
+        "id": "o4",
+        "text": "The local posted limit in all circumstances"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 6 defines safe speed in terms of the ability to take effective action to avoid collision and to stop within an appropriate distance.",
+    "source": {
+      "label": "Navigation Rules, Rule 6",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-003",
+    "module": "q100",
+    "topic": "Rule 7",
+    "stem": "When should a mariner treat risk of collision as existing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only if another vessel is within one nautical mile"
+      },
+      {
+        "id": "o2",
+        "text": "Whenever there is any doubt about whether the risk exists"
+      },
+      {
+        "id": "o3",
+        "text": "Only after five short blasts"
+      },
+      {
+        "id": "o4",
+        "text": "Only if both vessels are power-driven"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Under Rule 7, if there is any doubt, risk of collision is deemed to exist.",
+    "source": {
+      "label": "Navigation Rules, Rule 7",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-004",
+    "module": "q100",
+    "topic": "Rule 7",
+    "stem": "An approaching vessel remains on nearly the same compass bearing while its range decreases. What does that suggest?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Risk of collision"
+      },
+      {
+        "id": "o2",
+        "text": "The vessel is at anchor"
+      },
+      {
+        "id": "o3",
+        "text": "The other vessel is altering to port"
+      },
+      {
+        "id": "o4",
+        "text": "There is no risk if it is far away"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "A steady bearing with decreasing range is a classic warning of collision risk; Rule 7 also warns that risk may exist despite bearing change in some circumstances.",
+    "source": {
+      "label": "Navigation Rules, Rule 7",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-005",
+    "module": "q100",
+    "topic": "Rule 8",
+    "stem": "How should an avoiding action normally be made when there is room to maneuver?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As a succession of very small changes"
+      },
+      {
+        "id": "o2",
+        "text": "As early, positive action readily apparent to the other vessel"
+      },
+      {
+        "id": "o3",
+        "text": "Only by reducing speed"
+      },
+      {
+        "id": "o4",
+        "text": "Only after a whistle signal is received"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 8 calls for positive action in ample time; an alteration should be large enough to be readily apparent if circumstances permit.",
+    "source": {
+      "label": "Navigation Rules, Rule 8",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-006",
+    "module": "q100",
+    "topic": "Rule 8",
+    "stem": "Which statement best describes an effective course alteration to avoid collision?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It should be too small to be noticed"
+      },
+      {
+        "id": "o2",
+        "text": "It may be substantial if there is sufficient sea room and it avoids a new close-quarters situation"
+      },
+      {
+        "id": "o3",
+        "text": "It must always be to port"
+      },
+      {
+        "id": "o4",
+        "text": "It must always be accompanied by an increase in speed"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Under Rule 8, a substantial alteration may be most effective when sufficient sea room exists and it does not create another close-quarters situation.",
+    "source": {
+      "label": "Navigation Rules, Rule 8",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-007",
+    "module": "q100",
+    "topic": "Rule 9",
+    "stem": "Where should a vessel navigating a narrow channel generally keep?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Near the port-side outer limit"
+      },
+      {
+        "id": "o2",
+        "text": "On the exact centerline"
+      },
+      {
+        "id": "o3",
+        "text": "As near to the starboard-side outer limit as safe and practicable"
+      },
+      {
+        "id": "o4",
+        "text": "Outside the charted channel"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 9 directs a vessel to keep near the outer limit on her starboard side as safe and practicable.",
+    "source": {
+      "label": "Navigation Rules, Rule 9",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-008",
+    "module": "q100",
+    "topic": "Rule 9",
+    "stem": "In a narrow channel, which vessel must not impede a vessel that can safely navigate only there?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A sailing vessel"
+      },
+      {
+        "id": "o2",
+        "text": "A vessel over 100 meters only"
+      },
+      {
+        "id": "o3",
+        "text": "Any vessel with two engines"
+      },
+      {
+        "id": "o4",
+        "text": "A vessel engaged in pilotage duty only"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 9 prohibits a sailing vessel from impeding passage of a vessel that can safely navigate only within the narrow channel or fairway.",
+    "source": {
+      "label": "Navigation Rules, Rule 9",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-009",
+    "module": "q100",
+    "topic": "Rule 9",
+    "stem": "A power-driven boat under 20 meters is in a narrow channel. Which statement is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It may freely impede larger ships"
+      },
+      {
+        "id": "o2",
+        "text": "It must not impede a vessel that can safely navigate only within the channel"
+      },
+      {
+        "id": "o3",
+        "text": "It always has priority over ships under sail"
+      },
+      {
+        "id": "o4",
+        "text": "It must follow the centerline"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 9 specifically limits vessels under 20 meters and sailing vessels from impeding channel-dependent traffic.",
+    "source": {
+      "label": "Navigation Rules, Rule 9",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-010",
+    "module": "q100",
+    "topic": "Rule 9",
+    "stem": "When crossing a narrow channel, what must your vessel avoid?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Crossing at all, under any circumstances"
+      },
+      {
+        "id": "o2",
+        "text": "Crossing if doing so would impede a vessel able to navigate safely only in that channel"
+      },
+      {
+        "id": "o3",
+        "text": "Using the VHF radio"
+      },
+      {
+        "id": "o4",
+        "text": "Making a starboard turn"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 9 prohibits crossing a narrow channel or fairway if doing so impedes passage of a vessel confined to it.",
+    "source": {
+      "label": "Navigation Rules, Rule 9",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-011",
+    "module": "q100",
+    "topic": "Rule 10",
+    "stem": "When a vessel must cross a traffic lane in a traffic separation scheme, what heading is generally required?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As nearly as practicable at right angles to the traffic flow"
+      },
+      {
+        "id": "o2",
+        "text": "Parallel to the traffic flow"
+      },
+      {
+        "id": "o3",
+        "text": "At the smallest possible angle to the traffic flow"
+      },
+      {
+        "id": "o4",
+        "text": "Any heading at maximum speed"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 10 requires crossing lanes on a heading as nearly as practicable at right angles to the general direction of traffic flow.",
+    "source": {
+      "label": "Navigation Rules, Rule 10",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-012",
+    "module": "q100",
+    "topic": "Rule 10",
+    "stem": "When joining a traffic lane from its side, how should a vessel generally enter?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "At right angles to traffic flow"
+      },
+      {
+        "id": "o2",
+        "text": "At as small an angle as practicable to the general direction of traffic flow"
+      },
+      {
+        "id": "o3",
+        "text": "By reversing into the lane"
+      },
+      {
+        "id": "o4",
+        "text": "Anywhere without regard to traffic"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 10 directs a vessel entering or leaving a lane from the side to do so at as small an angle as practicable.",
+    "source": {
+      "label": "Navigation Rules, Rule 10",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-013",
+    "module": "q100",
+    "topic": "Rule 10",
+    "stem": "Which statement about anchoring in a traffic separation scheme is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Anchoring is required before joining a lane"
+      },
+      {
+        "id": "o2",
+        "text": "Vessels should, so far as practicable, avoid anchoring in the scheme or near its terminations"
+      },
+      {
+        "id": "o3",
+        "text": "Only sailing vessels may anchor"
+      },
+      {
+        "id": "o4",
+        "text": "Anchoring is permitted in all separation zones without restriction"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 10 calls for avoiding anchoring in a traffic separation scheme or areas near its terminations so far as practicable.",
+    "source": {
+      "label": "Navigation Rules, Rule 10",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-014",
+    "module": "q100",
+    "topic": "Rule 12",
+    "stem": "Two sailing vessels are approaching with risk of collision and wind on different sides. Which keeps out of the way?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The vessel with wind on her port side"
+      },
+      {
+        "id": "o2",
+        "text": "The vessel with wind on her starboard side"
+      },
+      {
+        "id": "o3",
+        "text": "The leeward vessel always"
+      },
+      {
+        "id": "o4",
+        "text": "The larger vessel"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 12: with wind on different sides, the vessel receiving wind on her port side keeps out of the way.",
+    "source": {
+      "label": "Navigation Rules, Rule 12",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-015",
+    "module": "q100",
+    "topic": "Rule 12",
+    "stem": "Two sailing vessels are approaching with risk of collision and wind on the same side. Which keeps out of the way?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The leeward vessel"
+      },
+      {
+        "id": "o2",
+        "text": "The windward vessel"
+      },
+      {
+        "id": "o3",
+        "text": "The faster vessel"
+      },
+      {
+        "id": "o4",
+        "text": "The vessel showing more sail"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 12: when both have wind on the same side, the windward vessel keeps out of the way of the leeward vessel.",
+    "source": {
+      "label": "Navigation Rules, Rule 12",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-016",
+    "module": "q100",
+    "topic": "Rule 12",
+    "stem": "A sailing vessel on port tack sees another sailing vessel to windward and cannot determine her tack. What should it do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Maintain course in all circumstances"
+      },
+      {
+        "id": "o2",
+        "text": "Keep out of the other vessel's way"
+      },
+      {
+        "id": "o3",
+        "text": "Sound one prolonged blast and stop"
+      },
+      {
+        "id": "o4",
+        "text": "Assume the other vessel has priority regardless of risk"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 12 specifically requires the port-wind vessel to keep out of the way when uncertain about the tack of a windward vessel.",
+    "source": {
+      "label": "Navigation Rules, Rule 12",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-017",
+    "module": "q100",
+    "topic": "Rule 13",
+    "stem": "From what sector must a vessel approach another to be considered overtaking under Rule 13?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "More than 22.5 degrees abaft the other vessel's beam"
+      },
+      {
+        "id": "o2",
+        "text": "Within 22.5 degrees of the bow"
+      },
+      {
+        "id": "o3",
+        "text": "Anywhere forward of the beam"
+      },
+      {
+        "id": "o4",
+        "text": "Exactly 90 degrees from the bow"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 13 defines overtaking as approaching more than 22.5 degrees abaft the beam of the vessel being overtaken.",
+    "source": {
+      "label": "Navigation Rules, Rule 13",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-018",
+    "module": "q100",
+    "topic": "Rule 13",
+    "stem": "When does an overtaking vessel's obligation to keep clear end?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When it sounds the first whistle"
+      },
+      {
+        "id": "o2",
+        "text": "When it passes the other vessel's beam"
+      },
+      {
+        "id": "o3",
+        "text": "When it is finally past and clear"
+      },
+      {
+        "id": "o4",
+        "text": "When relative bearing first changes"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 13 says a subsequent bearing change does not convert overtaking to crossing; the obligation continues until finally past and clear.",
+    "source": {
+      "label": "Navigation Rules, Rule 13",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-019",
+    "module": "q100",
+    "topic": "Rule 14",
+    "stem": "Two power-driven vessels meet nearly head-on with risk of collision. What is the normal maneuver?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both alter to port"
+      },
+      {
+        "id": "o2",
+        "text": "Both alter to starboard"
+      },
+      {
+        "id": "o3",
+        "text": "The smaller vessel stops, the larger continues"
+      },
+      {
+        "id": "o4",
+        "text": "Neither alters unless the other signals"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 14 requires each vessel to alter course to starboard so they pass port-to-port.",
+    "source": {
+      "label": "Navigation Rules, Rule 14",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-020",
+    "module": "q100",
+    "topic": "Rule 15",
+    "stem": "In a power-driven crossing situation with collision risk, which vessel must keep out of the way?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The vessel having the other on its starboard side"
+      },
+      {
+        "id": "o2",
+        "text": "The vessel having the other on its port side"
+      },
+      {
+        "id": "o3",
+        "text": "The larger vessel"
+      },
+      {
+        "id": "o4",
+        "text": "The faster vessel"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 15 gives the keep-clear duty to the vessel with the other on her own starboard side.",
+    "source": {
+      "label": "Navigation Rules, Rule 15",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-021",
+    "module": "q100",
+    "topic": "Rule 15",
+    "stem": "In a crossing situation where you are give-way, what should you avoid if circumstances admit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Passing astern of the stand-on vessel"
+      },
+      {
+        "id": "o2",
+        "text": "Crossing ahead of the stand-on vessel"
+      },
+      {
+        "id": "o3",
+        "text": "Using a substantial course change"
+      },
+      {
+        "id": "o4",
+        "text": "Reducing speed"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 15 directs the give-way vessel to avoid crossing ahead of the other vessel if circumstances admit.",
+    "source": {
+      "label": "Navigation Rules, Rule 15",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-022",
+    "module": "q100",
+    "topic": "Rule 17",
+    "stem": "What is a stand-on vessel's initial obligation when Rules 12-17 apply?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Maintain course and speed"
+      },
+      {
+        "id": "o2",
+        "text": "Always alter to port"
+      },
+      {
+        "id": "o3",
+        "text": "Stop immediately"
+      },
+      {
+        "id": "o4",
+        "text": "Sound MAYDAY"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 17(a)(i) generally requires a stand-on vessel to keep course and speed initially.",
+    "source": {
+      "label": "Navigation Rules, Rule 17",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-023",
+    "module": "q100",
+    "topic": "Rule 17",
+    "stem": "When may a stand-on vessel act by her maneuver alone?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Whenever she prefers to pass ahead"
+      },
+      {
+        "id": "o2",
+        "text": "When it becomes apparent that the give-way vessel is not taking appropriate action"
+      },
+      {
+        "id": "o3",
+        "text": "Only when impact is inevitable"
+      },
+      {
+        "id": "o4",
+        "text": "Only after the vessels pass"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 17(a)(ii) permits action when the give-way vessel apparently is not taking appropriate action.",
+    "source": {
+      "label": "Navigation Rules, Rule 17",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-024",
+    "module": "q100",
+    "topic": "Rule 17",
+    "stem": "When must a stand-on vessel act to avoid collision even though she originally had right of way?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When so close that the give-way vessel's action alone cannot avoid collision"
+      },
+      {
+        "id": "o2",
+        "text": "Only after the collision occurs"
+      },
+      {
+        "id": "o3",
+        "text": "Whenever the vessels are within two miles"
+      },
+      {
+        "id": "o4",
+        "text": "Only after a pilot boards"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 17(b) requires the stand-on vessel to act when a collision cannot be avoided by action of the give-way vessel alone.",
+    "source": {
+      "label": "Navigation Rules, Rule 17",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-025",
+    "module": "q100",
+    "topic": "Rule 17",
+    "stem": "A power-driven stand-on vessel acts in a crossing situation against a vessel on her own port side. Which alteration should she avoid if circumstances admit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An alteration to port"
+      },
+      {
+        "id": "o2",
+        "text": "Any alteration to starboard"
+      },
+      {
+        "id": "o3",
+        "text": "Any decrease in speed"
+      },
+      {
+        "id": "o4",
+        "text": "Any change of course"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 17(c) says a power-driven vessel acting in a crossing situation should, if circumstances admit, not alter to port for a vessel on her own port side.",
+    "source": {
+      "label": "Navigation Rules, Rule 17",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-026",
+    "module": "q100",
+    "topic": "Rule 18",
+    "stem": "Under Rule 18, which vessel does a power-driven vessel underway generally keep clear of?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A sailing vessel, unless another rule such as overtaking applies"
+      },
+      {
+        "id": "o2",
+        "text": "Any vessel moving faster"
+      },
+      {
+        "id": "o3",
+        "text": "Every fishing boat with trolling lines"
+      },
+      {
+        "id": "o4",
+        "text": "Only ships over 50 meters"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 18 generally places power-driven vessels below sailing vessels, subject to Rules 9, 10, and 13.",
+    "source": {
+      "label": "Navigation Rules, Rule 18",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-027",
+    "module": "q100",
+    "topic": "Rule 3",
+    "stem": "For purposes of the steering and sailing rules, a vessel fishing with ordinary trolling lines that do not restrict maneuverability is generally treated as:",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A vessel engaged in fishing under Rule 3(d)"
+      },
+      {
+        "id": "o2",
+        "text": "A vessel restricted in ability to maneuver"
+      },
+      {
+        "id": "o3",
+        "text": "A power-driven vessel if propelled by machinery"
+      },
+      {
+        "id": "o4",
+        "text": "A vessel not under command"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 3(d) excludes fishing gear that does not restrict maneuverability, such as trolling lines, from the definition of vessel engaged in fishing.",
+    "source": {
+      "label": "Navigation Rules, Rule 3",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-028",
+    "module": "q100",
+    "topic": "Rule 18",
+    "stem": "A pilot boat is proceeding under power while performing pilotage duty. Does that automatically exempt it from normal steering and sailing rules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Yes, pilots always stand on"
+      },
+      {
+        "id": "o2",
+        "text": "No; it remains subject to the applicable rules for its status and situation"
+      },
+      {
+        "id": "o3",
+        "text": "Yes, but only at night"
+      },
+      {
+        "id": "o4",
+        "text": "Only if it uses a flashing yellow light"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "A vessel engaged on pilotage duty does not receive an automatic right of way simply because of its occupation.",
+    "source": {
+      "label": "Navigation Rules, Rule 18",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-029",
+    "module": "q100",
+    "topic": "Rule 18",
+    "stem": "How should a seaplane on the water generally navigate around other vessels?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Keep well clear of all vessels and avoid impeding their navigation"
+      },
+      {
+        "id": "o2",
+        "text": "Claim right of way over power-driven vessels"
+      },
+      {
+        "id": "o3",
+        "text": "Use aircraft lights only"
+      },
+      {
+        "id": "o4",
+        "text": "Always remain stopped"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 18(e) directs seaplanes on the water generally to keep well clear and avoid impeding vessel navigation.",
+    "source": {
+      "label": "Navigation Rules, Rule 18",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-030",
+    "module": "q100",
+    "topic": "Rule 19",
+    "stem": "In restricted visibility, what should a vessel using operational radar do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use radar systematically to determine collision risk"
+      },
+      {
+        "id": "o2",
+        "text": "Assume radar removes the need for lookout"
+      },
+      {
+        "id": "o3",
+        "text": "Ignore small targets"
+      },
+      {
+        "id": "o4",
+        "text": "Wait for visual contact before making any assessment"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 19 and Rule 7 require systematic assessment, including radar information, where fitted and operational.",
+    "source": {
+      "label": "Navigation Rules, Rule 19",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-031",
+    "module": "q100",
+    "topic": "Rule 19",
+    "stem": "You hear a fog signal apparently forward of your beam in restricted visibility and cannot establish that collision risk is absent. What should you do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Maintain maximum cruising speed"
+      },
+      {
+        "id": "o2",
+        "text": "Reduce speed to the minimum at which you can keep course and, if necessary, take all way off"
+      },
+      {
+        "id": "o3",
+        "text": "Always turn to port immediately"
+      },
+      {
+        "id": "o4",
+        "text": "Sound three short blasts and accelerate"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 19(e) requires reduction to the minimum steerage speed, taking all way off if necessary, and navigating with extreme caution.",
+    "source": {
+      "label": "Navigation Rules, Rule 19",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-032",
+    "module": "q100",
+    "topic": "Rule 35",
+    "stem": "A power-driven vessel is making way through the water in fog. Which signal should it sound at intervals of not more than two minutes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One prolonged blast"
+      },
+      {
+        "id": "o2",
+        "text": "Two prolonged blasts"
+      },
+      {
+        "id": "o3",
+        "text": "One short and one prolonged blast"
+      },
+      {
+        "id": "o4",
+        "text": "Five short blasts"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 35(a): a power-driven vessel making way sounds one prolonged blast at intervals not exceeding two minutes.",
+    "source": {
+      "label": "Navigation Rules, Rule 35",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-033",
+    "module": "q100",
+    "topic": "Rule 35",
+    "stem": "A power-driven vessel is underway but stopped and making no way through the water in fog. Which signal applies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One prolonged blast"
+      },
+      {
+        "id": "o2",
+        "text": "Two prolonged blasts in succession, separated by about two seconds"
+      },
+      {
+        "id": "o3",
+        "text": "Three short blasts"
+      },
+      {
+        "id": "o4",
+        "text": "Continuous bell ringing"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 35(b) prescribes two prolonged blasts separated by about two seconds at intervals not over two minutes.",
+    "source": {
+      "label": "Navigation Rules, Rule 35",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-034",
+    "module": "q100",
+    "topic": "Rule 35",
+    "stem": "Which fog signal is associated with a vessel restricted in her ability to maneuver while underway?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One prolonged followed by two short blasts"
+      },
+      {
+        "id": "o2",
+        "text": "Two prolonged blasts"
+      },
+      {
+        "id": "o3",
+        "text": "Three rapid short blasts"
+      },
+      {
+        "id": "o4",
+        "text": "One short and one prolonged blast"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 35(c) covers vessels not under command, restricted in ability to maneuver, constrained by draft, sailing, fishing, and towing/pushing: one prolonged then two short.",
+    "source": {
+      "label": "Navigation Rules, Rule 35",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-035",
+    "module": "q100",
+    "topic": "Rule 35",
+    "stem": "For a vessel 20 meters or more in length at anchor in restricted visibility, what bell signal is required?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rapid ringing for about five seconds at intervals not exceeding one minute"
+      },
+      {
+        "id": "o2",
+        "text": "One prolonged whistle blast every five minutes"
+      },
+      {
+        "id": "o3",
+        "text": "Three short whistle blasts every minute"
+      },
+      {
+        "id": "o4",
+        "text": "Continuous ringing without pauses"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 35(g) requires rapid bell ringing for about five seconds at intervals not over one minute while at anchor.",
+    "source": {
+      "label": "Navigation Rules, Rule 35",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-036",
+    "module": "q100",
+    "topic": "Rule 33",
+    "stem": "What sound-signaling capability is required for a vessel under 12 meters in length?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A bell and gong"
+      },
+      {
+        "id": "o2",
+        "text": "A whistle complying with Annex III, always"
+      },
+      {
+        "id": "o3",
+        "text": "Some means of making an efficient sound signal"
+      },
+      {
+        "id": "o4",
+        "text": "No sound-making capability whatsoever"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 33(b) does not require the standard whistle/bell but requires another means of making an efficient sound signal.",
+    "source": {
+      "label": "Navigation Rules, Rule 33",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-037",
+    "module": "q100",
+    "topic": "Rule 33",
+    "stem": "At what length does Rule 33 require an additional gong?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "12 meters"
+      },
+      {
+        "id": "o2",
+        "text": "20 meters"
+      },
+      {
+        "id": "o3",
+        "text": "50 meters"
+      },
+      {
+        "id": "o4",
+        "text": "100 meters"
+      }
+    ],
+    "correctOptionId": "o4",
+    "explanation": "Rule 33(a) requires a gong (or equivalent) in addition to whistle and bell for vessels 100 meters or longer.",
+    "source": {
+      "label": "Navigation Rules, Rule 33",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-038",
+    "module": "q100",
+    "topic": "Rule 32",
+    "stem": "What is the duration of a short blast under the navigation rules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "About one second"
+      },
+      {
+        "id": "o2",
+        "text": "Four to six seconds"
+      },
+      {
+        "id": "o3",
+        "text": "Ten seconds"
+      },
+      {
+        "id": "o4",
+        "text": "One minute"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 32(b) defines a short blast as about one second.",
+    "source": {
+      "label": "Navigation Rules, Rule 32",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-039",
+    "module": "q100",
+    "topic": "Rule 32",
+    "stem": "What is the duration of a prolonged blast?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "About one second"
+      },
+      {
+        "id": "o2",
+        "text": "Two seconds exactly"
+      },
+      {
+        "id": "o3",
+        "text": "Four to six seconds"
+      },
+      {
+        "id": "o4",
+        "text": "Ten to twelve seconds"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 32(c) defines a prolonged blast as four to six seconds.",
+    "source": {
+      "label": "Navigation Rules, Rule 32",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-040",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "Which whistle signal expresses doubt about another vessel's action in sight of one another?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One prolonged blast"
+      },
+      {
+        "id": "o2",
+        "text": "At least five short and rapid blasts"
+      },
+      {
+        "id": "o3",
+        "text": "Three short blasts"
+      },
+      {
+        "id": "o4",
+        "text": "Two prolonged blasts"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 34(d) permits at least five short and rapid blasts when intentions or sufficient action are in doubt.",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-041",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "What does three short whistle blasts indicate under Rule 34?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Altering course to starboard"
+      },
+      {
+        "id": "o2",
+        "text": "Altering course to port"
+      },
+      {
+        "id": "o3",
+        "text": "Operating astern propulsion"
+      },
+      {
+        "id": "o4",
+        "text": "Being at anchor"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 34(a) uses three short blasts to mean 'I am operating astern propulsion.'",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-042",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "Under the International Rules, one short maneuvering blast indicates:",
+    "options": [
+      {
+        "id": "o1",
+        "text": "I am altering my course to starboard"
+      },
+      {
+        "id": "o2",
+        "text": "I am altering my course to port"
+      },
+      {
+        "id": "o3",
+        "text": "I intend to leave you on my starboard side"
+      },
+      {
+        "id": "o4",
+        "text": "I am operating astern propulsion"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "International Rule 34(a): one short blast means 'I am altering my course to starboard.' Inland passing-signal wording is different.",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-043",
+    "module": "q100",
+    "topic": "Rule 34",
+    "stem": "Under Inland Rules, what does one short passing signal mean when vessels are in sight and maneuvering under Rule 34?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "I intend to leave you on my port side"
+      },
+      {
+        "id": "o2",
+        "text": "I am altering my course to port"
+      },
+      {
+        "id": "o3",
+        "text": "I intend to leave you on my starboard side"
+      },
+      {
+        "id": "o4",
+        "text": "I am going astern"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Inland Rule 34(a): one short blast indicates intent to leave the other vessel on your port side; this differs from the International wording.",
+    "source": {
+      "label": "Navigation Rules, Rule 34",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-044",
+    "module": "q100",
+    "topic": "Rule 27",
+    "stem": "Which pair of all-round lights identifies a vessel not under command at night?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Two red lights vertically"
+      },
+      {
+        "id": "o2",
+        "text": "Red over white"
+      },
+      {
+        "id": "o3",
+        "text": "Green over white"
+      },
+      {
+        "id": "o4",
+        "text": "Two yellow lights vertically"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 27(a) specifies two all-round red lights in a vertical line for a vessel not under command.",
+    "source": {
+      "label": "Navigation Rules, Rule 27",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-045",
+    "module": "q100",
+    "topic": "Rule 27",
+    "stem": "Which vertical sequence of all-round lights identifies a vessel restricted in her ability to maneuver?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Green-white-green"
+      },
+      {
+        "id": "o2",
+        "text": "Red-white-red"
+      },
+      {
+        "id": "o3",
+        "text": "White-red-white"
+      },
+      {
+        "id": "o4",
+        "text": "Red-red-red"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 27(b) specifies all-round red-white-red in a vertical line for a restricted-ability vessel.",
+    "source": {
+      "label": "Navigation Rules, Rule 27",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-046",
+    "module": "q100",
+    "topic": "Rule 26",
+    "stem": "Which vertical pair of lights identifies a trawling vessel engaged in fishing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Green over white"
+      },
+      {
+        "id": "o2",
+        "text": "Red over white"
+      },
+      {
+        "id": "o3",
+        "text": "Yellow over white"
+      },
+      {
+        "id": "o4",
+        "text": "White over red"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 26(b): a vessel engaged in trawling shows green over white all-round lights.",
+    "source": {
+      "label": "Navigation Rules, Rule 26",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-047",
+    "module": "q100",
+    "topic": "Rule 26",
+    "stem": "Which vertical pair of lights identifies a vessel engaged in fishing other than trawling?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Green over white"
+      },
+      {
+        "id": "o2",
+        "text": "Red over white"
+      },
+      {
+        "id": "o3",
+        "text": "Yellow over red"
+      },
+      {
+        "id": "o4",
+        "text": "White over green"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 26(c) prescribes red over white all-round lights for fishing other than trawling.",
+    "source": {
+      "label": "Navigation Rules, Rule 26",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-048",
+    "module": "q100",
+    "topic": "Rule 21",
+    "stem": "How far around the horizon does a masthead light show?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "90 degrees"
+      },
+      {
+        "id": "o2",
+        "text": "112.5 degrees"
+      },
+      {
+        "id": "o3",
+        "text": "225 degrees"
+      },
+      {
+        "id": "o4",
+        "text": "360 degrees"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 21(a) defines the masthead light as white over an arc of 225 degrees.",
+    "source": {
+      "label": "Navigation Rules, Rule 21",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-049",
+    "module": "q100",
+    "topic": "Rule 21",
+    "stem": "What horizontal arc does each sidelight show?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "67.5 degrees"
+      },
+      {
+        "id": "o2",
+        "text": "112.5 degrees"
+      },
+      {
+        "id": "o3",
+        "text": "135 degrees"
+      },
+      {
+        "id": "o4",
+        "text": "225 degrees"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 21(b) defines each sidelight's arc as 112.5 degrees.",
+    "source": {
+      "label": "Navigation Rules, Rule 21",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-050",
+    "module": "q100",
+    "topic": "Rule 21",
+    "stem": "What horizontal arc does a sternlight show?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "67.5 degrees"
+      },
+      {
+        "id": "o2",
+        "text": "112.5 degrees"
+      },
+      {
+        "id": "o3",
+        "text": "135 degrees"
+      },
+      {
+        "id": "o4",
+        "text": "225 degrees"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 21(c) defines the sternlight as 135 degrees, centered astern.",
+    "source": {
+      "label": "Navigation Rules, Rule 21",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-051",
+    "module": "q100",
+    "topic": "Rule 23",
+    "stem": "A power-driven vessel under 12 meters in length may substitute which arrangement for normal underway lights?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One all-round white light and sidelights"
+      },
+      {
+        "id": "o2",
+        "text": "One red all-round light"
+      },
+      {
+        "id": "o3",
+        "text": "One sternlight only"
+      },
+      {
+        "id": "o4",
+        "text": "Two red lights vertically"
+      }
+    ],
+    "correctOptionId": "o1",
+    "explanation": "Rule 23(c)(i) allows one all-round white light and sidelights for a power-driven vessel less than 12 meters.",
+    "source": {
+      "label": "Navigation Rules, Rule 23",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-052",
+    "module": "q100",
+    "topic": "Rule 25",
+    "stem": "A sailing vessel under sail is also propelled by machinery. Which day shape normally applies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Two black balls"
+      },
+      {
+        "id": "o2",
+        "text": "A black cone, apex downward"
+      },
+      {
+        "id": "o3",
+        "text": "One black diamond"
+      },
+      {
+        "id": "o4",
+        "text": "A black cylinder"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 25(e): a vessel proceeding under sail when also being propelled by machinery displays a cone, apex downward, forward.",
+    "source": {
+      "label": "Navigation Rules, Rule 25",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-053",
+    "module": "q100",
+    "topic": "Rule 24",
+    "stem": "A vessel engaged in towing astern has a tow length greater than 200 meters. How many masthead towing lights in a vertical line?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One"
+      },
+      {
+        "id": "o2",
+        "text": "Two"
+      },
+      {
+        "id": "o3",
+        "text": "Three"
+      },
+      {
+        "id": "o4",
+        "text": "Four"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 24(a): three masthead lights in a vertical line when the tow length, from stern of towing vessel to after end of tow, exceeds 200 meters.",
+    "source": {
+      "label": "Navigation Rules, Rule 24",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-054",
+    "module": "q100",
+    "topic": "Rule 30",
+    "stem": "What day shape identifies a vessel aground when required by Rule 30?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One black cone"
+      },
+      {
+        "id": "o2",
+        "text": "Two black diamonds"
+      },
+      {
+        "id": "o3",
+        "text": "Three black balls vertically"
+      },
+      {
+        "id": "o4",
+        "text": "One black cylinder"
+      }
+    ],
+    "correctOptionId": "o3",
+    "explanation": "Rule 30(d) prescribes three black balls in a vertical line for aground vessels, subject to small-vessel exemptions.",
+    "source": {
+      "label": "Navigation Rules, Rule 30",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-055",
+    "module": "q100",
+    "topic": "Rule 13",
+    "stem": "When in doubt whether a vessel is overtaking, what must you assume?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "That it is crossing"
+      },
+      {
+        "id": "o2",
+        "text": "That it is overtaking and act accordingly"
+      },
+      {
+        "id": "o3",
+        "text": "That it is stand-on"
+      },
+      {
+        "id": "o4",
+        "text": "That neither vessel has obligations"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 13(c) says if in any doubt whether overtaking, assume it is overtaking and act accordingly.",
+    "source": {
+      "label": "Navigation Rules, Rule 13",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  },
+  {
+    "id": "rr-056",
+    "module": "q100",
+    "topic": "Rule 19",
+    "stem": "When navigating near an area of restricted visibility, what must a power-driven vessel have ready?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Her anchors ready to drop"
+      },
+      {
+        "id": "o2",
+        "text": "Her engines ready for immediate maneuver"
+      },
+      {
+        "id": "o3",
+        "text": "Her liferaft inflated"
+      },
+      {
+        "id": "o4",
+        "text": "A deck searchlight continuously on"
+      }
+    ],
+    "correctOptionId": "o2",
+    "explanation": "Rule 19(b) requires every vessel to proceed at a safe speed and a power-driven vessel to have her engines ready for immediate maneuver.",
+    "source": {
+      "label": "Navigation Rules, Rule 19",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated"
+    },
+    "provenance": "original"
+  }
+]
